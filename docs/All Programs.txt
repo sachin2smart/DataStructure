@@ -1,0 +1,688 @@
+Amazon Topics for Interview Preparation
+
+
+
+Easy Level Medium Level Hard Level 
+
+Easy Level
+
+
+
+How to check if given four points form a square
+
+Check if a string can be obtained by rotating another string 2 places
+
+Find the nearest smaller numbers on left side in an array
+
+Find if two rectangles overlap
+
+Pair with given product | Set 1 (Find if any pair exists)
+
+Position of rightmost set bit  :   (int)((Math.log10(n & -n)) / Math.log10(2)) + 1
+
+Print all possible strings that can be made by placing spaces
+
+Replace all ‘0’ with ‘5’ in an input Integer   :    Integer.parseInt(Integer.toString(num).replace('0','5'))
+
+A Boolean Matrix Question
+
+Amazon Interview Experience | Set 315
+
+Array Rotation
+
+Program for array rotation
+
+Build Lowest Number by Removing n digits from a given number
+
+Calculate the angle between hour hand and minute hand  :  hour: 0.5 * (h*60 + m)   minute: 6*m 
+
+Check if all bits of a number are set   : if (((n + 1) & n) == 0)
+
+Check if a given Binary Tree is SumTree
+
+Check if a number can be expressed as x^y (x raised to power y)
+
+Check if two trees are Mirror
+
+Converting Decimal Number lying between 1 to 3999 to Roman Numerals
+
+Count 'd' digit positive integers with 0 as a digit  : 9*(pow(10,d-1) - pow(9,d-1))
+
+Count number of bits to be flipped to convert A to B
+
+Count number of occurrences (or frequency) in a sorted array
+
+Count all possible groups of size 2 or 3 that have sum as multiple of 3
+
+Count all possible paths from top left to bottom right of a mXn matrix
+
+Count total set bits in all numbers from 1 to n  : (x % 2 == 0 ? 0 : 1) + recFunc(x/2)
+
+Count triplets with sum smaller than a given value  : a[i]+a[j]+a[k] < value 
+----
+Count words that appear exactly two times in an array of words  : Use HashMap
+
+Dynamic Programming | Set 30 (Dice Throw) 
+
+Equilibrium index of an array
+
+Fill array with 1's using minimum iterations of filling neighbors
+
+Find a Fixed Point (Value equal to index) in a given array
+
+Find first and last occurrences of an element in a sorted array
+
+Find four elements that sum to a given value | Set 1 (n^3 solution)
+
+Find the index of first 1 in a sorted array of 0's and 1's
+
+Find minimum difference between any two elements
+
+Count the number of possible triangles
+
+Find the Missing Number : calculate the sum and subtract all elements from the array:::
+
+Find the Number Occurring Odd Number of Times
+
+Find two prime numbers with given sum 📄 : Sieve of Eratosthenes 
+
+Find uncommon characters of the two strings
+
+Given a binary tree, print all root-to-leaf paths
+
+An Interesting Method to Generate Binary Numbers from 1 to n  : use of queue - remove, add 0, add 1
+
+k largest(or smallest) elements in an array | added Min Heap method  : Arrays.sort(arr, Collections.reverseOrder()); 
+
+Level Order Tree Traversal
+
+Maximum sum such that no two elements are adjacent
+----
+Mobile Numeric Keypad Problem
+
+Numbers having Unique (or Distinct) digits
+
+Position of rightmost set bit
+
+Print all nodes that don't have sibling
+
+Queue | Set 2 (Linked List Implementation)
+
+Rearrange positive and negative numbers in O(n) time and O(1) extra space
+
+Remove characters from the first string which are present in the second string
+Remove minimum number of characters so that two strings become anagram
+
+Replace all ‘0’ with ‘5’ in an input Integer
+
+Find a pair with maximum product in array of Integers
+
+Reverse an array upto a given position
+
+Run Length Encoding
+
+Square root of an integer
+
+Tiling Problem
+
+Type of array and its maximum element
+
+Find the middle of a given linked list in C and Java
+
+Write a Program to Find the Maximum Depth or Height of a Tree
+
+Write a program to print all permutations of a given string
+
+Write your own atoi()
+
+A Product Array Puzzle
+
+Add two numbers represented by linked lists | Set 1
+
+Backtracking | Set 1 (The Knight's tour problem)
+
+Binary Search Tree | Set 1 (Search and Insertion)
+
+Binary Tree to Binary Search Tree Conversion
+
+Boundary Traversal of binary tree
+
+Breadth First Traversal or BFS for a Graph
+
+Check for balanced parentheses in an expression
+
+Check if a given array contains duplicate elements within k distance from each other
+
+How to check if given four points form a square
+
+Check if a given sequence of moves for a robot is circular or not
+
+Extract Leaves of a Binary Tree in a Doubly Linked List
+
+Convert a given tree to its Sum Tree
+
+Convert array into Zig-Zag fashion
+
+Converting Roman Numerals to Decimal lying between 1 to 3999
+
+Count maximum points on same line
+
+Count number of ways to cover a distance
+
+Count numbers with same first and last digits
+
+Count ways to reach the n'th stair
+
+Count Inversions in an array | Set 1 (Using Merge Sort)
+
+Delete N nodes after M nodes of a linked list
+
+Depth First Traversal or DFS for a Graph
+
+Design a stack that supports getMin() in O(1) time and O(1) extra space
+
+Diameter of a Binary Tree
+
+Difference between sums of odd level and even level nodes of a Binary Tree
+
+Dynamic Programming | Set 10 ( 0-1 Knapsack Problem)
+
+Dynamic Programming | Set 12 (Longest Palindromic Subsequence)
+
+Dynamic Programming | Set 14 (Maximum Sum Increasing Subsequence)
+
+Dynamic Programming | Set 17 (Palindrome Partitioning)
+
+Dynamic Programming | Set 18 (Partition problem)
+
+For each element in 1st array count elements less than or equal to it in 2nd array
+
+Equilibrium index of an array
+
+Evaluation of Expression Tree
+
+Extract maximum numeric value from a given string | Set 1 (General approach)
+
+Find a peak element
+
+Find a sorted subsequence of size 3 in linear time
+
+Find all strings that match specific pattern in a dictionary
+
+Find an equal point in a string of brackets
+
+Find Excel column name from a given column number
+
+Find four elements a, b, c and d in an array such that a+b = c+d
+
+Find height of a special binary tree whose leaf nodes are connected
+
+Find index of an extra element present in one sorted array
+
+Find maximum level sum in Binary Tree
+
+Maximum product of a triplet (subsequnece of size 3) in array
+
+Find the minimum element in a sorted and rotated array
+
+Find minimum number of coins that make a given value
+
+Find next greater number with same set of digits
+
+Find nth Magic Number
+
+Print all possible words from phone digits
+
+Pythagorean Triplet in an array
+
+Find the Rotation Count in Rotated Sorted array
+
+Find subarray with given sum | Set 1 (Nonnegative Numbers)
+
+Find the element before which all the elements are sm
+
+Find the element that appears once
+
+Find the largest subarray with 0 sum
+
+Find the maximum element in an array which is first increasing and then decre
+
+Find the maximum repeating number in O(n) time and O(1) extra space
+
+Find the row with maximum number of 1s
+
+Find the smallest positive number missing from an unsorted array | Set 1
+
+Find the smallest positive number missing from an unsorted array
+
+Find the smallest window in a string containing all characters of another strin
+
+Find top k (or most frequent) numbers in a stream
+
+Find the transition point in a binary array
+
+Find the two non-repeating elements in an array of repeating elements
+
+Find zeroes to be flipped so that number of consecutive 1's is maximized
+
+Floor in a Sorted Array
+
+Function to check if a singly linked list is palindrome
+
+Find Next Sparse Number
+
+Generate n-bit Gray Codes
+
+Given a string, find its first non-repeating character
+
+Given a binary string, count number of substrings that start and end with 1.
+
+Given only a pointer/reference to a node to be deleted in a singly lin
+
+Given two unsorted arrays, find all pairs whose sum is x
+
+Greedy Algorithms | Set 1 (Activity Selection Problem)
+
+Highest power of 2 less than or equal to given number
+
+How to determine if a binary tree is height-balanced?
+
+Sort a linked list that is sorted alternating ascending and descending orde
+
+Implement Stack using Queues
+
+Intersection of two Sorted Linked Lists
+
+Largest subarray with equal number of 0s and 1s
+
+Length of the longest substring without repeating characters
+
+Level order traversal in spiral form
+
+Longest consecutive sequence in Binary tree
+
+Look-and-Say Sequence
+
+Lowest Common Ancestor in a Binary Tree | Set 1
+
+Lowest Common Ancestor in a Binary Search Tree.
+
+Majority Element
+
+Maximize number of 0s by flipping a subarray
+
+Maximize value of (arr[i] - i) - (arr[j] - j) in an array
+
+Maximum Product Subarray
+
+Maximum sum of i*arr[i] among all rotations of a given array
+
+Maximum sum of lengths of non-overlapping subarrays with k as the max element.
+
+Maximum Sum Path in Two Arrays
+
+Maximum sum such that no two elements are adjacent
+
+Median of two sorted arrays
+
+Merge two sorted linked lists
+
+Minimum sum of squares of character counts in a given string after removing k character
+
+Minimum time required to rot all oranges
+
+Modify contents of Linked List
+
+Move all zeroes to end of array
+
+Multiply two numbers represented by Linked Lists
+
+Next Greater Element
+
+Find n'th node from the end of a Linked List
+
+Program for n'th node from the end of a Linked List
+
+Number of buildings facing the sun
+
+Number of Groups of Sizes Two Or Three Divisible By 3
+
+Number of paths with exactly k coins
+
+Pairwise swap elements of a given linked list
+
+Print all Jumping Numbers smaller than or equal to a given value
+
+Print a Binary Tree in Vertical Order | Set 1
+
+Print Common Nodes in Two Binary Search Trees
+
+Print K'th element in spiral form of matrix
+
+Print Left View of a Binary Tree
+
+Print level order traversal line by line
+
+Print nodes at k distance from root
+
+Print all nodes in a binary tree having K leaves
+
+Print all possible strings that can be made by placing spaces
+
+Print Right View of a Binary Tree
+
+Print unique rows in a given boolean matrix
+
+Implement Queue using Stacks
+
+Rearrange a linked list such that all even and odd positioned nodes are togethe
+
+Rearrange characters in a string such that no two adjacent are same
+
+Remove every k-th node of the linked list
+
+Replace every element with the greatest element on right side
+
+Reverse Level Order Traversal
+
+Reverse words in a given string
+
+Root to leaf path sum equal to a given number
+
+Search an element in a sorted and rotated array
+
+Segregate even and odd nodes in a Linked List
+
+Serialize and Deserialize a Binary Tree
+
+Sliding Window Maximum (Maximum of all subarrays of size k)
+
+Sort a linked list of 0s, 1s and 2s
+
+Sort a stack using recursion
+
+Sort an array of 0s, 1s and 2s
+
+Sort linked list which is already sorted on absolute values
+
+Sorted Array to Balanced BST
+
+Sorted insert for circular linked list
+
+Stock Buy Sell to Maximize Profit
+
+Submatrix Sum Queries
+
+The Celebrity Problem
+
+Trapping Rain Water
+
+Tree Isomorphism Problem
+
+Two elements whose sum is closest to zero
+
+Unbounded Knapsack (Repetition of items allowed)
+
+Union and Intersection of two Linked Lists
+
+Write a program function to detect loop in a linked list
+
+Given an a
+
+Write an Efficient C Program to Reverse Bits of a Number
+
+Write Code to Determine if Two Trees are Identical
+
+XOR of all subarray XORs
+
+
+
+Medium Level
+
+
+
+A program to check if a binary tree is BST or not
+
+Add all greater values to every node in a given BST   : Creation of a SumTree
+
+Adding two polynomials using Linked List
+
+Backtracking | Set 6 (Hamiltonian Cycle)
+
+(R) Backtracking | Set 7 (Sudoku)
+
+(R) Backtracking | Set 2 (Rat in a Maze)
+
+Binary Heap
+------
+Binary Search Tree | Set 2 (Delete)
+
+Boggle | Set 2 (Using Trie)
+
+Bottom View of a Binary Tree
+
+How to print maximum number of 'A' using given four keys
+
+Clone a Binary Tree with Random Pointers
+
+Clone a linked list with next and random pointer | Set 2
+
+Combinational Sum
+
+Connect n ropes with minimum cost
+
+Connect nodes at same level
+
+Construct Binary Tree from given Parent Array representation
+
+Construct a special tree from given preorder traversal
+
+Program to convert a given number to words
+
+Count of n digit numbers whose sum of digits equals to given sum
+
+Count Possible Decodings of a given Digit Sequence
+
+Count ways to reach the n'th stair
+
+Delete nodes which have a greater value on right side
+
+Delete all occurrences of a given key in a linked list
+
+Detect and Remove Loop in a Linked List
+
+Detect Cycle in a Directed Graph
+
+Detect cycle in an undirected graph
+
+Diagonal Traversal of Binary Tree
+
+Dynamic Programming | Set 11 (Egg Dropping Puzzle)
+
+Dynamic Programming | Set 20 (Maximum Length Chain of Pairs)
+
+Dynamic Programming | Set 22 (Box Stacking Problem)
+
+Dynamic Programming | Set 27 (Maximum sum rectangle in a 2D matrix)
+
+Dynamic Programming | Set 28 (Minimum insertions to form a palindrome)
+
+Dynamic Programming | Set 3 (Longest Increasing Subsequence)
+
+Dynamic Programming | Set 31 (Optimal Strategy for a Game)
+
+Dynamic Programming | Set 4 (Longest Common Subsequence)
+
+Dynamic Programming | Set 5 (Edit Distance)
+
+Find a pair with given sum in a Balanced BST
+
+Find the first circular tour that visits all petrol pumps
+
+Find a triplet that sum to a given value
+
+Find distance between two given keys of a Binary Tree
+
+Find all distinct subsets of a given set
+
+Find the first non-repeating character from a stream of characters
+
+Find four elements that sum to a given value | Set 2 ( O(n^2Logn) Solution)
+
+Find if a given string can be represented from a substring by iterating the substring “n
+
+Find k-th smallest element in BST (Order Statistics in BST)
+
+Find length of the largest region in Boolean Matrix
+
+Find next greater number with same set of digits
+
+Find the number of islands | Set 1 (Using DFS)
+
+Find smallest range containing elements from k lists
+
+Find the largest BST subtree in a given Binary Tree | Set 1
+
+Find the largest BST subtree in a given Binary Tree
+
+Program to find amount of water in a given glass
+
+Find whether there is path between two cells in matrix
+
+Flattening a Linked List
+
+Form minimum number from given sequence
+
+Given a number, find the next smallest palindrome
+
+Given a binary string, count number of substrings that start and end with 1.
+
+Construct Complete Binary Tree from its Linked List Representation
+
+Greedy Algorithms | Set 3 (Huffman Coding)
+
+Greedy Algorithms | Set 5 (Prim’s Minimum Spanning Tree (MST))
+
+How to print maximum number of A's using given four keys
+
+Inorder Successor in Binary Search Tree
+
+Inplace rotate square matrix by 90 degrees | Set 1
+
+Kth smallest element in a row-wise and column-wise sorted 2D array | Set 1
+
+Largest Rectangular Area in a Histogram | Set 2
+
+Largest Sum Contiguous Subarray
+
+Length of the longest substring without repeating characters
+
+Longest Consecutive Subsequence
+
+Maximum difference between node and its ancestor in Binary Tree
+
+Maximum size rectangle binary sub-matrix with all 1s
+
+Maximum size square sub-matrix with all 1s
+
+Merge K sorted linked lists
+
+Merge two BSTs with limited extra space
+
+Merge Overlapping Intervals
+
+Minimum number of jumps to reach end
+
+Minimum Number of Platforms Required for a Railway/Bus Station
+
+Minimum steps to reach a destination
+
+Non-crossing lines to connect points in a circle
+
+Number of non-negative integral solutions of a + b + c = n
+
+Number of subsequences of the form a^i b^j c^k
+
+Nuts & Bolts Problem (Lock & Key problem)
+
+Print extreme nodes of each level of Binary Tree in alternate order
+
+Print all k-sum paths in a binary tree
+
+Print leftmost and rightmost nodes of a Binary Tree
+
+Print Nodes in Top View of Binary Tree
+
+Printing brackets in Matrix Chain Multiplication Problem
+
+Rearrange characters in a string such that no two adjacent are same
+
+Remove minimum elements from either side such that 2*min becomes more than max
+
+Segment Tree | Set 1 (Sum of given range)
+
+Smallest window that contains all characters of string itself
+
+Snake and Ladder Problem
+
+Sort an array according to the order defined by another array
+
+Sort an array in wave form
+
+Stepping Numbers
+
+Topological Sorting
+
+Total number of possible Binary Search Trees with n keys
+
+Trapping Rain Water
+
+Validity of a given Tic-Tac-Toe board configuration
+
+wildcard pattern matching
+
+Given an a
+
+Write a function to get the intersection point of two Linked Lists.
+
+Write an Efficient Method to Check if a Number is Multiple of 3
+
+
+
+Hard Level
+
+
+
+AVL Tree | Set 1 (Insertion)
+
+AVL Tree | Set 2 (Deletion)
+
+Backtracking | Set 3 (N Queen Problem)
+
+Backtracking | Set 7 (Sudoku)
+
+Construct a Binary Tree from Postorder and Inorder
+
+Dynamic Programming | Set 37 (Boolean Parenthesization Problem)
+
+Find Recurring Sequence in a Fraction
+
+Find maximum of minimum for every window size in a given array
+
+Two nodes of a BST are swapped, correct the BST
+
+Given an array arr[], find the maximum j - i such that arr[j] > arr[i]
+
+Arrange given numbers to form the biggest number | Set 1
+
+Arrange given numbers to form the biggest number
+
+Given a sorted dictionary of an alien language, find order of characters
+
+Implement LRU Cache
+
+Median in a stream of integers (running integers)
+
+Partition a set into two subsets such that the difference of subset sums is
+
+Rearrange a given linked list in-place.
