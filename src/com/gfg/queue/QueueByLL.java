@@ -50,7 +50,7 @@ public class QueueByLL {
 		}
 		
 			
-//          F	R	
+//          F   R	
 //		10--20--30
 //		 X
 		
