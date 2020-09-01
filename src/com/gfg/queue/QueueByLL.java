@@ -1,7 +1,5 @@
 package com.gfg.queue;
 
-import java.util.Queue;
-
 public class QueueByLL {
 
 	QNode front;
