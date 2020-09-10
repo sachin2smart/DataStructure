@@ -1,0 +1,2 @@
+https://www.geeksforgeeks.org/the-knights-tour-problem-backtracking-1/
+https://www.geeksforgeeks.org/warnsdorffs-algorithm-knights-tour-problem/
