@@ -8,7 +8,7 @@ public class BinaryTreeTraversals {
 		root.left.left = new Node(3);
 		root.left.right = new Node(5);
 		root.right = new Node(2);
-		root.right.left = new Node(2);
+		root.right.left = new Node(7);
 		
 		System.out.println("\n Inorder Traversal : ");
 		inOrderTraversal(root);
@@ -33,15 +33,15 @@ public class BinaryTreeTraversals {
 			return;
 		
 		System.out.print(" "+root.key);
-		inOrderTraversal(root.left);
-		inOrderTraversal(root.right);
+		preOrderTraversal(root.left);
+		preOrderTraversal(root.right);
 	}
 	
 	private static void postOrderTraversal(Node root) {
 		if(root == null)
 			return;
-		inOrderTraversal(root.left);
-		inOrderTraversal(root.right);
+		postOrderTraversal(root.left);
+		postOrderTraversal(root.right);
 		System.out.print(" "+root.key);
 	}
 }
