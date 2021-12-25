@@ -7,6 +7,11 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TreeMap;
 
+/*
+ * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
+ * https://takeuforward.org/data-structure/vertical-order-traversal-of-binary-tree/
+ */
+
 public class VerticalOrder {
 	
 	public static List<List<Integer>> findVertical(Node root) {
