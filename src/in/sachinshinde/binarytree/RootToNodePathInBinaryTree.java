@@ -2,6 +2,8 @@ package in.sachinshinde.binarytree;
 
 import java.util.ArrayList;
 
+// https://takeuforward.org/data-structure/print-root-to-node-path-in-a-binary-tree/
+
 public class RootToNodePathInBinaryTree {
 	
 	private static boolean getPath(Node root, ArrayList<Integer> arr, int x) {
