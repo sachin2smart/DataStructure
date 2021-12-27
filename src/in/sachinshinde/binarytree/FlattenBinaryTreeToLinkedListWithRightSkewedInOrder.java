@@ -2,6 +2,8 @@ package in.sachinshinde.binarytree;
 
 import java.util.Stack;
 
+// https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+
 public class FlattenBinaryTreeToLinkedListWithRightSkewedInOrder {
 	
 	private static void flatten(Node root) {
@@ -109,7 +111,7 @@ public class FlattenBinaryTreeToLinkedListWithRightSkewedInOrder {
 		System.out.println("\n Pre-Order: ");
 		preOrder(root);
 		
-		flatten4(root);
+		flatten3(root);
 		
 		System.out.println("\n\n Flatten: ");
 		preOrder(root);
