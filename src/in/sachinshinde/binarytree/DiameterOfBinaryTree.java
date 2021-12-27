@@ -1,5 +1,13 @@
 package in.sachinshinde.binarytree;
 
+/*
+ * The diameter of a binary tree is the length of the longest path between any two nodes in a tree. 
+ * This path may or may not pass through the root.
+
+   https://leetcode.com/problems/diameter-of-binary-tree/
+ 
+ */
+
 public class DiameterOfBinaryTree {
 
 	private static int max;
