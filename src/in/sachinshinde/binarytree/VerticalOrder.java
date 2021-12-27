@@ -10,6 +10,8 @@ import java.util.TreeMap;
 /*
  * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
  * https://takeuforward.org/data-structure/vertical-order-traversal-of-binary-tree/
+ * 
+ * Good one: https://leetcode.ca/2016-10-09-314-Binary-Tree-Vertical-Order-Traversal/
  */
 
 public class VerticalOrder {
