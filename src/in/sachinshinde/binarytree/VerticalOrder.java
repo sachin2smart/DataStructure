@@ -1,8 +1,11 @@
 package in.sachinshinde.binarytree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.TreeMap;
@@ -10,8 +13,6 @@ import java.util.TreeMap;
 /*
  * https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
  * https://takeuforward.org/data-structure/vertical-order-traversal-of-binary-tree/
- * 
- * Good one: https://leetcode.ca/2016-10-09-314-Binary-Tree-Vertical-Order-Traversal/
  */
 
 public class VerticalOrder {
@@ -63,7 +64,55 @@ public class VerticalOrder {
         return list;
         
 	}
-     
+	
+	/* This function has issues (https://leetcode.ca/2016-10-09-314-Binary-Tree-Vertical-Order-Traversal/)
+	private static List<List<Integer>> getVerticalOrder(Node root) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        if(root == null) {
+            return res;
+        }
+        
+        Queue<TreeColumnNode> queue = new LinkedList<>();
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        queue.offer(new TreeColumnNode(root, 0));
+        
+        int curLevelCount = 1;
+        int nextLevelCount = 0;
+
+        while(!queue.isEmpty()) {
+        
+        	TreeColumnNode node = queue.poll();
+            
+        	if(map.containsKey(node.col)) {
+                map.get(node.col).add(node.treeNode.key);
+            } 
+        	else {
+                map.put(node.col, new ArrayList<Integer>(Arrays.asList(node.treeNode.key)));
+            }
+            
+        	curLevelCount--;
+
+            if(node.treeNode.left != null) {
+                queue.offer(new TreeColumnNode(node.treeNode.left, node.col - 1));
+                nextLevelCount++;
+            }
+            
+            if(node.treeNode.right != null) {
+                queue.offer(new TreeColumnNode(node.treeNode.right, node.col + 1));
+                nextLevelCount++;
+            }
+            
+            if(curLevelCount == 0) {
+                curLevelCount = nextLevelCount;
+                nextLevelCount = 0;
+            }
+        }
+
+        return new ArrayList<List<Integer>>(map.values());
+    }
+  */
+	
 	public static void main(String args[]) {
 
         Node root = new Node(1);
@@ -87,5 +136,15 @@ public class VerticalOrder {
             }
             System.out.println();
         }
+        
+//        list = getVerticalOrder(root);
+//
+//        System.out.println("\nThe Vertical Traversal is : ");
+//        for (List < Integer > it: list) {
+//            for (int nodeVal: it) {
+//                System.out.print(nodeVal + " ");
+//            }
+//            System.out.println();
+//        }
     }
 }
