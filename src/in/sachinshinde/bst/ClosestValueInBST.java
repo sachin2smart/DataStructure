@@ -25,3 +25,18 @@ public class ClosestValueInBST {
         return Math.abs(root.key - target) < Math.abs(childClosest - target) ? root.key : childClosest;
     }
 }
+
+
+/*
+ * Test the above code with below
+ * 
+ *           5
+ *          / \ 
+ *         3   7
+ *        / \
+ *       2   4
+ * 
+ * 		target = 3.7
+ * 
+ * 		-> Result : 4
+ */
