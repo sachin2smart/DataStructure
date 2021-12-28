@@ -33,5 +33,22 @@ public class CheckBinaryTreeIsBST {
 	    System.out.println(checkBinaryTreeIsBST.isBSTUtil());
 
 	}
+	
+	 public boolean isValidBST(Node root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+     }
+    
+    public boolean isValidBST(Node root, long minVal, long maxVal) {
+        if (root == null) 
+        	return true;
+        
+        if (root.key >= maxVal || root.key <= minVal) 
+        	return false;
+        
+        // update minVal and maxVal in recursive call 
+        return isValidBST(root.left, minVal, root.key) && 
+        		isValidBST(root.right, root.key, maxVal);
+        
+    }
 
 }
