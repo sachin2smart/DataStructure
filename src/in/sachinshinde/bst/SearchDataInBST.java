@@ -59,4 +59,13 @@ public class SearchDataInBST {
 			System.out.print("\n Not Found");
 	}
 
+	// https://leetcode.com/problems/search-in-a-binary-search-tree/
+	
+	public Node searchBST(Node root, int val) {
+        if(root == null || root.key == val) 
+		    return root;
+        else
+            return val < root.key ? searchBST(root.left,val) : searchBST(root.right,val);
+    }
+	
 }
