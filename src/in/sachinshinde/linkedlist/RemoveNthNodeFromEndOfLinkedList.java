@@ -4,9 +4,9 @@ package in.sachinshinde.linkedlist;
 
 public class RemoveNthNodeFromEndOfLinkedList {
 	
-	public LinkedListNode removeNthFromEnd(LinkedListNode head, int n) {
+	public ListNode removeNthFromEnd(ListNode head, int n) {
 		
-		LinkedListNode leadingPointer = head, secondaryPointer = head;
+		ListNode leadingPointer = head, secondaryPointer = head;
 		
 		//	Move the leadingPointer pointer to the n'th node from start of the linked list
         for (int i = 0; i < n; i++) 

@@ -1,11 +1,11 @@
 package in.sachinshinde.linkedlist;
 
-public class LinkedListNode {
+public class ListNode {
 	
 	int data;
-	LinkedListNode next;
+	ListNode next;
 	
-	public LinkedListNode(int d) {
+	public ListNode(int d) {
 		this.data = d;
 		this.next = null;
 	}

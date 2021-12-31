@@ -4,7 +4,7 @@ package in.sachinshinde.linkedlist;
 
 public class MergeTwoSortedLists {
 
-	public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 		if(l1 == null)
 			return l2;
 		

@@ -6,11 +6,11 @@ package in.sachinshinde.linkedlist;
 
 public class SumOfTwoLinkedList {
 
-	static LinkedListNode addTwoLinkedLists(LinkedListNode first, LinkedListNode second) {
+	static ListNode addTwoLinkedLists(ListNode first, ListNode second) {
 		
-		LinkedListNode resultLinkedList = null;
-		LinkedListNode lastNodeOfCurrentSum = null;
-		LinkedListNode nextSumNode = null;
+		ListNode resultLinkedList = null;
+		ListNode lastNodeOfCurrentSum = null;
+		ListNode nextSumNode = null;
 		
 		int sum = 0, carry = 0;
 				
@@ -22,7 +22,7 @@ public class SumOfTwoLinkedList {
 			
 			sum = sum % 10;
 			
-			nextSumNode = new LinkedListNode(sum);
+			nextSumNode = new ListNode(sum);
 			
 			if(resultLinkedList == null)
 				resultLinkedList = nextSumNode;
@@ -40,7 +40,7 @@ public class SumOfTwoLinkedList {
 		}
 		
 		if(carry > 0)
-			lastNodeOfCurrentSum.next = new LinkedListNode(carry);
+			lastNodeOfCurrentSum.next = new ListNode(carry);
 						
 		return resultLinkedList;
 		
@@ -49,23 +49,23 @@ public class SumOfTwoLinkedList {
 	
 	public static void main(String[] args) {
 		
-		LinkedListNode LL_1_Node = new LinkedListNode(7); 
-		LL_1_Node.next = new LinkedListNode(5); 
-		LL_1_Node.next.next = new LinkedListNode(9); 
-		LL_1_Node.next.next.next = new LinkedListNode(4); 
-		LL_1_Node.next.next.next.next = new LinkedListNode(6); 
+		ListNode LL_1_Node = new ListNode(7); 
+		LL_1_Node.next = new ListNode(5); 
+		LL_1_Node.next.next = new ListNode(9); 
+		LL_1_Node.next.next.next = new ListNode(4); 
+		LL_1_Node.next.next.next.next = new ListNode(6); 
 		
         System.out.print("First List is "); 
         printList(LL_1_Node); 
   
 
-        LinkedListNode LL_2_Node = new LinkedListNode(8); 
-        LL_2_Node.next = new LinkedListNode(4); 
+        ListNode LL_2_Node = new ListNode(8); 
+        LL_2_Node.next = new ListNode(4); 
         
         System.out.print("Second List is "); 
         printList(LL_2_Node); 
    
-        LinkedListNode resultList = addTwoLinkedLists(LL_1_Node, LL_2_Node);
+        ListNode resultList = addTwoLinkedLists(LL_1_Node, LL_2_Node);
         
         System.out.print("Resultant List is "); 
         printList(resultList); 
@@ -82,7 +82,7 @@ public class SumOfTwoLinkedList {
 	}
 
 
-	private static void printList(LinkedListNode LL_Node) {
+	private static void printList(ListNode LL_Node) {
 		while (LL_Node != null) { 
             System.out.print(LL_Node.data + " "); 
             LL_Node = LL_Node.next; 
@@ -99,12 +99,12 @@ public class SumOfTwoLinkedList {
 	 * 	NOTE ::  You may assume the two numbers do not contain any leading zero, except the number 0 itself.
 	 */
 	
-	private static LinkedListNode addTwoNumberOfLinkedList(LinkedListNode l1, LinkedListNode l2) {
-		LinkedListNode c1 = l1;
-		LinkedListNode c2 = l2;
+	private static ListNode addTwoNumberOfLinkedList(ListNode l1, ListNode l2) {
+		ListNode c1 = l1;
+		ListNode c2 = l2;
         
-		LinkedListNode sentinel = new LinkedListNode(0);
-		LinkedListNode d = sentinel;
+		ListNode sentinel = new ListNode(0);
+		ListNode d = sentinel;
         
         int sum = 0;
         
@@ -118,24 +118,24 @@ public class SumOfTwoLinkedList {
                 sum += c2.data;
                 c2 = c2.next;
             }
-            d.next = new LinkedListNode(sum % 10);
+            d.next = new ListNode(sum % 10);
             d = d.next;
         }
         
         if (sum / 10 == 1)
-            d.next = new LinkedListNode(1);
+            d.next = new ListNode(1);
         
         return sentinel.next;
 	}
 	
-	private static LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
+	private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
-        LinkedListNode resultNode = new LinkedListNode(0);
-        LinkedListNode currSumNode = resultNode;
+        ListNode resultNode = new ListNode(0);
+        ListNode currSumNode = resultNode;
         while(!(l1 == null && l2 == null && carry == 0)){
             int sum = (l1 != null ? l1.data : 0) + (l2 != null ? l2.data : 0) + carry;
             carry = sum / 10;
-            LinkedListNode newSumNode = new LinkedListNode(sum % 10);
+            ListNode newSumNode = new ListNode(sum % 10);
             currSumNode.next = newSumNode;
             currSumNode = newSumNode;
             if(l1 != null) l1 = l1.next;

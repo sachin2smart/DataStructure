@@ -5,16 +5,16 @@
 package in.sachinshinde.linkedlist;
 
 public class MiddleOfLinkedList {
-	LinkedListNode head;
+	ListNode head;
 	
 	public void push(int data) {
-		LinkedListNode newNode = new LinkedListNode(data);
+		ListNode newNode = new ListNode(data);
 		newNode.next = head;
 		head = newNode;
 	}
 	
 	public void printLinkedList() {
-		LinkedListNode tNode = head;
+		ListNode tNode = head;
 		System.out.println();
 		while(tNode != null) {
 			System.out.print(" "+tNode.data);
@@ -24,8 +24,8 @@ public class MiddleOfLinkedList {
 	}
 	
 	public void printMiddle() {
-		LinkedListNode slow_ptr = head;
-		LinkedListNode fast_ptr = head;
+		ListNode slow_ptr = head;
+		ListNode fast_ptr = head;
 		
 		if(head != null) {
 			while(fast_ptr != null && fast_ptr.next != null) {
@@ -38,8 +38,8 @@ public class MiddleOfLinkedList {
 	
 	//	https://leetcode.com/problems/middle-of-the-linked-list/
 	
-	public LinkedListNode middleNode(LinkedListNode head) {
-		LinkedListNode slow = head, fast = head;
+	public ListNode middleNode(ListNode head) {
+		ListNode slow = head, fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
