@@ -36,6 +36,17 @@ public class MiddleOfLinkedList {
 		}
 	}
 	
+	//	https://leetcode.com/problems/middle-of-the-linked-list/
+	
+	public LinkedListNode middleNode(LinkedListNode head) {
+		LinkedListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+	
 	public static void main(String args[]) {
 		MiddleOfLinkedList llist = new MiddleOfLinkedList(); 
         for (int i=5; i>0; --i) 
