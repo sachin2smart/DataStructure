@@ -21,7 +21,7 @@ public class SubsetsWithDuplicateElements {
     
     private void constructSubsets(int start, int[] nums, List<Integer> tempList, List<List<Integer>> subsets) {
         subsets.add(new ArrayList<>(tempList));
-        for(int i=start; i<nums.length; i++){
+        for(int i=start; i<nums.length; i++){	// starts with "start" index
         	if(i > start && nums[i] == nums[i-1])	// skipping the duplicates
         		continue;
             tempList.add(nums[i]);

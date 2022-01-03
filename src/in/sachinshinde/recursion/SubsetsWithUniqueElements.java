@@ -22,7 +22,7 @@ public class SubsetsWithUniqueElements {
     
     private void constructSubsets(int start, int[] nums, List<Integer> tempList, List<List<Integer>> subsets) {
         subsets.add(new ArrayList<>(tempList));
-        for(int i=start; i<nums.length; i++){
+        for(int i=start; i<nums.length; i++){	// starts with "start" index
             tempList.add(nums[i]);
             constructSubsets(i+1, nums, tempList, subsets);
             tempList.remove(tempList.size()-1);
