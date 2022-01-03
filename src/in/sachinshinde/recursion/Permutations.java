@@ -15,23 +15,23 @@ import java.util.List;
 
 public class Permutations {
 		
-	private static List<List<Integer>> subsetsWithAllPermutations(int[] nums, int n) {
+	private static List<List<Integer>> subsetsWithAllPermutations(int[] nums) {
         List<List<Integer>> subsets = new ArrayList<>();
         Arrays.sort(nums);
-        constructSubsets(0, nums, n, new ArrayList<>(), subsets);
+        constructSubsets(nums, new ArrayList<>(), subsets);
         return subsets;
     }
     
-    private static void constructSubsets(int start, int[] nums, int n, List<Integer> tempList, List<List<Integer>> subsets) {
-    	if(tempList.size() == n) {
+    private static void constructSubsets(int[] nums, List<Integer> tempList, List<List<Integer>> subsets) {
+    	if(tempList.size() == nums.length) {
     		subsets.add(new ArrayList<>(tempList));
     	}
     	else {
-	        for(int i=0; i<n; i++){		// starts with zero
+	        for(int i=0; i<nums.length; i++){		// starts with zero
 	        	if(tempList.contains(nums[i])) 
 	        		continue; // element already exists, skip
 	            tempList.add(nums[i]);
-	            constructSubsets(i+1, nums, n, tempList, subsets);
+	            constructSubsets(nums,tempList, subsets);
 	            tempList.remove(tempList.size()-1);
 	        }
     	}
@@ -39,7 +39,7 @@ public class Permutations {
     
     public static void main(String args[]) {
         int[] nums = new int[] {1,2,3};
-        List<List<Integer>> ans = subsetsWithAllPermutations(nums, nums.length);
+        List<List<Integer>> ans = subsetsWithAllPermutations(nums);
         
         System.out.println("The subsets with all permutations ");
         for(List<Integer> tupple: ans)
