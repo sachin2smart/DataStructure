@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//	https://leetcode.com/problems/permutations-ii/
+
+/*
+ *	Given a collection of numbers, nums, that might contain duplicates.
+ *	Return all possible unique permutations in any order. 
+ */
+
 public class PermutationsWithDups {
 	
 	private static List<List<Integer>> subsetsWithDupsAllPermutations(int[] nums) {
