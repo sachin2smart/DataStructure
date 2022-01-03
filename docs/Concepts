@@ -1,0 +1,8 @@
+
+# Difference between Recursion and Backtracking:
+	* In recursion, the function calls itself until it reaches a base case. 
+	* In backtracking, we use recursion to explore all the possibilities until we get the best result for the problem.
+	
+# Difference between Shallow copy and Deep Copy
+	* Shallow Copy stores the copy of the original object and points the references to the objects. 
+	* Deep copy stores the copy of the original object and recursively copies the objects as well
