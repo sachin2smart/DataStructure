@@ -1,0 +1,36 @@
+
+FB
+GeeksForGeeks
+
+1.	Maximum Integer Value
+2.	Find all possible palindromic partitions of a String
+3.	Word Boggle - II
+4.	Look and Say Pattern
+5.	Jump Game
+6.	Decode the string
+7.	Total Decoding Messages
+8.	Print leaf nodes from preorder traversal of BST
+9.	Find all pairs with a given sum
+10.	Largest Sum Subarray of Size at least K
+11.	Largest Fibonacci Subsequence
+12.	Rearrange a string
+13.	Palindrome Sentence
+14.	Add Binary Strings
+15.	Palindrome String
+16.	Rotate a 2D array without using extra space
+17.	Word Boggle
+18.	Prerequisite Tasks
+19.	Stock buy and sell
+20.	Roman Number to Integer
+21.	Activity Selection
+22.	Find median in a stream
+23.	Subarray with given sum
+24.	Maximum path sum from any node
+25.	Maximum Path Sum between 2 Leaf Nodes
+26.	Convert Ternary Expression to Binary Tree
+27.	Find triplets with zero sum
+28.	Multiply two strings
+29.	Implement strstr
+30.	Convert to Roman No
+31.	K-Palindrome
+32.	Minimum Depth of a Binary Tree
