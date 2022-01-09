@@ -1,0 +1,4 @@
+# Screening Round :
+	1. https://leetcode.com/problems/intersection-of-two-linked-lists/
+	2. https://leetcode.com/problems/insert-delete-getrandom-o1-duplicates-allowed/
+	
