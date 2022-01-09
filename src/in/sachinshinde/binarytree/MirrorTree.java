@@ -1,4 +1,4 @@
-package in.sachinshinde.tree;
+package in.sachinshinde.binarytree;
 
 public class MirrorTree {
 	

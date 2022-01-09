@@ -4,7 +4,7 @@ public class Node {
 	int key;
 	Node left, right;
 	
-	Node(int data){
+	public Node(int data){
 		this.key = data;
 		this.left = this.right = null;
 	} 
