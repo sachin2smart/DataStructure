@@ -1,4 +1,4 @@
-package in.sachinshinde.binarytree;
+package in.sachinshinde.bst;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
