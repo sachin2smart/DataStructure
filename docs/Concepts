@@ -6,3 +6,17 @@
 # Difference between Shallow copy and Deep Copy
 	* Shallow Copy stores the copy of the original object and points the references to the objects. 
 	* Deep copy stores the copy of the original object and recursively copies the objects as well
+
+# Java Serialization and deserialization
+	-- Serialization is a mechanism of converting the state of an object into a byte stream.
+	-- Deserialization is the reverse process where the byte stream is used to recreate the actual Java object in memory.
+
+	+ implement the java.io.Serializable interface.
+		The ObjectOutputStream class contains **writeObject()** method for serializing an Object.
+		The ObjectInputStream class contains ** readObject()** method for deserializing an object.
+		
+		
+		
+
+	
+	
