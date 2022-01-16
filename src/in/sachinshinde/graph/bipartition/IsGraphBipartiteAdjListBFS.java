@@ -7,16 +7,16 @@ import java.util.Queue;
 public class IsGraphBipartiteAdjListBFS {
 
 	private static boolean isBipartite(ArrayList<ArrayList<Integer>> adjList, int n) {
-        int color[] = new int[n];
-        for(int i = 0;i<n;i++)
-        	color[i] = -1; 
-        
-        for(int node=0; node<n; node++)
-        	if(color[node] == -1)
-        		if(!isAdjColoringValid(adjList, node, color))
-        			return false; 
-        		
-        return true; 
+		int color[] = new int[n];
+		for(int i = 0;i<n;i++)
+			color[i] = -1; 
+		
+		for(int node=0; node<n; node++)
+			if(color[node] == -1)
+				if(!isAdjColoringValid(adjList, node, color))
+					return false; 
+				
+		return true; 
 	}
 	
 	private static 	boolean isAdjColoringValid(ArrayList<ArrayList<Integer>> adjList, int node, int color[]) {
