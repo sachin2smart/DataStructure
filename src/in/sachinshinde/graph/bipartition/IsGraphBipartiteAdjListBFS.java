@@ -6,8 +6,7 @@ import java.util.Queue;
 
 public class IsGraphBipartiteAdjListBFS {
 
-	private static boolean isBipartite(ArrayList<ArrayList<Integer>> adjList, int n)
-    {
+	private static boolean isBipartite(ArrayList<ArrayList<Integer>> adjList, int n) {
         int color[] = new int[n];
         for(int i = 0;i<n;i++)
         	color[i] = -1; 

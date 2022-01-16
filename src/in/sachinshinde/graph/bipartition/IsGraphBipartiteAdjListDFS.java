@@ -8,8 +8,7 @@ import java.util.ArrayList;
 
 public class IsGraphBipartiteAdjListDFS {
 
-	private static boolean isBipartite(ArrayList<ArrayList<Integer>> adjList, int n)
-    {
+	private static boolean isBipartite(ArrayList<ArrayList<Integer>> adjList, int n) {
         int color[] = new int[n];
         for(int i = 0;i<n;i++)
         	color[i] = -1; 
@@ -19,7 +18,7 @@ public class IsGraphBipartiteAdjListDFS {
         		if(!isAdjColoringValid(adjList, node, color))
         			return false; 
         		
-        return true; 
+        return true;
     }
 	
 	private static 	boolean isAdjColoringValid(ArrayList<ArrayList<Integer>> adjList, int node, int color[]) {
