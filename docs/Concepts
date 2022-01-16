@@ -15,6 +15,12 @@
 		The ObjectOutputStream class contains **writeObject()** method for serializing an Object.
 		The ObjectInputStream class contains ** readObject()** method for deserializing an object.
 		
+# Characteristics of Bipartite Graph:
+	* A graph is Bipartite if and only if it does not contain an odd cycle.
+	* A graph is Bipartite if and only if it is 2-colorable.
+	* A graph is Bipartite if and only if it's spectrum is symmetric.
+
+
 		
 		
 
