@@ -19,7 +19,7 @@ public class IsGraphBipartiteAdjListDFS {
         			return false; 
         		
         return true;
-    }
+	}
 	
 	private static 	boolean isAdjColoringValid(ArrayList<ArrayList<Integer>> adjList, int node, int color[]) {
 		for(Integer adjNode: adjList.get(node)) {

@@ -17,7 +17,7 @@ public class IsGraphBipartiteAdjListBFS {
         			return false; 
         		
         return true; 
-    }
+	}
 	
 	private static 	boolean isAdjColoringValid(ArrayList<ArrayList<Integer>> adjList, int node, int color[]) {
 		Queue<Integer> q = new LinkedList<>();
