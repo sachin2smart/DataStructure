@@ -20,9 +20,13 @@
 	* A graph is Bipartite if and only if it is 2-colorable.
 	* A graph is Bipartite if and only if it's spectrum is symmetric.
 
-
-		
-		
-
+# Backtracking vs DFS
+	In Backtracking, we need to restore previous state of visited node, by making visited=false, after exploring current path.
+	In DFS the state of the node remains same after a path is explored so that it will not be explored again.
+	DFS is quicker than a generic backtracking algorithm.
+	DFS handles an explicit tree, while backtracking handles an implicit tree
 	
-	
+	DFS is a special type of backtracking algorithmic design paradigm where the process of backtracking takes place in the leaf nodes.
+	In case of backtracking,the algorithm also rejects the useless branch of the state-space tree.
+	This is why DFS maintains the entire tree structure while Backtracking maintains the pruned tree.
+
