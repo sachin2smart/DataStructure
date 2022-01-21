@@ -1,8 +1,8 @@
 package in.sachinshinde.recursion;
 
-//https://leetcode.com/problems/surrounded-regions/
+//	https://leetcode.com/problems/surrounded-regions/
 
-//Surrounded Regions:
+//	Surrounded Regions:
 /*		Given an m x n matrix board containing 'X' and 'O', capture all regions that are 4-directionally surrounded by 'X'.
 *		A region is captured by flipping all 'O's into 'X's in that surrounded region.
 * 
@@ -34,7 +34,7 @@ public class SurroundedRegions {
         
     }
 
-	private void firstLastColumnFlipper(char[][] board, int m, int n) {
+    private void firstLastColumnFlipper(char[][] board, int m, int n) {
     	for(int i=0; i<m; i++) {
             if (board[i][0]=='O') 
             	starFlipper(board, i, 0);
@@ -42,7 +42,7 @@ public class SurroundedRegions {
             if(board[i][n-1]=='O') 
             	starFlipper(board, i, n-1);
         }
-	}
+    }
 	
     private void firstLastRowFlipper(char[][] board, int m, int n) {
     	for(int j=1; j<n-1; j++) {
@@ -52,9 +52,9 @@ public class SurroundedRegions {
             if(board[m-1][j]=='O') 
             	starFlipper(board, m-1, j);
         }
-	}
+    }
 
-	private void starFlipper(char[][] board, int r, int c) {
+    private void starFlipper(char[][] board, int r, int c) {
         if(r<0 || c<0 || r>board.length-1 || c>board[0].length-1 || board[r][c]!='O') 
         	return;
         
@@ -66,8 +66,8 @@ public class SurroundedRegions {
         starFlipper(board, r, c - 1);
     }
     
-	private void internalFlipper(char[][] board, int m, int n) {
-		for(int i=0; i<m; i++) {
+    private void internalFlipper(char[][] board, int m, int n) {
+	for(int i=0; i<m; i++) {
             for(int j=0; j<n; j++) {
                 if(board[i][j]=='O')
                 	board[i][j] = 'X';
@@ -76,5 +76,5 @@ public class SurroundedRegions {
                 	board[i][j] = 'O';
             }
         }
-	}
+    }
 }
