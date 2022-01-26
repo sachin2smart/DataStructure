@@ -1,4 +1,4 @@
-package in.sachinshinde.dp;
+package in.sachinshinde.dp.lis;
 
 import java.util.ArrayList;
 import java.util.Arrays;

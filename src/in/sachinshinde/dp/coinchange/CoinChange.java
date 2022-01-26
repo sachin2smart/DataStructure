@@ -1,4 +1,4 @@
-package in.sachinshinde.dp;
+package in.sachinshinde.dp.coinchange;
 
 import java.util.Arrays;
 
