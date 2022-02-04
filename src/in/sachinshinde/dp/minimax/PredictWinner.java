@@ -103,8 +103,38 @@ public class PredictWinner {
 		
 		System.out.println(winner.predictTheWinnerOptimal(new int[] {1,5,2}));			// false
 		System.out.println(winner.predictTheWinnerOptimal(new int[] {1,5,233,7}));		// true
+		
+		System.out.println(winner.predictTheWinnerMiniMaxAlgo(new int[] {1,5,2}));			// false
+		System.out.println(winner.predictTheWinnerMiniMaxAlgo(new int[] {1,5,233,7}));		// true
 	}
+	
+	// Minimax approach
+	public boolean predictTheWinnerMiniMaxAlgo(int[] nums) {
+        dp = new int[21][21];
+        return maxVal(nums, 0, nums.length-1) >= 0;
+    }
+
+    int[][] dp;
+    public int maxVal(int[] arr, int i,int j){
+        if(i==j)
+            return arr[j];
+        if(dp[i][j] != 0)
+            return dp[i][j];
+        dp[i][j] =  Math.max(minVal(arr,i,j-1)+arr[j], minVal(arr,i+1,j)+arr[i]);
+        return dp[i][j];
+    }
+
+    public int minVal(int[] arr, int i,int j){
+        if(i==j)
+            return arr[j];
+        if(dp[i][j] != 0)
+            return dp[i][j];
+        dp[i][j] = Math.min(maxVal(arr,i,j-1)-arr[j], maxVal(arr,i+1,j)-arr[i]);
+        return dp[i][j];
+    }
 }
 
 
 //	https://leetcode.com/problems/predict-the-winner/discuss/96828/JAVA-9-lines-DP-solution-easy-to-understand-with-improvement-to-O(N)-space-complexity.
+
+
