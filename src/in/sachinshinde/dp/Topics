@@ -1,0 +1,12 @@
+- Identify the problem having the overlapping substructure property and 
+		avoid the re-computation by using the Memoization or tabulation.
+
+1. Memoization 
+	- Top-Down Approach
+
+2. Tabulation 
+	- Bottom-up Approach 
+
+
+	
+	
