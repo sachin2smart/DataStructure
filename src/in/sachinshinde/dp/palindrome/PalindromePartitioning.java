@@ -1,4 +1,4 @@
-package in.sachinshinde.recursion;
+package in.sachinshinde.dp.palindrome;
 
 import java.util.ArrayList;
 import java.util.List;
