@@ -40,7 +40,7 @@ public class NumberOfIslands {
 	}
 	
 	private int sink(int i, int j) {
-		if(i<0 || i==g.length || j<0 || j==g[0].length || g[i][j] =='0')
+		if(i<0 || i==g.length || j<0 || j==g[i].length || g[i][j] =='0')
 			return 0;
 
 		g[i][j] = '0';
