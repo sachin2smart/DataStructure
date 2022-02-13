@@ -1,2 +1,30 @@
 # DataStructure
-Preparation for data structure questions 
+
+  - Arrays
+    - Matrix
+  - Backtrack
+  - Binary Tree
+  - BST
+  - DP
+    - Coin Change
+    - LIS
+    - LPS
+    - Minimax
+    - Palindrome
+    - State Machine
+    - Range Sum
+  - Graph
+    - BFS
+    - DFS
+    - Union Find
+  - Greedy
+  - Heap
+  - LinkedList
+  - Misc
+  - Queue
+  - Recursion
+  - Sort
+  - Stack
+  - Tree
+    - Fenwick Tree
+    - Segment Tree 
