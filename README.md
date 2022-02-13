@@ -1,11 +1,11 @@
 # DataStructure
 
-  - Arrays
+  - [Arrays](src/in/sachinshinde/array)
     - Matrix
-  - Backtrack
-  - Binary Tree
-  - BST
-  - DP
+  - [Backtrack](src/in/sachinshinde/backtrack)
+  - [Binary Tree](src/in/sachinshinde/binarytree)
+  - [Binary Search Tree](src/in/sachinshinde/bst)
+  - [DP](src/in/sachinshinde/dp)
     - Coin Change
     - LIS
     - LPS
@@ -13,18 +13,18 @@
     - Palindrome
     - State Machine
     - Range Sum
-  - Graph
+  - [Graph](src/in/sachinshinde/graph)
     - BFS
     - DFS
     - Union Find
-  - Greedy
-  - Heap
-  - LinkedList
-  - Misc
-  - Queue
-  - Recursion
-  - Sort
-  - Stack
-  - Tree
+  - [Greedy](src/in/sachinshinde/greedy)
+  - [Heap](src/in/sachinshinde/heap)
+  - [LinkedList](src/in/sachinshinde/linkedlist)
+  - [Misc](src/in/sachinshinde/misc)
+  - [Queue](src/in/sachinshinde/queue)
+  - [Recursion](src/in/sachinshinde/recursion)
+  - [Sort](src/in/sachinshinde/sort)
+  - [Stack](src/in/sachinshinde/stack)
+  - [Tree](src/in/sachinshinde/tree)
     - Fenwick Tree
     - Segment Tree 
