@@ -1,4 +1,4 @@
-package in.sachinshinde.dp;
+package in.sachinshinde.dp.palindrome;
 
 //	https://leetcode.com/problems/valid-palindrome-iii/
 
