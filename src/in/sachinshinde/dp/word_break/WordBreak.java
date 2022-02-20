@@ -17,7 +17,6 @@ class TrieNode{
 	
 	TrieNode() {
 		children = new TrieNode[26];
-		isWord = false;
 	}
 }
 
@@ -28,7 +27,7 @@ public class WordBreak {
 				wordDict == null || wordDict.size() == 0)
 			return false;
 		
-		TrieNode root = buildTrie(wordDict);;
+		TrieNode root = buildTrie(wordDict);
 		
 		int n = s.length();
 		boolean[] dp = new boolean[n+1];
