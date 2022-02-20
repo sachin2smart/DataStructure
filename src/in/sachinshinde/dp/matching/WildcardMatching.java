@@ -1,4 +1,4 @@
-package in.sachinshinde.dp;
+package in.sachinshinde.dp.matching;
 
 //	https://leetcode.com/problems/wildcard-matching/
 
