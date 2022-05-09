@@ -1,4 +1,4 @@
-package in.sachinshinde.array.matrix;
+package in.sachinshinde.dp.grids;
 
 import java.util.Arrays;
 import java.util.HashMap;

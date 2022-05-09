@@ -1,4 +1,4 @@
-package in.sachinshinde.array.matrix;
+package in.sachinshinde.dp.grids;
 
 import java.util.ArrayList;
 import java.util.List;

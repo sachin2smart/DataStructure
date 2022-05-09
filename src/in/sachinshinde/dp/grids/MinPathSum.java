@@ -1,4 +1,4 @@
-package in.sachinshinde.array.matrix;
+package in.sachinshinde.dp.grids;
 
 //	https://leetcode.com/problems/minimum-path-sum
 
