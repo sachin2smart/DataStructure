@@ -1,12 +1,21 @@
 package in.sachinshinde.binarytree;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /* 
  * Problem : https://leetcode.com/problems/maximum-width-of-binary-tree/
  * 
+ * Given the root of a binary tree, return the maximum width of the given tree.
+	The maximum width of a tree is the maximum width among all levels.
+	The width of one level is defined as the length between the end-nodes 
+		(the leftmost and rightmost non-null nodes), where 
+		the null nodes between the end-nodes that would be present in a complete binary tree 
+		extending down to that level are also counted into the length calculation.
+
  * Optimal solution : https://takeuforward.org/data-structure/maximum-width-of-a-binary-tree/
  * Right ans : https://leetcode.com/submissions/detail/607373222/
  * Wrong ans : https://leetcode.com/submissions/detail/607371181/
@@ -132,5 +141,21 @@ public class WidthOfBinaryTree {
 
 		  int maxWidth = widthOfBianryTreeWithoutOverflow(root);
 		  System.out.println("The maximum width of the Binary Tree is "+maxWidth);
+		  maxWidth = widthOfBinaryTree2(root);
+		  System.out.println("The maximum width of the Binary Tree is "+maxWidth);
 	}
+	
+	private static int max = 1;
+    public static int widthOfBinaryTree2(Node root) {
+        if(root == null) return 0;
+        dfs(root, 1, 0, new ArrayList<Integer>());
+        return max;
+    }
+    private static void dfs(Node root, int idx, int depth, List<Integer> leftNodesIndexList) {
+        if(root == null) return;
+        if(leftNodesIndexList.size() <= depth) leftNodesIndexList.add(idx);
+        max = Math.max(max, idx - leftNodesIndexList.get(depth) + 1);
+        dfs(root.left, idx * 2, depth + 1, leftNodesIndexList);
+        dfs(root.right, idx * 2 + 1, depth + 1, leftNodesIndexList);
+    }
 }

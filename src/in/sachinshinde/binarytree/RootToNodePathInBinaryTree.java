@@ -1,6 +1,7 @@
 package in.sachinshinde.binarytree;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 // https://takeuforward.org/data-structure/print-root-to-node-path-in-a-binary-tree/
 
@@ -10,7 +11,7 @@ public class RootToNodePathInBinaryTree {
 		if(root == null)
 			return false;
 		
-		arr.add(root.key);
+		arr.add(root.key);	// add to list while iterating
 		
 		if(root.key == x)
 			return true;
@@ -18,7 +19,7 @@ public class RootToNodePathInBinaryTree {
 		if(getPath(root.left, arr, x) || getPath(root.right, arr, x))
 			return true;
 		
-		arr.remove(arr.size() -1);
+		arr.remove(arr.size() -1);	// remove from the list when target node not found 
 		
 		return false;
 	}
@@ -33,14 +34,19 @@ public class RootToNodePathInBinaryTree {
         root.left.right.right = new Node(7);
         root.right = new Node(3);
 
-        ArrayList < Integer > arr = new ArrayList < > ();
+        ArrayList<Integer> arr = new ArrayList < > ();
 
         boolean res;
         res = getPath(root, arr, 7);
 
-        System.out.print("The path is ");
-        for (int it: arr) {
-            System.out.print(it + " ");
+        if(res) {
+	        System.out.print("The path is " + arr.stream()
+	        									.map(Object::toString)
+	        									.collect(Collectors.joining(" -> ")));
+	        //	The path is 1 -> 2 -> 5 -> 7
+        }
+        else {
+        	System.out.println("Path not exists");
         }
 
     }

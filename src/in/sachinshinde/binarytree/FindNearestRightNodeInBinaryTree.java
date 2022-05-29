@@ -27,10 +27,10 @@ public class FindNearestRightNodeInBinaryTree {
 				
 				//	If the node found, check if it a last node node on that level
 				if(curr.key == u.key) {
-					if(i < size-1)
-						return q.poll();	// here, at this current level- q is already formed, 
+					if(i < size-1)	// If the target node is NOT the rightmost node of the binary tree then - 
+						return q.poll();	// here, at this current level - queue is already formed (non-empty), 
 											//	so just get the next value of the queue 
-					return null;
+					return null;	// if the target node is the rightmost node
 				}
 				
 				if(curr.left != null)

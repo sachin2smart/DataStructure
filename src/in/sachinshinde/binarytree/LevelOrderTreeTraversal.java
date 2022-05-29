@@ -1,9 +1,13 @@
 package in.sachinshinde.binarytree;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+//	https://leetcode.com/problems/binary-tree-level-order-traversal/
+
+//	Given the root of a binary tree, return the level order traversal of its nodes' values. 
+//	(i.e., from left to right, level by level).
 
 public class LevelOrderTreeTraversal {
 	
@@ -66,7 +70,7 @@ public class LevelOrderTreeTraversal {
 		printNodeLevelwise(root);
 		
 		System.out.print("\n\n Level Order traversal : ");
-		List<List<Integer>> result = getLevelOrderOfBinaryTree(root);
+		List<List<Integer>> result = getLevelOrderOfBinaryTree(root);	// main function
 	
 		result.forEach((list) -> {
 			System.out.println();

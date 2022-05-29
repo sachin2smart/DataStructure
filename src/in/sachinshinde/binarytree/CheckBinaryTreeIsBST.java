@@ -8,9 +8,13 @@ public class CheckBinaryTreeIsBST {
 		if(root ==null)
 			return true;
 		
+		// if left node exist then check it has correct data or not 
+		// i.e. left node's data should be less than root's data
 		if(leftNode != null  && leftNode.key >= root.key)
 			return false;
 		
+		// if right node exist then check it has correct data or not 
+		// i.e. right node's data should be greater than root's data
 		if(rightNode != null && rightNode.key <= root.key)
 			return false;
 		
@@ -29,5 +33,30 @@ public class CheckBinaryTreeIsBST {
 	        System.out.print("Is BST");  
 	    else
 	        System.out.print("Not a BST");
+	    
+	    //	Method : 2
+	    System.out.print("\n");
+	    if(isValidBST(root))
+	    	System.out.print("Is BST");
+	    else
+	    	System.out.print("Not a BST");
 	}
+	
+	//	Method 2
+	public static boolean isValidBST(Node root) {
+        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+     }
+    
+    public static boolean isValidBST(Node root, long minVal, long maxVal) {
+        if (root == null) 
+        	return true;
+        
+        if (root.key >= maxVal || root.key <= minVal) 
+        	return false;
+        
+        // update minVal and maxVal in recursive call 
+        return isValidBST(root.left, minVal, root.key) && 
+        		isValidBST(root.right, root.key, maxVal);
+        
+    }
 }

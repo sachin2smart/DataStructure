@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class AllPossibleFullBinaryTrees {
 
-	public static List<Node> allPossibleFBT(int n) {
+	public List<Node> allPossibleFBT(int n) {
 		List<Node> res = new ArrayList<>();
 		
 		// final recursion will stop here once the n reaches to 1
@@ -91,5 +91,36 @@ public class AllPossibleFullBinaryTrees {
         
         return res;
     }
+    
+    public static void main(String[] args) {
+    	AllPossibleFullBinaryTrees trees = new AllPossibleFullBinaryTrees();
+		List<Node> result = trees.allPossibleFBT(7);
+		
+		for(Node n: result) {
+			System.out.println(" ");
+			trees.print(n);		//	0000000
+		}
+		
+		System.out.println("\n");
+		for(int i=0; i<10; i++) {
+			List<Node> r = trees.allPossibleFBT(i);
+			System.out.println(i+ " nodes, FBTs : "+r.size());
+		}
+	}
+    
+    private long fact(int i) {
+        if(i <= 1) {
+           return 1;
+        }
+        return i * fact(i - 1);
+     }
+    
+	private void print(Node n) {
+		if(n == null)
+			return;
+		System.out.print(" "+n.key);
+		print(n.left);
+		print(n.right);
+	}
 	
 }

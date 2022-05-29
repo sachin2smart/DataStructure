@@ -45,11 +45,11 @@ public class LeftRightAndSpiralEdgeViewOfBinaryTree {
 		if(root == null)
 			return;
 		
-		if(level == result.size()) {
+		if(level == result.size()) {	// on each level we need left-most node
 			result.add(root.key);
 		}
 		
-		leftView(root.left, result, level+1);
+		leftView(root.left, result, level+1);	//	left first recursive call
 		leftView(root.right, result, level+1);
 		
 	}
@@ -58,11 +58,11 @@ public class LeftRightAndSpiralEdgeViewOfBinaryTree {
 		if(root == null)
 			return;
 		
-		if(level == result.size()) {
+		if(level == result.size()) {	//	on each level we need right-most node
 			result.add(root.key);
 		}
 		
-		rightView(root.right, result, level+1);
+		rightView(root.right, result, level+1);	//	right first recursive call
 		rightView(root.left, result, level+1);
 		
 	}

@@ -22,4 +22,22 @@ public class SameTree {
         
         return false;
     }
+    
+    public static void main(String[] args) {
+    	SameTree sameTree = new SameTree();
+		Node p = new Node(1);
+		p.left = new Node(2);
+		p.right = new Node(3);
+		
+		Node q = new Node(1);
+		q.left = new Node(2);
+		q.right = new Node(3);
+		
+		if(sameTree.isSameTree(p, q)) {
+			System.out.println("Trees are same");
+		}
+		else {
+			System.out.println("Trees are not same");
+		}
+	}
 }

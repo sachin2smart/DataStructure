@@ -57,5 +57,25 @@ public class DiameterOfBinaryTree {
 		
 		System.out.println("\nThe diameter of a binary tree is : " + getDiameterOfBinaryTree(n)); //2
 		
+		max = 0 ;
+		System.out.println("The diameter of a binary tree is : " + getDiameterOfBinaryTree2(root)); //8
+		max = 0;
+		System.out.println("The diameter of a binary tree is : " + getDiameterOfBinaryTree2(n)); //2
+		
 	}
+	
+		//	Method 2 
+	    private static int getDiameterOfBinaryTree2(Node root) {
+	        maxDepth(root);
+	        return max;
+	    }
+	    
+	    private static int maxDepth(Node root) {
+	        if(root == null)
+	            return 0;
+	        int left = maxDepth(root.left);
+	        int right = maxDepth(root.right);
+	        max = Math.max(max,left+right);	//	calculate max; but,
+	        return Math.max(left,right)+1;	//	return the height
+	    }
 }

@@ -10,31 +10,27 @@ public class MaxDepthOfTree {
 	
 		if(root == null)
 			return 0;
-		else {
-			int leftDepth = getMaxDepth(root.left);
-			int rightDepth = getMaxDepth(root.right);
-			
-			if(leftDepth > rightDepth)
-				return 1 + leftDepth;
-			else
-				return 1 + rightDepth;
-		}
+		
+		int leftDepth = getMaxDepth(root.left);
+		int rightDepth = getMaxDepth(root.right);
+		
+		return Math.max(leftDepth, rightDepth) + 1;
 	}
 	
 	public static void main(String[] args) {
 		
-		Node root = new Node(5);
+		Node root = new Node(5);	// depth = 1
 		
-		root.left = new Node(4);
-		root.left.left = new Node(3);
-		root.left.left.left = new Node(2);
-		root.left.left.left.left = new Node(1);
+		root.left = new Node(4);	// depth = 2
+		root.left.left = new Node(3);	// depth = 3
+		root.left.left.left = new Node(2);	// depth = 4
+		root.left.left.left.left = new Node(1);	// depth = 5
 		
-		root.right = new Node(7);
-		root.right.right = new Node(8);
-		root.right.right.right = new Node(9);
+		root.right = new Node(7);	// depth = 2
+		root.right.right = new Node(8);	// depth = 3
+		root.right.right.right = new Node(9);	// depth = 4
 		
-		System.out.println("The max depth is : "+ getMaxDepth(root));
+		System.out.println("The max depth is : "+ getMaxDepth(root));	//	5
 	}
 
 }

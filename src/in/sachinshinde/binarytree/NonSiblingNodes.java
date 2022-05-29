@@ -4,8 +4,13 @@
 
 package in.sachinshinde.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class NonSiblingNodes {
 
+	static List<Integer> list = new ArrayList<>();
+	
 	static void printNonSiblingNodes(Node root) {
 		
 		if(root == null)
@@ -17,10 +22,12 @@ public class NonSiblingNodes {
 		}
 		else if(root.left != null) {
 			System.out.print(root.left.key + " ");
+			list.add(root.left.key);
 			printNonSiblingNodes(root.left);
 		}
 		else if(root.right != null) {
 			System.out.print(root.right.key + " ");
+			list.add(root.right.key);
 			printNonSiblingNodes(root.right);
 		}
 			
@@ -39,6 +46,7 @@ public class NonSiblingNodes {
 		root.right.right.right = new Node(9);
 		
 		printNonSiblingNodes(root);
+		System.out.println("\n"+list);
 
 	}
 

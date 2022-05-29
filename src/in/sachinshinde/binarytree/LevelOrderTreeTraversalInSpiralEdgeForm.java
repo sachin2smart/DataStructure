@@ -1,8 +1,11 @@
 package in.sachinshinde.binarytree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
-public class LevelOrderTreeTraversalInSpiralForm {
+public class LevelOrderTreeTraversalInSpiralEdgeForm {
+
 	
 	private static void printLevelwiseSpriralTree(Node root) {
 		if(root == null)
@@ -14,12 +17,15 @@ public class LevelOrderTreeTraversalInSpiralForm {
 		Node currNode;
 		s1.push(root);
 		
+		boolean evenLevel = true;
 		while(!s1.isEmpty() || !s2.isEmpty()) {
+			
+			List<Integer> l1 = new ArrayList<Integer>();
+			List<Integer> l2 = new ArrayList<Integer>();
 			
 			while(!s1.isEmpty()) {
 				currNode = s1.pop();
-				
-				System.out.print(currNode.key + " ");
+				l1.add(currNode.key);
 				
 				if(currNode.right != null)
 					s2.push(currNode.right);
@@ -31,8 +37,7 @@ public class LevelOrderTreeTraversalInSpiralForm {
 			
 			while(!s2.isEmpty()) {
 				currNode = s2.pop();
-				
-				System.out.print(currNode.key + " ");
+				l2.add(currNode.key);
 				
 				if(currNode.left != null)
 					s1.push(currNode.left);
@@ -41,6 +46,29 @@ public class LevelOrderTreeTraversalInSpiralForm {
 					s1.push(currNode.right);
 					
 			}
+			
+			if(evenLevel) {
+				if(l1.size()>=1)
+					System.out.print(" "+l1.get(0));
+				if(l1.size()>=1  && l1.get(0) != l1.get(l1.size()-1))
+					System.out.print(" "+l1.get(l1.size()-1));
+				if(l2.size()>=1)
+					System.out.print(" "+l2.get(0));
+				if(l2.size()>=1  && l2.get(0) != l2.get(l2.size()-1))
+					System.out.print(" "+l2.get(l2.size()-1));
+			}
+			else {
+				if(l1.size()>=1)
+					System.out.print(" "+l1.get(l1.size()-1));
+				if(l1.size()>=1 && l1.get(0) != l1.get(l1.size()-1))
+					System.out.print(" "+l1.get(0));
+				if(l2.size()>=1 && l2.get(0) != l2.get(l2.size()-1))
+					System.out.print(" "+l2.get(0));
+				if(l2.size()>1)
+					System.out.print(" "+l2.get(l2.size()-1));
+			}
+			
+			evenLevel = !evenLevel;
 		}
 
 	}
@@ -57,10 +85,9 @@ public class LevelOrderTreeTraversalInSpiralForm {
 		root.left.left.right = new Node(9);
 		root.left.right.left = new Node(10);
 		root.left.right.right = new Node(11);
-		root.left.right.left.left = new Node(12);
-		root.left.right.right.right = new Node(13);
+//		root.left.right.left.left = new Node(12);
+//		root.left.right.right.right = new Node(13);
 		
 		printLevelwiseSpriralTree(root);
 	}
-	
 }

@@ -1,17 +1,22 @@
 package in.sachinshinde.binarytree;
 
+//	https://www.geeksforgeeks.org/connect-leaves-doubly-linked-list/
+//	Given a Binary Tree, extract all leaves of it in a Doubly Linked List (DLL).
+//	left, right === prev, next
+
 public class ExtractLeavesOfTreeAddToDLL {
 
-	static Node head;
-	static Node prev;
+	Node root;
+	Node head;
+	Node prev;
 	
-	static Node extractNode(Node root) {
+	Node extractNode(Node root) {
 		
 		if(root == null)
 			return null;
 		
 		if(root.left == null && root.right == null) {
-			if(head ==null) {
+			if(head == null) {
 				head = root;
 				prev = root;
 			}
@@ -20,18 +25,17 @@ public class ExtractLeavesOfTreeAddToDLL {
 				root.left = prev;
 				prev = root;
 			}
-			return null;
+			return null;	// Once we found the leaf node, we should return a NULL value 
 		}
-		else {
-			root.left = extractNode(root.left);
-			root.right = extractNode(root.right);
-		}
+		
+		root.left = extractNode(root.left);
+		root.right = extractNode(root.right);
 			
 		return root;
 		
 	}
 	
-	public static void printTree(Node root) {
+	public void printTree(Node root) {
 		
 		if(root == null)
 			return;
@@ -41,27 +45,33 @@ public class ExtractLeavesOfTreeAddToDLL {
 		printTree(root.right);
 	}
 	
-	public static void printDLL(Node root) {
-		
-	}
 	
 	public static void main(String[] args) {
 		
-		Node root = new Node(1);
+//		ExtractLeavesOfTreeAddToDLL tree = new ExtractLeavesOfTreeAddToDLL();
+//		tree.root = new Node(1);
+//		tree.root.left = new Node(2);
+//		tree.root.right = new Node(3);
+//		tree.root.left.left = new Node(5);
+//		tree.root.right.right = new Node(6);
+//		
+//		tree.printTree(tree.root);
+//		System.out.println();
+//		
+//		tree.extractNode(tree.root);
+//		
+//		tree.printTree(tree.root);
+//		System.out.println();
 		
-		root.left = new Node(2);
-		root.right = new Node(3);
+		// Test 2 
+		ExtractLeavesOfTreeAddToDLL tree2 = new ExtractLeavesOfTreeAddToDLL();
+		tree2.root = new Node(1);
+//		tree2.root.left = new Node(2);
+		tree2.extractNode(tree2.root);
 		
-		root.left.left = new Node(5);
-		root.right.right = new Node(6);
-		
-		printTree(root);
+		tree2.printTree(tree2.root);
 		System.out.println();
 		
-		extractNode(root);
-		
-		printTree(root);
-		System.out.println();
 	}
 
 }

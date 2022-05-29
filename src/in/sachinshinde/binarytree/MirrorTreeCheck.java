@@ -1,6 +1,12 @@
 package in.sachinshinde.binarytree;
 
-public class MirrorTree {
+//	https://www.geeksforgeeks.org/check-if-two-trees-are-mirror/
+
+//	Given two Binary Trees, write a function that returns 
+//	true if two trees are mirror of each other, 
+//		else false. 
+
+public class MirrorTreeCheck {
 	
 	static boolean areMirrorTree(Node a, Node b) {
 		if(a == null && b == null)
@@ -27,8 +33,9 @@ public class MirrorTree {
   
         b.left = new Node(3); 
         b.right = new Node(2); 
+        b.right.right = new Node(4);
         b.right.left = new Node(5); 
-        b.right.right = new Node(4); 
+         
         
         if(areMirrorTree(a, b))
         	System.out.println("Both trees are mirror of each other");

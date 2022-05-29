@@ -3,6 +3,18 @@ package in.sachinshinde.binarytree;
 import java.util.Stack;
 
 // https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+/*
+ 	Given the root of a binary tree, flatten the tree into a "linked list":
+
+	The "linked list" should use the same TreeNode class 
+		where the right child pointer points to the next node in the list 
+		and the left child pointer is always null.
+	The "linked list" should be in the same order 
+		as a pre-order traversal of the binary tree.
+ */
+
+//	Follow up: Can you flatten the tree in-place (with O(1) extra space)?
+
 
 public class FlattenBinaryTreeToLinkedListWithRightSkewedInOrder {
 	
@@ -41,26 +53,26 @@ public class FlattenBinaryTreeToLinkedListWithRightSkewedInOrder {
 	
 	private static void flatten3(Node root) {
 		
-		if (root == null) 
+		if(root == null)
 			return;
         
 		Stack<Node> st = new Stack<Node>();
         st.push(root);
         
-        while (!st.isEmpty()){
+        while(!st.isEmpty()) {
             
         	Node curr = st.pop();
             
-            if (curr.right != null)  
+            if(curr.right != null)
                  st.push(curr.right);
             
-            if (curr.left!=null)  
+            if(curr.left != null)
                  st.push(curr.left);
             
-            if (!st.isEmpty()) 
+            if(!st.isEmpty())
                  curr.right = st.peek();
             
-            curr.left = null;  
+            curr.left = null;
         }
 	}
 	
@@ -106,7 +118,8 @@ public class FlattenBinaryTreeToLinkedListWithRightSkewedInOrder {
 		root.left.left = new Node(3);
 		root.left.right = new Node(4);
 		root.right = new Node(5);
-		root.right.right = new Node(6);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
 		
 		System.out.println("\n Pre-Order: ");
 		preOrder(root);

@@ -1,5 +1,7 @@
 package in.sachinshinde.binarytree;
 
+//	https://www.geeksforgeeks.org/given-a-binary-tree-print-all-root-to-leaf-paths/
+
 public class PrintAllRootToLeafNodes {
 
 	private static void getPaths(Node root) {
@@ -39,7 +41,6 @@ public class PrintAllRootToLeafNodes {
 		root.left.left = new Node(3);
 		root.left.right = new Node(5);
 		root.right = new Node(2);
-		//root.right.left = new Node(2);
 		
 		getPaths(root);
 	}

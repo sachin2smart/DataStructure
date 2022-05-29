@@ -1,6 +1,6 @@
 package in.sachinshinde.binarytree;
 
-// Size of a tree is the number of elements present in the tree
+// Size of a tree is the total number of elements present in the tree
 
 public class SizeOfTree {
 	

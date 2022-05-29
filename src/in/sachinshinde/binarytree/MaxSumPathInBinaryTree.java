@@ -1,5 +1,19 @@
 package in.sachinshinde.binarytree;
 
+//	https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+
+/*
+  	Input: Root of below tree
+       1
+      / \
+     2   3
+     
+	Output: 6
+	
+	See below diagram for another example.
+	1+2+3
+ */
+
 public class MaxSumPathInBinaryTree {
 
 	static int max = Integer.MIN_VALUE;
@@ -29,7 +43,22 @@ public class MaxSumPathInBinaryTree {
 
          int ans =  maxPathSum(root);
          
-         System.out.println("The Max Path Sum for this tree is " + ans);
+         System.out.println("The Max Path Sum for this tree is " + ans);	//	42
+         
+         
+         Node root2 = new Node(10);
+         root2.left = new Node(2);
+         root2.right = new Node(10);
+         root2.left.left = new Node(20);
+         root2.left.right = new Node(1);
+         root2.right.right = new Node(-25);
+         root2.right.right.left = new Node(3);
+         root2.right.right.right = new Node(4);
+         
+         int ans2 =  maxPathSum(root2);
+         
+         System.out.println("The Max Path Sum for this tree is " + ans2);	//	42
+         
 
     }
     
