@@ -31,7 +31,7 @@ public class AccountMerge {
 	        int size = accounts.size();
 	        UnionFind2 uf = new UnionFind2(size);
 
-	        Map<String, Integer> uniqueEmails = new  HashMap<>();
+	        Map<String, Integer> uniqueEmails = new HashMap<>();
 	        for(int i = 0; i < size; i++) {
 	            List<String> account = accounts.get(i);
 	            for(int j = 1; j < account.size(); j++) {

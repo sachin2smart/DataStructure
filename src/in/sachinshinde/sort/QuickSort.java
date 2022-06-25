@@ -20,13 +20,12 @@ public class QuickSort {
     
     private int partition(int[] arr, int left, int right) {
         int mid = left + (right - left) / 2;
-        int midVal = arr[mid];
         
         while (left <= right) {
-            while (arr[left] < midVal)
+            while (arr[left] < arr[mid])
                 left++;
             
-            while (arr[right] > midVal)
+            while (arr[right] > arr[mid])
                 right--;
             
             if (left <= right)

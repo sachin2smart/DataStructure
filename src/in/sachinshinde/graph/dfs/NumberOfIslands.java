@@ -52,6 +52,25 @@ public class NumberOfIslands {
 		
 		return 1;
 	}
+	
+	public static void main(String[] args) {
+		char[][] grid = new char[][]  {
+			  {'1','1','1','1','0'},
+			  {'1','1','0','1','0'},
+			  {'1','1','0','0','0'},
+			  {'0','0','0','0','0'}
+			};
+		NumberOfIslands islands = new NumberOfIslands();
+		System.out.println(islands.getNumOfIslands(grid));	//	1
+		
+		 grid = new char[][]  {
+			  {'1','1','0','0','0'},
+			  {'1','1','0','0','0'},
+			  {'0','0','1','0','0'},
+			  {'0','0','0','1','1'}
+			};
+		System.out.println(islands.getNumOfIslands(grid));	//	3
+	}
 }
 
 /*

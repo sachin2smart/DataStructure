@@ -26,4 +26,43 @@ public class KthSmallestElementInBST {
         
         return numOfNodes(n.left) + 1 + numOfNodes(n.right);
     }
+    
+    public static void main(String[] args) {
+		KthSmallestElementInBST bst = new KthSmallestElementInBST();
+		Node n = new Node(3);
+		n.left = new Node(2);
+		n.left.left = new Node(1);
+		n.right = new Node(5);
+		n.right.left = new Node(4);
+		n.right.right = new Node(6);
+		
+		System.out.println(bst.kthSmallest(n, 2));
+		System.out.println(bst.kthSmallest2(n, 2));
+	}
+    
+    //	Method 2
+    int curr = 0;
+	
+    public int kthSmallest2(Node root, int k) {
+    	curr = k;
+        Node n = helper(root);
+        return n.key;
+    }
+    
+    private Node helper(Node root) {
+        if(root == null)
+	        return null;
+	
+	    Node left = helper(root.left);
+	
+	    if(left != null)
+	        return left;
+	        
+	    curr--;
+	
+	    if(curr == 0)
+	        return root;
+	
+	    return helper(root.right);
+    }
 }

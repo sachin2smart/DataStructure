@@ -44,7 +44,24 @@ public class CountSubIslands {
     }
     
     public static void main(String[] args) {
-		
+    	CountSubIslands subIslands = new CountSubIslands();
+		int[][] grid1 = new int[][] {
+						 {1,1,1,0,0},
+		    			 {0,1,1,1,1},
+		    			 {0,0,0,0,0},
+		    			 {1,0,0,0,0},
+		    			 {1,1,0,1,1}
+    					};
+		    			  
+    	int[][] grid2 = new int[][] {
+		    			 {1,1,1,0,0},
+		    			 {0,0,1,1,1},
+		    			 {0,1,0,0,0},
+		    			 {1,0,1,1,0},
+		    			 {0,1,0,1,0}
+		    			};
+		    			
+		System.out.println(subIslands.countSubIslands(grid1, grid2));	//	3
 	}
     
 }
@@ -63,4 +80,7 @@ public class CountSubIslands {
 			 [0,1,0,1,0]]
 
 	Output: 3
+		First sub-islands can be formed as (0,0),(0,1),(0,2),(1,2),(1,3),(1,4)
+		Second sub-islands can be formed as (3,0)
+		Third sub-islands can be formed as (4,1)
 */

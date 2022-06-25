@@ -1,6 +1,7 @@
 package in.sachinshinde.bst;
 
 // https://leetcode.com/problems/increasing-order-search-tree/
+//	right-skewed-tree
 
 public class ConvertBSTToIncreasingOrderSearchTree {
 	

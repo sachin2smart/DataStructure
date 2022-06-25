@@ -49,6 +49,7 @@ public class AcconutMerge {
             for(int j = 2; j < accountSize; j++) {
                 String accountEmail = account.get(j);
                 
+                //	If A is adjacent to B then make B adjacent to A
                 if(!adjacent.containsKey(accountFirstEmail))
                     adjacent.put(accountFirstEmail, new ArrayList<String>());
                 

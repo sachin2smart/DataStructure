@@ -16,13 +16,13 @@ public class CheckTheSumOfAnyTwoNodesToKInBST {
 	Set<Integer> res = new HashSet<>();
 	
     public boolean findTarget(Node root, int k) {
-        if(root==null)
+        if(root==null)	//	if we reach to the leaf node and does not found a sum of two nodes equal to k
             return false;
         
-        if(res.contains(k-root.key))
+        if(res.contains(k-root.key))	// if the current key and any of the added key in the hashset sum to k
             return true; // k = root.val + anotherValueAlreadyBeingAddedToSet
         
-        res.add(root.key);
+        res.add(root.key);	// add every key in the hashset 
         
         return findTarget(root.left,k) || findTarget(root.right,k);
     }

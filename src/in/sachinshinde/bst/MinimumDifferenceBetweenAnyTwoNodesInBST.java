@@ -8,8 +8,8 @@ import java.util.List;
 
 public class MinimumDifferenceBetweenAnyTwoNodesInBST {
 
-	int min = Integer.MAX_VALUE;
-	Integer prev = null;
+	Integer min = Integer.MAX_VALUE;
+	Integer prev = 0;
 	
 	private int getMinimumDifferenceBetweenAnyTwoNodesInBST(Node root) {
 		

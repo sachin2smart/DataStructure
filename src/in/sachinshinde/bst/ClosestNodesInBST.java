@@ -26,7 +26,7 @@ import java.util.List;
  Note:
 
  Given target value is a floating point.
- You may assume k is always valid, that is: k ≤ total nodes.
+ You may assume k is always valid, that is: k <= total nodes.
  You are guaranteed to have only one unique set of k values in the BST that are closest to the target.
 
  Follow up:

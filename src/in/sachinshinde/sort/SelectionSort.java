@@ -29,5 +29,4 @@ public class SelectionSort {
 	        arr[i] = temp;
         }
   }
-	
 }

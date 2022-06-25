@@ -30,4 +30,17 @@ public class ClosestSingleNodeInBST {
         return Math.abs(root.key - target) < Math.abs(childClosest - target) ? root.key : childClosest;
     }
 	
+	public static void main(String[] args) {
+		ClosestSingleNodeInBST bst = new ClosestSingleNodeInBST();
+		Node root = new Node(2);
+		root.left = new Node(1);
+		root.right = new Node(3);
+		
+		System.out.println("1.001	:	"+ bst.closestValue(root, 1.001));	//	1
+		System.out.println("1.987	:	"+ bst.closestValue(root, 1.987));	//	2
+		System.out.println("2.987	:	"+ bst.closestValue(root, 2.987));	//	3
+		System.out.println("-1      :	"+ bst.closestValue(root, -1));	//	1
+		System.out.println("3   	:	"+ bst.closestValue(root, 3));	//	3
+	}
+	
 }

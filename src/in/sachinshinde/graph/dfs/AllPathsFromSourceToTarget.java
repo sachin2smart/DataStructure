@@ -5,6 +5,19 @@ import java.util.List;
 
 //	https://leetcode.com/problems/all-paths-from-source-to-target/
 
+/*
+ 	Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, 
+ 	find all possible paths from node 0 to node n - 1 and return them in any order.
+ 	
+ 	Input: graph = [[1,2],[3],[3],[]]  
+ 					There is a directed edge from 0 to [1,2]
+ 					There is a directed edge from 1 to [3]
+ 					There is a directed edge from 2 to [3]
+ 					There is a directed edge from 3 to []
+	Output: [[0,1,3],[0,2,3]]
+	Explanation: There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
+ */
+
 public class AllPathsFromSourceToTarget {
 
 	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
@@ -17,7 +30,7 @@ public class AllPathsFromSourceToTarget {
 
 	private void dfs(int[][] graph, List<Integer> path, int node, List<List<Integer>> res) {
 		if(node == graph.length-1) {
-			res.add(new ArrayList(path));
+			res.add(new ArrayList<>(path));
 			return;
 		}
 		for(int nextNode: graph[node]) {

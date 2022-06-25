@@ -11,9 +11,9 @@ package in.sachinshinde.bst;
 public class LowestCommonAncesotorInBST {
 
 	public Node getLowestCommonAncestor(Node root, Node p, Node q) {
-        if(root.key > p.key && root.key > q.key)
+        if(root.key > p.key && root.key > q.key) // if both nodes exists in left subtree
             return getLowestCommonAncestor(root.left, p, q);
-        else if(root.key < p.key && root.key < q.key)
+        else if(root.key < p.key && root.key < q.key)	// if both nodes exists in right subtree
             return getLowestCommonAncestor(root.right, p, q);
         else
             return root;

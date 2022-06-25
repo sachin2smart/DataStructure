@@ -28,6 +28,20 @@ public class FloorInBST {
 		
 		return floor;
 	}
+	
+	public static void main(String[] args) {
+		FloorInBST bst = new FloorInBST();
+		Node root = new Node(10);
+		root = new Node(10);
+		root.left = new Node(5);
+		root.right = new Node(15);
+		root.right.left = new Node(12);
+		root.right.right = new Node(30);
+		System.out.println("Ceil in tree for 14 is Node with key " + bst.getFloorInBST(root, 14));	//	12
+		System.out.println("Ceil in tree for 15 is Node with key " + bst.getFloorInBST(root, 15));	//	15
+		System.out.println("Ceil in tree for 35 is Node with key " + bst.getFloorInBST(root, 30));	//	30
+		System.out.println("Ceil in tree for 3 is Node with key " + bst.getFloorInBST(root, 3));	//	-1
+	}
 }
 
 

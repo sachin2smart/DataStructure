@@ -56,11 +56,8 @@ public class MaxAreaOfIsland {
 			{0,0,0,0,0,0,0,1,1,0,0,0,0}
 		};
 			
-		System.out.println(maxAreaOfIsland.getMaxAreaOfIsland(grid));
+		System.out.println(maxAreaOfIsland.getMaxAreaOfIsland(grid));		//	6
+		//	There is a island with 6 lands which covers maximum area as 11 water starting from (3,8)
 	}
 	
 }
-
-/*
-
-*/

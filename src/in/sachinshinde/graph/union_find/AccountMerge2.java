@@ -1,4 +1,4 @@
-package in.sachinshinde.graph.dfs;
+package in.sachinshinde.graph.union_find;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,9 +24,9 @@ import java.util.TreeSet;
  */
 
 
-//	Approach : DFS 
+//	Approach : Union Find
 
-public class AccountMerge {
+public class AccountMerge2 {
 
 	/*	Data Structures being used :-
 			(1) List...ArrayList

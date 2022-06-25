@@ -69,7 +69,7 @@ public class EvenNodesBST {
 		Node root = constructBST(arr);
 		
 		inorder(root);
-		System.out.println();
+		System.out.print("\n Even Nodes : ");
 		
 		evenNodes(root);
 		System.out.println();

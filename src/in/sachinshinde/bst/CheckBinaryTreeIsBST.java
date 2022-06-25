@@ -30,15 +30,24 @@ public class CheckBinaryTreeIsBST {
 	public static void main(String[] args) {
 		CheckBinaryTreeIsBST checkBinaryTreeIsBST = new CheckBinaryTreeIsBST();
 		checkBinaryTreeIsBST.root = null;
-	    System.out.println(checkBinaryTreeIsBST.isBSTUtil());
-
+	    System.out.println(checkBinaryTreeIsBST.isBSTUtil());	//	true
+	    
+	    CheckBinaryTreeIsBST bst = new CheckBinaryTreeIsBST();
+	    Node root = new Node(4);
+	    root.left = new Node(2);
+	    root.left.right = new Node(3);
+	    root.right = new Node(6);
+	    root.right.left = new Node(5);
+	    System.out.println(bst.isValidBST(root));	//	true
+	    root.right.right =  new Node(1);
+	    System.out.println(bst.isValidBST(root));	//	false
 	}
 	
 	 public boolean isValidBST(Node root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
      }
     
-    public boolean isValidBST(Node root, long minVal, long maxVal) {
+    private boolean isValidBST(Node root, long minVal, long maxVal) {
         if (root == null) 
         	return true;
         

@@ -3,7 +3,27 @@
 package in.sachinshinde.bst;
 
 public class BinarySumTree {
+	
+	// Method 1 : Very Simple 
+	int pre = 0;
+    public Node bstToGst(Node root) {
+        if (root.right != null) 
+        	bstToGst(root.right);
+        
+        pre = root.key = pre + root.key;
+        /*	 above simplified version:
+         * 		pre = pre + root.key;
+         * 		root.key = pre;
+         */
+        
+        if (root.left != null) 
+        	bstToGst(root.left);
+        
+        return root;
+    }
+	
 
+	//	Method 2 : 
 	static Node root;
 	Sum sum_to_carry = new Sum();
 	
@@ -67,6 +87,23 @@ public class BinarySumTree {
 		bSumT2.addGreater2(bSumT2.root);
 		bSumT2.inorder(bSumT2.root);
 		
+		System.out.println("\n------------By a Simple way ---------------");
+		Node root = new Node(4);
+		root.left = new Node(1);
+		root.left.left = new Node(0);
+		root.left.right = new Node(2);
+		root.left.right.right = new Node(3);
+		
+		root.right = new Node(6);
+		root.right.left = new Node(5);
+		root.right.right = new Node(7);
+		root.right.right.right = new Node(8);
+		
+		System.out.println("Given : ");
+		bSumT.inorder(root);
+		bSumT.bstToGst(root);
+		System.out.println("\nConverted : ");
+		bSumT.inorder(root);
 	}
 
 }

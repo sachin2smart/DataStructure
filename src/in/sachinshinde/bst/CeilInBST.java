@@ -21,12 +21,25 @@ public class CeilInBST {
 				root = root.right;
 			}
 			else {
-				ceil = root.key;
+				ceil = root.key;	//	since the value exists in left subtree, current node can be a ceil
 				root = root.left;
 			}
 		}
 		
 		return ceil;
+	}
+	
+	public static void main(String[] args) {
+		CeilInBST bst = new CeilInBST();
+		Node root = new Node(10);
+		root = new Node(10);
+		root.left = new Node(5);
+		root.right = new Node(15);
+		root.right.left = new Node(12);
+		root.right.right = new Node(30);
+		System.out.println("Ceil in tree for 14 is Node with key " + bst.getCeilInBST(root, 14));	//	15
+		System.out.println("Ceil in tree for 15 is Node with key " + bst.getCeilInBST(root, 15));	//	15
+		System.out.println("Ceil in tree for 35 is Node with key " + bst.getCeilInBST(root, 35));	//	-1
 	}
 }
 

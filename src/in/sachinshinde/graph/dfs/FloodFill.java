@@ -1,10 +1,13 @@
-package in.sachinshinde.misc;
+package in.sachinshinde.graph.dfs;
+
+import java.util.Arrays;
 
 //	https://leetcode.com/problems/flood-fill/
 
 /*
  *	
- 	An image is represented by an m x n integer grid image where image[i][j] represents the pixel value of the image.
+ 	An image is represented by an m x n integer grid image 
+ 		where image[i][j] represents the pixel value of the image.
 	You are also given three integers sr, sc, and newColor. 
 	You should perform a flood fill on the image starting from the pixel image[sr][sc].
 
@@ -40,4 +43,21 @@ public class FloodFill {
         fill(image, sr, sc + 1, color, newColor);
         fill(image, sr, sc - 1, color, newColor);
     }
+    
+    public static void main(String[] args) {
+    	FloodFill floodFill = new FloodFill();
+    	int[][] image = {{1,1,1},{1,2,0},{1,0,1}};
+    	int sr = 1, sc = 1, newColor = 2;
+    	
+    	System.out.println(Arrays.deepToString(image));
+    	floodFill.floodFill(image, sr, sc, newColor);
+    	System.out.println(Arrays.deepToString(image));	//	[[1, 1, 1], [1, 2, 0], [1, 0, 1]]
+    	
+    	image = new int[][]{{0,0,0},{0,0,0}}; 
+    	sr = 0; sc = 0; newColor = 2;
+    	
+    	System.out.println(Arrays.deepToString(image));
+    	floodFill.floodFill(image, sr, sc, newColor);
+    	System.out.println(Arrays.deepToString(image));	//	[[2, 2, 2], [2, 2, 2]]
+	}
 }

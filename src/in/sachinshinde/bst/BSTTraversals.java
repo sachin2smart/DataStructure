@@ -56,14 +56,14 @@ public class BSTTraversals {
 		
 		Node root = constructBST(arr);
 
+		System.out.print("\n PreOrder : ");
 		preorder(root);
-		System.out.println();
 		
+		System.out.print("\n InOrder :");
 		inorder(root);
-		System.out.println();
 		
+		System.out.print("\n PostOrder : ");
 		postorder(root);
-		System.out.println();
 		
 
 	}
