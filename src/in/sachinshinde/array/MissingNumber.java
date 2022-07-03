@@ -1,6 +1,7 @@
 package in.sachinshinde.array;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 
 //	https://leetcode.com/problems/missing-number/
 
@@ -49,6 +50,10 @@ public class MissingNumber {
 		System.out.println(missingNumber.missingNumber3(new int[] {4,1,3,2}));	//	0
 		System.out.println(missingNumber.missingNumber3(new int[] {0,1,3,2}));	//	4
 		System.out.println(missingNumber.missingNumber3(new int[] {0,1,4,2}));	//	3
+		
+		System.out.println(missingNumber.missingNumber4(new int[] {4,1,3,2}));	//	0
+		System.out.println(missingNumber.missingNumber4(new int[] {0,1,3,2}));	//	4
+		System.out.println(missingNumber.missingNumber4(new int[] {0,1,4,2}));	//	3
 	}
 	
 	//	by calculating sum, Time: O(N), Space: O(1)
@@ -72,5 +77,9 @@ public class MissingNumber {
 	        	left = mid+1;
 	    }
 	    return left;
+	}
+	
+	public int missingNumber4(int[] nums) {
+	    return (int) (nums.length * (nums.length+1) / 2 - IntStream.of(nums).sum());
 	}
 }
