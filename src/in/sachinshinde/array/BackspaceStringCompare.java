@@ -1,4 +1,4 @@
-package in.sachinshinde.stack;
+package in.sachinshinde.array;
 
 import java.util.Stack;
 
