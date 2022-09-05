@@ -1,4 +1,4 @@
-package in.sachinshinde.trie;
+package in.sachinshinde.design;
 
 import java.util.HashMap;
 import java.util.Map;
