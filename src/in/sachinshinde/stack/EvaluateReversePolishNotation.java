@@ -79,5 +79,46 @@ public class EvaluateReversePolishNotation {
 		System.out.println(pN.evalRPN(new String[] {"4","13","5","/","+"}));	//	6	
 		System.out.println(pN.evalRPN(new String[] {
 				"10","6","9","3","+","-11","*","/","*","17","+","5","+"}));	//	22
+		
+		System.out.println(pN.evalRPN2(new String[] {"2","1","+","3","*"}));	//	9
+		System.out.println(pN.evalRPN2(new String[] {"4","13","5","/","+"}));	//	6	
+		System.out.println(pN.evalRPN2(new String[] {
+				"10","6","9","3","+","-11","*","/","*","17","+","5","+"}));	//	22
 	}
+	
+    String[] tokens;
+    int endIndex;
+    
+    public int evalRPN2(String[] tokens) {
+        this.tokens = tokens;
+        endIndex = tokens.length - 1;
+        return evaluate();
+    }
+    
+    private int evaluate() {
+        while(endIndex >= 0) {
+            String token = tokens[endIndex--];
+            
+            if(token.equals("*")) {
+                return evaluate() * evaluate();
+            }
+            else if(token.equals("+")) {
+                return evaluate() + evaluate();
+            } 
+            else if(token.equals("/")) {
+                int right = evaluate();
+                int left = evaluate();
+                return left / right;
+            }
+            else if(token.equals("-")) {
+                int right = evaluate();
+                int left = evaluate();
+                return left - right;
+            } 
+            else {
+                return Integer.valueOf(token);
+            }
+        }
+        return -1;
+    }
 }
