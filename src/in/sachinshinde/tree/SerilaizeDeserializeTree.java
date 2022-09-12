@@ -87,52 +87,63 @@ public class SerilaizeDeserializeTree {
 
     // Encodes a tree to a single string.
     public static String serialize2(Node root) {
-        if (root == null) {
+        if (root == null) {	//	base case
             return null;
         }
-        StringBuilder sb = new StringBuilder();
+        
+        StringBuilder sb = new StringBuilder();	// will store answer 
         Deque<Node> queue = new LinkedList<>();
-        queue.offer(root);
+        
+        queue.offer(root);	// start from the root
+        
         while (!queue.isEmpty()) {
-            Node node = queue.poll();
+            Node node = queue.poll();	// poll = remove the head (first element) of the deque and return the same
+            							//			return null, if the deque is empty
             if (node == null) {
                 sb.append(NULL).append(DELIMITER);
                 continue;
             }
+            
             sb.append(node.key).append(DELIMITER);
+            
             queue.offer(node.left);
             queue.offer(node.right);
         }
+        
         String res = sb.toString();
+        
         return res.substring(0, res.length() - 1);
     }
 
     // Decodes your encoded data to tree.
     public static Node deserialize2(String data) {
-        if (data == null) {
+        if (data == null) {	// base condition
             return null;
         }
         
-        String[] values = data.split(DELIMITER);
+        String[] values = data.split(DELIMITER);	// splitted by comma
         Deque<Node> queue = new ArrayDeque<>();
         
         Node root = new Node(Integer.parseInt(values[0]));
         queue.offer(root);
         
-        for (int i = 1; i < values.length; ++i) {
+        for (int i = 1; i < values.length; ++i) {	// i starts with 1
+        	//	Get the parent
             Node parent = queue.poll();
+            
+            //	Assign the left child
             if (!values[i].equals(NULL)) {
                 Node left = new Node(Integer.parseInt(values[i]));
                 parent.left = left;
                 queue.offer(left);
             }
             
+            //	Assign the right child
             if (!values[++i].equals(NULL)) {
                 Node right = new Node(Integer.parseInt(values[i]));
                 parent.right = right;
                 queue.offer(right);
             }
-            
         }
         
         return root;
