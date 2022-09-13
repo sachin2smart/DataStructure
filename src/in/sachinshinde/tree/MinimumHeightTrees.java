@@ -8,6 +8,26 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
+//	https://leetcode.com/problems/minimum-height-trees/
+
+/*
+ 	A tree is an undirected graph in which any two vertices are connected by exactly one path. 
+ 	In other words, any connected graph without simple cycles is a tree.
+
+	Given a tree of n nodes labelled from 0 to n - 1, and an array of n - 1 edges 
+		where edges[i] = [ai, bi] indicates that 
+			there is an undirected edge between the two nodes ai and bi in the tree, 
+			you can choose any node of the tree as the root. 
+		When you select a node x as the root, the result tree has height h. 
+		Among all possible rooted trees, those with minimum height (i.e. min(h)) are called 
+			"minimum height trees (MHTs)"
+	
+	Return a list of all MHTs' root labels. You can return the answer in any order.
+	
+	The height of a rooted tree is the number of edges on the longest downward path 
+	between the root and a leaf.
+ */
+
 public class MinimumHeightTrees {
 
 	public static List<Integer> getMinHeightTrees(int[][] edges, int n) {
@@ -70,12 +90,13 @@ public class MinimumHeightTrees {
 	
 	public static List<Integer> getMinHeightTrees2(int[][] edges, int n) {
 		
-		if(n<=0)
+		if(n <= 0)	// base condition -1
 			return new ArrayList<>();
 		
-	    if(n==1) 
+	    if(n == 1) //	base condition - 2
 	    	return Collections.singletonList(0);
 
+	    //	Consider tree as a non-cyclic graph & create the adjacency matrix
 	    List<Set<Integer>> adj = new ArrayList<>(n);
 	    
 	    for(int i = 0; i < n; ++i) 
@@ -86,24 +107,33 @@ public class MinimumHeightTrees {
 	        adj.get(edge[1]).add(edge[0]);
 	    }
 
-	    List<Integer> leaves = new ArrayList<>();
+	    //	Determine the leaves of the tree
+	    List<Integer> currLeaves = new ArrayList<>();
 	    
 	    for(int i = 0; i < n; ++i)
 	        if (adj.get(i).size() == 1) 
-	        	leaves.add(i);
+	        	currLeaves.add(i);
 
-	    while (n > 2) {
-	        n -= leaves.size();
+	    while(n > 2) {
+	    	//	Remove all current leaves
+	        n -= currLeaves.size();
+	        
+	        //	After removing the current leaves, 
+	        //		we will be going to have a new set of leaves
 	        List<Integer> newLeaves = new ArrayList<>();
-	        for (int i : leaves) {
-	            int j = adj.get(i).iterator().next();	//	IMP Step: get the index node to remove leaf node 
-	            adj.get(j).remove(i);
-	            if (adj.get(j).size() == 1) 
-	            	newLeaves.add(j);
+	        
+	        //	for each leaves
+	        for(int child : currLeaves) {
+	        	//	since we have used the set, we can use the iterator to get the next element
+	            int parent = adj.get(child).iterator().next();	
+	            //	IMP Step: get the index node to remove leaf node 
+	            adj.get(parent).remove(child);
+	            if (adj.get(parent).size() == 1) 
+	            	newLeaves.add(parent);
 	        }
-	        leaves = newLeaves;
+	        currLeaves = newLeaves;
 	    }
 	    
-	    return leaves;
+	    return currLeaves;
 	}
 }
