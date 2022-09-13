@@ -23,8 +23,8 @@ package in.sachinshinde.binarytree;
  */
 
 public class ChangeRootOfBinaryTree {
-
-	public static RerootNode flipBinaryTree(RerootNode root,RerootNode leaf) {
+/*
+	private RerootNode flipBinaryTree(RerootNode root,RerootNode leaf) {
 		RerootNode curr = leaf;
 		RerootNode newParent = null;
 		
@@ -52,5 +52,53 @@ public class ChangeRootOfBinaryTree {
 			curr = curr.left;
 		}
 		return leaf;
+	}
+*/
+	
+	public RerootNode flipBinaryTree2(RerootNode root, RerootNode leaf) {
+		return reroot(root, leaf, null);
+	}
+	
+	private RerootNode reroot(RerootNode root, RerootNode node, RerootNode newParent) {
+		RerootNode oldParent = node.parent;
+		node.parent = newParent;
+		
+		// clean up the child if it's the new parent
+		if (node.left == newParent)
+		  node.left = null;
+		
+		if (node.right == newParent)
+		  node.right = null;
+		
+		// we meet the original root, so we're done
+		if (node == root)
+		  return node;
+		
+		if (node.left != null)
+		  node.right = node.left;
+		
+		node.left = reroot(root, oldParent, node);
+		
+		return node;
+	}
+	  
+	public static void main(String[] args) {
+		RerootNode n = new RerootNode(1);
+		n.left = new RerootNode(2, n);
+		n.right = new RerootNode(3, n);
+		
+		ChangeRootOfBinaryTree reroot = new ChangeRootOfBinaryTree();
+		reroot.inOrderTraversal(n);
+		
+		RerootNode r = reroot.flipBinaryTree2(n, n.left);
+		reroot.inOrderTraversal(r);
+	}
+	  
+	private void inOrderTraversal(RerootNode root) {
+		if(root == null)
+			return;
+		inOrderTraversal(root.left);
+		System.out.print(" "+root.val);
+		inOrderTraversal(root.right);
 	}
 }
