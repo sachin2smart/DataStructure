@@ -126,7 +126,7 @@ public class MinimumHeightTrees {
 	        for(int child : currLeaves) {
 	        	//	since we have used the set, we can use the iterator to get the next element
 	            int parent = adj.get(child).iterator().next();	
-	            //	IMP Step: get the index node to remove leaf node 
+	            //	IMP Step: get adjacency list of parent node & remove leaf node i.e. child node 
 	            adj.get(parent).remove(child);
 	            if (adj.get(parent).size() == 1) 
 	            	newLeaves.add(parent);
