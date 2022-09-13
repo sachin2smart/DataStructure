@@ -21,6 +21,7 @@ import java.util.Map;
 
 public class AllPossibleFullBinaryTrees {
 
+	//	method 1: using recursion 
 	public List<Node> allPossibleFBT(int n) {
 		List<Node> res = new ArrayList<>();
 		
@@ -33,11 +34,10 @@ public class AllPossibleFullBinaryTrees {
 		// Excluding current node, there will be (left + right = n-1) child nodes
 		n = n-1;
 		
-		//	i= number of children on left
-		//	n-i= number of children on right
-		for(int i=1; i<n; i=i+2) {	// increment by 2 since left,right childs are being formed 
-			List<Node> left = allPossibleFBT(i);
-			List<Node> right = allPossibleFBT(n-i);
+		// increment by 2 since left,right childs are being formed
+		for(int i=1; i<n; i=i+2) {	 
+			List<Node> left = allPossibleFBT(i);	//	i= number of children on left
+			List<Node> right = allPossibleFBT(n-i);	//	n-i= number of children on right
 			
 			for(Node nl: left) {
 				for(Node nr: right) {
@@ -54,7 +54,9 @@ public class AllPossibleFullBinaryTrees {
 	
 	// Using Memoization
 	
-	Map<Integer,List<Node>> cache= new HashMap<>();	// this stores : a list of nodes at it's n'th place
+	// this map : to store a list of nodes at it's n'th place
+	Map<Integer,List<Node>> cache= new HashMap<>();
+	
     public List<Node> allPossibleFBT_mem(int n) {
         List<Node> res = new ArrayList<>();
         
