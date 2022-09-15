@@ -30,13 +30,13 @@ public class LeftRightAndSpiralEdgeViewOfBinaryTree {
         int spiralEdgeViewCount = Math.max(leftViewResult.size(), rightViewResult.size());
         List<Integer> spiralEdgeView = new ArrayList<>();
         System.out.print("\n Spiral Edge View of Binary Tree :");
-        for(int i=0; i<spiralEdgeViewCount; i++) {
-        	if(!spiralEdgeView.contains(leftViewResult.get(i))){
+
+        spiralEdgeView.add(leftViewResult.get(0));
+        for(int i=1; i<spiralEdgeViewCount; i++) {
+        	if(i < leftViewResult.size())
         		spiralEdgeView.add(leftViewResult.get(i));
-        	}
-        	if(!spiralEdgeView.contains(rightViewResult.get(i))){
+        	if(i < rightViewResult.size())
         		spiralEdgeView.add(rightViewResult.get(i));
-        	}
         }
         spiralEdgeView.forEach(k -> {System.out.print(" "+k);});
 	}
