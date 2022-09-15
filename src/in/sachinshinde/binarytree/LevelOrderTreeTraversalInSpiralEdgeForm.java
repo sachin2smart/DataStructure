@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class LevelOrderTreeTraversalInSpiralEdgeForm {
-
 	
 	private static void printLevelwiseSpriralTree(Node root) {
 		if(root == null)
@@ -18,6 +17,7 @@ public class LevelOrderTreeTraversalInSpiralEdgeForm {
 		s1.push(root);
 		
 		boolean evenLevel = true;
+		
 		while(!s1.isEmpty() || !s2.isEmpty()) {
 			
 			List<Integer> l1 = new ArrayList<Integer>();
@@ -58,13 +58,13 @@ public class LevelOrderTreeTraversalInSpiralEdgeForm {
 					System.out.print(" "+l2.get(l2.size()-1));
 			}
 			else {
-				if(l1.size()>=1)
-					System.out.print(" "+l1.get(l1.size()-1));
 				if(l1.size()>=1 && l1.get(0) != l1.get(l1.size()-1))
 					System.out.print(" "+l1.get(0));
+				if(l1.size()>=1)
+					System.out.print(" "+l1.get(l1.size()-1));
 				if(l2.size()>=1 && l2.get(0) != l2.get(l2.size()-1))
 					System.out.print(" "+l2.get(0));
-				if(l2.size()>1)
+				if(l2.size()>=1)
 					System.out.print(" "+l2.get(l2.size()-1));
 			}
 			
@@ -74,6 +74,20 @@ public class LevelOrderTreeTraversalInSpiralEdgeForm {
 	}
 	
 	public static void main(String args[]) {
+		/*
+		 			     1
+		 			 /      \
+		 		    2        3
+		 		  /   \     / \
+		 		 4     5   6   7
+		 		/ \   / \
+		 	   8   9 10  11
+		 	         /     \
+		 	        12     13
+		 	        
+		 	   Answer: 1 2 3 7 4 8 11 13 12 
+		 		    
+		 */
 		Node root = new Node(1);
 		root.left = new Node(2);
 		root.right = new Node(3);
@@ -85,8 +99,8 @@ public class LevelOrderTreeTraversalInSpiralEdgeForm {
 		root.left.left.right = new Node(9);
 		root.left.right.left = new Node(10);
 		root.left.right.right = new Node(11);
-//		root.left.right.left.left = new Node(12);
-//		root.left.right.right.right = new Node(13);
+		root.left.right.left.left = new Node(12);
+		root.left.right.right.right = new Node(13);
 		
 		printLevelwiseSpriralTree(root);
 	}
