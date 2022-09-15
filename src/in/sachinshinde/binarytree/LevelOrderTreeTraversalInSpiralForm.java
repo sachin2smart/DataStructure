@@ -46,6 +46,21 @@ public class LevelOrderTreeTraversalInSpiralForm {
 	}
 	
 	public static void main(String args[]) {
+		/*
+		        	1
+				 /      \
+			    2        3
+			  /   \     / \
+			 4     5   6   7
+			/ \   / \
+			8   9 10  11
+		      /     \
+		     12     13
+		     
+		Answer: 1 2 3 7 6 5 4 8 9 10 11 13 12 
+	    
+		 */
+		
 		Node root = new Node(1);
 		root.left = new Node(2);
 		root.right = new Node(3);
