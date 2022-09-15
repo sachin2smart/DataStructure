@@ -37,7 +37,7 @@ public class ConstructBinaryTreeFromInorderPostorderTraversal {
         
         int deltaIndex = postStart + inRoot - inStart;
         
-        //	inorder = inStart....inRoot-1....inRoot+1....inEnd
+        //	inorder   = inStart......inRoot-1........inRoot+1.....inEnd
         //	postorder = postStart....deltaIndex-1....deltaIndex...postEnd-1
         
         root.left = buildTree(inorder, inStart, inRoot - 1, 
