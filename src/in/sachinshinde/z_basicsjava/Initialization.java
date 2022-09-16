@@ -1,5 +1,6 @@
 package in.sachinshinde.z_basicsjava;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
@@ -30,6 +31,7 @@ public class Initialization {
 	
 	//	5. Deque initialization
 	Deque<Node> queue = new LinkedList<>();
+	Deque<Integer> result = new ArrayDeque<Integer>();
 	
 	//	6. To generate stream of characters/words/strings, use StringBuilder
 	StringBuilder sb = new StringBuilder();
