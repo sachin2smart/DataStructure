@@ -31,5 +31,9 @@ public class Definitions {
 			the null nodes between the end-nodes that would be present in a complete binary tree 
 			extending down to that level are also counted into the length calculation.
 		----------------------
+		7. Ceil Value Node in BST: 
+		   	A Node with the smallest data larger than or equal to the key value.
+		----------------------
+		
 	 */
 }
