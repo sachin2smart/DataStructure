@@ -24,18 +24,17 @@ public class MirrorTreeCheck {
 	}
 	
 	public static void main(String[] args) {
-		Node a = new Node(1); 
-        Node b = new Node(1); 
+		Node a = new Node(1);  
         a.left = new Node(2); 
         a.right = new Node(3); 
         a.left.left = new Node(4); 
         a.left.right = new Node(5); 
-  
+        
+        Node b = new Node(1);
         b.left = new Node(3); 
         b.right = new Node(2); 
         b.right.right = new Node(4);
         b.right.left = new Node(5); 
-         
         
         if(areMirrorTree(a, b))
         	System.out.println("Both trees are mirror of each other");
