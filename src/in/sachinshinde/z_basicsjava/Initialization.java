@@ -2,9 +2,13 @@ package in.sachinshinde.z_basicsjava;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Set;
+
+import in.sachinshinde.tree.Node;
 
 public class Initialization {
 	
@@ -24,4 +28,13 @@ public class Initialization {
 	//	4. Queue initialization
 	Queue<String> q = new LinkedList<>();
 	
+	//	5. Deque initialization
+	Deque<Node> queue = new LinkedList<>();
+	
+	//	6. To generate stream of characters/words/strings, use StringBuilder
+	StringBuilder sb = new StringBuilder();
+	
+	//	7. List of Set of Integers
+	List<Set<Integer>> adjacencyList = new ArrayList<>();
+
 }
