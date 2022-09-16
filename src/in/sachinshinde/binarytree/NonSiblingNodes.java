@@ -1,53 +1,60 @@
+package in.sachinshinde.binarytree;
+
 /*
- *		https://www.geeksforgeeks.org/print-nodes-dont-sibling-binary-tree/ 
+	https://www.geeksforgeeks.org/print-nodes-dont-sibling-binary-tree/ 
  */
 
-package in.sachinshinde.binarytree;
+/*
+ 	Given a Binary Tree, print all nodes that don’t have a sibling 
+ 	(a sibling is a node that has same parent. 
+ 		In a Binary Tree, there can be at most one sibling). 
+ 	Root should not be printed as root cannot have a sibling.
+ */
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class NonSiblingNodes {
-
-	static List<Integer> list = new ArrayList<>();
 	
-	static void printNonSiblingNodes(Node root) {
-		
-		if(root == null)
+	private void getNonSiblingNodes(Node root, List<Integer> list) {
+		if(root == null) {
 			return;
-		
-		if(root.left != null && root.right != null) {
-			printNonSiblingNodes(root.left);
-			printNonSiblingNodes(root.right);
+		}
+		else if(root.left != null && root.right != null) {
+			getNonSiblingNodes(root.left, list);
+			getNonSiblingNodes(root.right, list);
 		}
 		else if(root.left != null) {
-			System.out.print(root.left.key + " ");
 			list.add(root.left.key);
-			printNonSiblingNodes(root.left);
+			getNonSiblingNodes(root.left, list);
 		}
 		else if(root.right != null) {
-			System.out.print(root.right.key + " ");
 			list.add(root.right.key);
-			printNonSiblingNodes(root.right);
+			getNonSiblingNodes(root.right, list);
 		}
-			
 	}
 	
 	public static void main(String[] args) {
-		
+		/*
+		 			5
+		 		   / \
+		 		  4   7
+		 		 /     \
+		 		3       8
+		       /         \
+		      2           9
+		 */
 		Node root = new Node(5);
-		
 		root.left = new Node(4);
 		root.left.left = new Node(3);
 		root.left.left.left = new Node(2);
-		
 		root.right = new Node(7);
 		root.right.right = new Node(8);
 		root.right.right.right = new Node(9);
 		
-		printNonSiblingNodes(root);
-		System.out.println("\n"+list);
-
+		List<Integer> list = new ArrayList<>();
+		NonSiblingNodes tree = new NonSiblingNodes();
+		tree.getNonSiblingNodes(root, list);
+		System.out.println(list);
 	}
-
 }
