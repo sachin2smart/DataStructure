@@ -39,10 +39,14 @@ public class LongestConsecutiveSequence {
 			hs.add(num);
 		
 		for(int ele: hs) {
+			// since we do not need to backward traverse
+			// any sequence having length > 2 
+			//		can be traversed at most once
 			if(!hs.contains(ele-1)) {
 				int currNum = ele;
-				int currSeqLen = 1;
-					
+				int currSeqLen = 1; // since first number found
+				
+				// check for next numbers
 				while(hs.contains(currNum+1)) {
 					currNum++;
 					currSeqLen++;
