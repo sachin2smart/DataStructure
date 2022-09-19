@@ -15,7 +15,7 @@ import java.util.List;
 
 class TrieNode {
 	String word;
-    TrieNode[] next = new TrieNode[26];
+    TrieNode[] children = new TrieNode[26];
 }
 
 public class WordSearch2 {
@@ -34,10 +34,10 @@ public class WordSearch2 {
 	private void dfs(char[][] board, int i, int j, TrieNode currNode, List<String> res) {
 	    char currChar = board[i][j];
 	    
-	    if(currChar == '#' || currNode.next[currChar - 'a'] == null) 
+	    if(currChar == '#' || currNode.children[currChar - 'a'] == null) 
 	    	return;
 	    
-	    currNode = currNode.next[currChar - 'a'];
+	    currNode = currNode.children[currChar - 'a'];
 	    
 	    if(currNode.word != null) {
 	        res.add(currNode.word);
@@ -63,9 +63,9 @@ public class WordSearch2 {
 	    for (String word: words) {
 	        TrieNode currNode = root;
 	        for (char ch : word.toCharArray()) {
-	            if (currNode.next[ch - 'a'] == null) 
-	            	currNode.next[ch - 'a'] = new TrieNode();
-	            currNode = currNode.next[ch - 'a'];
+	            if (currNode.children[ch - 'a'] == null) 
+	            	currNode.children[ch - 'a'] = new TrieNode();
+	            currNode = currNode.children[ch - 'a'];
 	        }
 	        currNode.word = word;
 	    }
