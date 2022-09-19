@@ -21,55 +21,56 @@ class TrieNode {
 public class WordSearch2 {
 
 	public List<String> findWords(char[][] board, String[] words) {
-	    List<String> res = new ArrayList<>();
 	    TrieNode root = buildTrie(words);
-	    for (int i = 0; i < board.length; i++)
-	        for (int j = 0; j < board[0].length; j++)
-	            dfs (board, i, j, root, res);
+	    List<String> res = new ArrayList<>();
+	    
+	    for(int i = 0; i < board.length; i++)
+	        for(int j = 0; j < board[0].length; j++)
+	            dfs(board, i, j, root, res);
 	    
 	    return res;
 	}
 	
-	private void dfs(char[][] board, int i, int j, TrieNode tn, List<String> res) {
+	private void dfs(char[][] board, int i, int j, TrieNode currNode, List<String> res) {
 	    char currChar = board[i][j];
-	    if (currChar == '#' || tn.next[currChar - 'a'] == null) 
+	    
+	    if(currChar == '#' || currNode.next[currChar - 'a'] == null) 
 	    	return;
 	    
-	    tn = tn.next[currChar - 'a'];
+	    currNode = currNode.next[currChar - 'a'];
 	    
-	    if (tn.word != null) {
-	        res.add(tn.word);
-	        tn.word = null;
+	    if(currNode.word != null) {
+	        res.add(currNode.word);
+	        currNode.word = null;
 	    }
 	    
 	    int m = board.length - 1;
 	    int n = board[0].length - 1;
 
 	    board[i][j] = '#';
-	    if (i > 0) dfs(board, i - 1, j , tn, res); 
-	    if (j > 0) dfs(board, i, j - 1, tn, res);
-	    if (i < m) dfs(board, i + 1, j, tn, res); 
-	    if (j < n) dfs(board, i, j + 1, tn, res); 
+	    
+	    if(i < m) dfs(board, i + 1, j, currNode, res); 
+	    if(i > 0) dfs(board, i - 1, j, currNode, res);
+	    if(j < n) dfs(board, i, j + 1, currNode, res);
+	    if(j > 0) dfs(board, i, j - 1, currNode, res);
+	    
 	    board[i][j] = currChar;
 	    
 	}
 	
 	private TrieNode buildTrie(String[] words) {
 	    TrieNode root = new TrieNode();
-	    for (String word : words) {
-	        TrieNode currTrieNode = root;
-	        for (char currChar : word.toCharArray()) {
-	            int charIndex = currChar - 'a';
-	            if (currTrieNode.next[charIndex] == null) 
-	            	currTrieNode.next[charIndex] = new TrieNode();
-	            currTrieNode = currTrieNode.next[charIndex];	//	TN points at the end of the word
+	    for (String word: words) {
+	        TrieNode currNode = root;
+	        for (char ch : word.toCharArray()) {
+	            if (currNode.next[ch - 'a'] == null) 
+	            	currNode.next[ch - 'a'] = new TrieNode();
+	            currNode = currNode.next[ch - 'a'];
 	        }
-	        currTrieNode.word = word;	// **Only store the word, do not store charIndex anywhere in TrieTree
+	        currNode.word = word;
 	    }
 	    return root;
 	}
-	
-	
 	
 	public static void main(String[] args) {
 		WordSearch2 wordSearch2 = new WordSearch2();
