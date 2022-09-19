@@ -34,6 +34,8 @@ public class Definitions {
 		7. Ceil Value Node in BST: 
 		   	A Node with the smallest data larger than or equal to the key value.
 		----------------------
-		
+		8. Cost of a BST Node:
+			The level of that node multiplied by its frequency. The level of the root is 1.
+		----------------------
 	 */
 }
