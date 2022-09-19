@@ -31,32 +31,38 @@ public class Wordbreak2 {
 			return null;
 		
 		TrieNode2 root = buildTrie(wordDict);
-		List<String> res = new ArrayList<>();
-        List<String> current = new ArrayList<>();
-        dfs(s, 0, root, root, current, res);
-        return res;
+		List<String> finalList = new ArrayList<>();
+        List<String> currentList = new ArrayList<>();
+        dfs(s, 0, root, root, currentList, finalList);	// why to pass root twice?
+        return finalList;
     }
 
-	private void dfs(String s, int index,TrieNode2 root, TrieNode2 node, List<String> current, List<String> res) {
+	//	two nodes = to keep track ot root-node and current node traversed so far 
+	private void dfs(String s, int index, TrieNode2 root, TrieNode2 currNode, 
+			List<String> currentList, List<String> finalList) {
+		
 		if(index == s.length()) {
-            if(node == root) {
-                res.add(String.join(" ", current));
-            }
+            if(currNode == root)
+            	finalList.add(String.join(" ", currentList));
             return;
         }
 		
-        if(node == null) 
+        if(currNode == null) 
         	return;
         
-        TrieNode2 childNode = node.children[s.charAt(index) - 'a'];
+        TrieNode2 childNode = currNode.children[s.charAt(index) - 'a'];
         
         if(childNode != null && childNode.isWord) {
-            current.add(childNode.word);
-            dfs(s, index + 1, root, root, current, res);
-            current.remove(current.size() - 1);
+        	currentList.add(childNode.word);
+        	// since word found, go for searching next word from next index 
+			// At this point currNode need to reset to root  
+            dfs(s, index + 1, root, root, currentList, finalList);
+            // If the next word not found from remaining chars, 
+            //  remove above added word from the list
+            currentList.remove(currentList.size() - 1);	
         }
         
-        dfs(s, index + 1, root, childNode, current, res);
+        dfs(s, index + 1, root, childNode, currentList, finalList);
 	}
 
 	private TrieNode2 buildTrie(List<String> wordDict) {
@@ -64,18 +70,32 @@ public class Wordbreak2 {
 		
 		for(String word : wordDict) {
 			TrieNode2 currNode = root;
-	        for(int i = 0; i < word.length(); i++) {
-	            int idx = word.charAt(i) - 'a';
-	            if(currNode.children[idx] == null) 
-	            	currNode.children[idx] = new TrieNode2();
-	            currNode = currNode.children[idx];
-	        }
+	        for(char ch: word.toCharArray()) {
+				if(currNode.children[ch - 'a'] == null)
+					currNode.children[ch - 'a'] = new TrieNode2();
+				currNode = currNode.children[ch - 'a'];
+			}
 	        currNode.isWord = true;
 	        currNode.word = word;
         }
 		return root;
 	}
 	
+	public static void main(String[] args) {
+		Wordbreak2 wb2 = new Wordbreak2();
+		
+		System.out.println(wb2.wordBreak("catsanddog", 
+				new ArrayList<String>(List.of(
+						"cat","cats","and","sand","dog"))));
+		
+		System.out.println(wb2.wordBreak("pineapplepenapple", 
+				new ArrayList<String>(List.of(
+						"apple","pen","applepen","pine","pineapple"))));
+		
+		System.out.println(wb2.wordBreak("catanddog", 
+				new ArrayList<String>(List.of(
+						"cats","sand","and","dogs"))));
+	}
 }
 
 /*
@@ -89,7 +109,7 @@ public class Wordbreak2 {
 	Explanation: Note that you are allowed to reuse a dictionary word.
 	
 	Example 3:
-	Input: s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]
+	Input: s = "catandog", wordDict = ["cats","dogs","sand","and"]
 	Output: []
 	 
 */
