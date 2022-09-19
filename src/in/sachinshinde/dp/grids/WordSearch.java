@@ -55,6 +55,44 @@ public class WordSearch {
 			};
 		System.out.println(wordSearch.exist(board, "ABCCED"));	//	true
 		System.out.println(wordSearch.exist(board, "ABCB"));	//	false
+		
+		System.out.println(wordSearch.exist2(board, "ABCCED"));	//	true
+		System.out.println(wordSearch.exist2(board, "ABCB"));	//	false
+	}
+    
+    //	Method 2 : More easy to read & memory efficient 
+    public boolean exist2(char[][] board, String word) {
+        for(int x = 0; x < board.length; x++)
+        	for(int y = 0; y < board[x].length; y++)
+        		if(dfs(board, x, y, word.toCharArray(), 0)) 
+        			return true;
+        	
+        return false;
+    }
+
+	private boolean dfs(char[][] board, int x, int y, char[] word, int wordIndex) {
+		if(wordIndex == word.length) 
+			return true;
+		
+		if(x < 0 || x == board.length || y < 0 || y == board[0].length) 
+			return false;
+		
+		if(board[x][y] != word[wordIndex]) 
+			return false;
+		
+		// Since the character at (x,y) is traversed, bitmask it to special character
+		board[x][y] ^= 256; 	 	
+		
+		boolean exist = dfs(board, x, y+1, word, wordIndex+1) || 
+						dfs(board, x, y-1, word, wordIndex+1) || 
+						dfs(board, x+1, y, word, wordIndex+1) || 
+						dfs(board, x-1, y, word, wordIndex+1);
+		
+		// Since we didn't found the word in current iteration, 
+		//	apply bitmask again to regain the original character 
+		board[x][y] ^= 256; 
+				
+		return exist;
 	}
 }
 
