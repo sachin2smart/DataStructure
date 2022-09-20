@@ -23,17 +23,23 @@ package in.sachinshinde.dp.trap_rainwater;
 public class ContainerWithMostWater {
 	public int maxArea(int[] height) {
         int maxArea = 0;
-        int startPtr=0,endPtr=height.length-1;
+        int startPtr = 0;
+        int endPtr = height.length - 1;
+        
         // Area of rectangle = height * width
         while(startPtr < endPtr) {
-        	int width = endPtr - startPtr;
-            if(height[startPtr] < height[endPtr]) {
+        	int width = endPtr - startPtr;	//	always
+            
+        	//	pick the height whichever is minimum, for area calculation
+        	if(height[startPtr] < height[endPtr]) {
                 maxArea = Math.max(maxArea, height[startPtr] * width);
                 startPtr++;
-            } else {
+            }
+            else {
                 maxArea = Math.max(maxArea, height[endPtr] * width);
                 endPtr--;
             }
+        	
         }
         
         return maxArea;
