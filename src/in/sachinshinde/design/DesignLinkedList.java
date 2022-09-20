@@ -1,4 +1,4 @@
-package in.sachinshinde.linkedlist;
+package in.sachinshinde.design;
 
 //	https://leetcode.com/problems/design-linked-list/
 
