@@ -54,7 +54,7 @@ public class MaximumProductSubArray {
         for(int i = 1; i < nums.length; i++) {
             int prevMax = max;
             
-            max = Math.max(nums[i], Math.max(max * nums[i], min * nums[i]));
+            max = Math.max(nums[i], Math.max(max     * nums[i], min * nums[i]));
             min = Math.min(nums[i], Math.min(prevMax * nums[i], min * nums[i]));
             
             if(max > result)
