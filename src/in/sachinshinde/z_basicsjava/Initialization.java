@@ -38,5 +38,8 @@ public class Initialization {
 	
 	//	7. List of Set of Integers
 	List<Set<Integer>> adjacencyList = new ArrayList<>();
+	
+	//	8.	Queue of List of Integer
+	Queue<int[]> queue2 = new LinkedList<int[]>();
 
 }
