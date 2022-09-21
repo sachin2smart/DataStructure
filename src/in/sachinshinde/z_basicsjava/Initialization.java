@@ -4,8 +4,11 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
@@ -41,5 +44,14 @@ public class Initialization {
 	
 	//	8.	Queue of List of Integer
 	Queue<int[]> queue2 = new LinkedList<int[]>();
+	
+	//	9. Map of String with Integer
+	Map<String, Integer> hm = new HashMap<String, Integer>();
+	
+	//	10. Priority Queues with Map Entries
+	PriorityQueue<Map.Entry<String, Integer>> pq = 
+    		new PriorityQueue<>((a,b) -> a.getValue() == b.getValue() ?
+    					b.getKey().compareTo(a.getKey()) : 
+    						a.getValue() - b.getValue() );
 
 }
