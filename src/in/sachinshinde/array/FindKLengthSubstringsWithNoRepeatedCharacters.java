@@ -29,7 +29,7 @@ public class FindKLengthSubstringsWithNoRepeatedCharacters {
 	    
 	    for(int i = 0; i < s.length(); i++) {
 	      while(hs.contains(s.charAt(i)))
-	    	  hs.remove(s.charAt(j++));
+	    	  hs.remove(s.charAt(j++));	//	to maintain hs of k length
 	      
 	      hs.add(s.charAt(i));
 
