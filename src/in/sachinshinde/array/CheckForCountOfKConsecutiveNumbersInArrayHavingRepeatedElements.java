@@ -57,7 +57,22 @@ public class CheckForCountOfKConsecutiveNumbersInArrayHavingRepeatedElements {
 		int[] nums = new int[] {1,2,1,3,3,2};
 		System.out.println(count.isConsucutiveSeqFound(nums, 3));	// True
 		
+		nums = new int[] {1,2,3,4};
+		System.out.println(count.isConsucutiveSeqFound(nums, 3));	// False
+		
 		nums = new int[] {1,2,2,3,3,4,4,5};
 		System.out.println(count.isConsucutiveSeqFound(nums, 4));	// True
+		
+		nums = new int[] {15,16,17,18,19,16,17,18,19,20,6,7,8,9,10,3,4,5,6,20};
+		System.out.println(count.isConsucutiveSeqFound(nums, 5));	//	False
+		
+		nums = new int[] {1,2,3,3,4,4,5,6};
+		System.out.println(count.isConsucutiveSeqFound(nums, 4));	// True
+		
+		nums = new int[] {3,2,1,2,3,4,3,4,5,9,10,11};
+		System.out.println(count.isConsucutiveSeqFound(nums, 3));	// True
+		
+		nums = new int[] {3,3,2,2,1,1};
+		System.out.println(count.isConsucutiveSeqFound(nums, 3));	// True
 	}
 }
