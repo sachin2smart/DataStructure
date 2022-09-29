@@ -9,7 +9,7 @@ package in.sachinshinde.sort;
  *	
  *	##  H-Index: 
  *			A scientist has an index h if h of their n papers have at least h citations each, 
- *			and the other n − h papers have no more than h citations each.
+ *			and the other n - h papers have no more than h citations each.
  *	
  *	If there are several possible values for h, the maximum one is taken as the h-index. 	
  */
@@ -34,7 +34,25 @@ public class HIndex_CountingSort {
         }
         return 0;
     }
+	
+	public static void main(String[] args) {
+		HIndex_CountingSort sort = new HIndex_CountingSort();
+		System.out.println(sort.hIndex(new int[] {100,8,2,2,1,2,2}));	//	2 
+		System.out.println(sort.hIndex(new int[] {8,9,7,5,2,2,3}));		//	4 
+		System.out.println(sort.hIndex(new int[] {800,900,700,500,200,200,300}));	//	7
+	}
 }
+
+/*
+	Google Interview:
+		Given the user and there posts, maximize the likes of N posts where N appears at least N times.
+		For eg. 
+		1. 	Consider likes = [8,6,5,5,2,1] Output: 4 (Because there are 4 post with 4 likes. )
+			Explaination: 8 contains 4 likes, 6 contains 4 likes,5 contains 4 likes,5 contains 4 likes and 
+				more importantly number of posts are 4
+		2. 	likes = [1,2,2] Output 2 (Because there are 2 post with 2 likes)
+		3. 	likes = [1,3,4,2] Output 2(Because there are 2 post with 2 likes)
+ */
 
 /* 
  * 	    
