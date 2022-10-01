@@ -78,5 +78,46 @@ public class LongestRepeatingCharacterReplacement {
 	System.out.println(chars.characterReplacement("ABCDAB", 2)); // 3
 	System.out.println(chars.characterReplacement("ABCABC", 2)); // 4
 	System.out.println(chars.characterReplacement("ABCABC", 3)); // 5
+
+	System.out.println(chars.characterReplacement2("ABAB", 2)); // 4
+	System.out.println(chars.characterReplacement2("AABABBA", 1)); // 4
+	System.out.println(chars.characterReplacement2("ABABAA", 2)); // 6
+	System.out.println(chars.characterReplacement2("ABBBAA", 2)); // 5
+	System.out.println(chars.characterReplacement2("ABCDAB", 2)); // 3
+	System.out.println(chars.characterReplacement2("ABCABC", 2)); // 4
+	System.out.println(chars.characterReplacement2("ABCABC", 3)); // 5
+    }
+
+    public int characterReplacement2(String s, int k) {
+	// substring, two pointer
+	// Special case
+	if (s == null || s.length() == 0)
+	    return 0;
+
+	int len = s.length();
+	if (len < 2)
+	    return len;
+
+	// two pointer to control the sliding window
+	int left = 0, right = 0;
+	// int array to maintain the frequency of chars in the slide window
+	int[] freq = new int[26];
+	int maxFreq = 0;
+	int ans = 0;
+
+	while (right < len) {
+	    // Add s[right] in sliding window
+	    int curFreq = ++freq[s.charAt(right) - 'A'];
+	    maxFreq = Math.max(maxFreq, curFreq);
+	    right++;
+
+	    while (right - left > maxFreq + k) {
+		freq[s.charAt(left) - 'A']--;
+		left++;
+	    }
+	    ans = Math.max(right - left, ans);
+	}
+
+	return ans;
     }
 }
