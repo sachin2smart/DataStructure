@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -53,5 +54,18 @@ public class Initialization {
     		new PriorityQueue<>((a,b) -> a.getValue() == b.getValue() ?
     					b.getKey().compareTo(a.getKey()) : 
     						a.getValue() - b.getValue() );
+	
+	//	11. Array of HashSet (using generics wildcard)
+	Set<?>[] rows = new HashSet<?>[9];
+	
+	//	12. Array of HashSet
+	//	You can declare the generic on the type declaration, 
+	//		but not when you actually allocate the object.
+	Set<Character> chars = new HashSet<Character>();
+	Set<Character>[] charsArray = new HashSet[4];
+	
+	//	12. List of hashsets:
+	List<HashSet<Integer>> cols = new ArrayList<HashSet<Integer>>();
+	
 
 }
