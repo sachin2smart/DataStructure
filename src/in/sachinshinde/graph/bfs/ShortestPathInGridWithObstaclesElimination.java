@@ -112,5 +112,14 @@ public class ShortestPathInGridWithObstaclesElimination {
 		{1,0,0}
 	};
 	System.out.println(path.shortestPath(grid, 1));		//	-1
+	
+	grid = new int [][] {
+	     {0, 1, 0, 0, 0},
+	     {0, 0, 0, 1, 0},
+	     {0, 1, 1, 1, 1},
+	     {0, 1, 1, 1, 1},
+	     {1, 1, 1, 1, 0}
+	};
+	System.out.println(path.shortestPath(grid, 2));		//	10
     }
 }
