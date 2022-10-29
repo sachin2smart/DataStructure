@@ -88,7 +88,8 @@ public class PathWithMaximumGold {
 	    {0,9,0}
 	};
 	System.out.println(maximumGold.getMaximumGold(grid)); 	//	24
-	
+	System.out.println(maximumGold.getMaximumGold2(grid)); 	//	24
+	System.out.println(maximumGold.getMaximumGold3(grid)); 	//	24
 	
 	grid = new int[][] {
 	    {1,0,7},
@@ -98,5 +99,77 @@ public class PathWithMaximumGold {
 	    {9,0,20}
 	};
 	System.out.println(maximumGold.getMaximumGold(grid)); 	//	28
+	System.out.println(maximumGold.getMaximumGold2(grid)); 	//	28
+	System.out.println(maximumGold.getMaximumGold3(grid)); 	//	28
+    }
+    
+
+    // Approach : 2
+    public int getMaximumGold2(int[][] grid) {
+	int maxGold = 0;
+	for(int i = 0; i < grid.length; i++)
+	    for(int j = 0; j < grid[0].length; j++)
+		maxGold = Math.max(maxGold, dfs2(grid, i, j));
+	return maxGold;
+    }
+    
+    private int dfs2(int[][] grid, int i, int j) {
+	if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0)
+	    return 0;
+	
+	int original = grid[i][j];
+	grid[i][j] = 0;
+	
+	int pickfromUp = dfs2(grid, i-1, j);
+	int pickfromDown = dfs2(grid, i+1, j);
+	int pickfromLeft = dfs2(grid, i, j-1);
+	int pickfromRight = dfs2(grid, i, j+1);
+	
+	grid[i][j] = original; 
+	
+	return original + Math.max(Math.max(pickfromUp, pickfromDown), 
+		Math.max(pickfromLeft, pickfromRight));
+    }
+    
+    // Approach 3
+    public int getMaximumGold3(int[][] grid) {
+        int maxCost = 0;
+        for(int i = 0; i < grid.length; i++)
+          for(int j = 0; j < grid[0].length; j++)
+              if(grid[i][j] != 0)
+                maxCost = Math.max(maxCost, dfs3(grid, i, j, 0, false));
+              
+      return maxCost;
+    }
+    
+    public int dfs3(int[][] grid, int row,int col,int used, boolean full) {
+      if(used == 25) {
+        full = true;
+        return 0;
+      }
+      
+      if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == 0)
+        return 0;
+      
+      int orgGold = grid[row][col];
+      grid[row][col] = 0;
+      
+      int pickfromLeft = dfs3(grid, row, col - 1, used + 1, full);
+      if(full) return pickfromLeft;
+      
+      int pickfromRight = dfs3(grid, row, col + 1, used + 1, full);
+      if(full) return pickfromRight;
+      
+      int pickfromUp = dfs3(grid, row - 1, col, used + 1, full);
+      if(full) return pickfromUp;
+      
+      int pickFromDown = dfs3(grid, row + 1, col, used + 1, full);
+      if(full) return pickFromDown;
+      
+      grid[row][col] = orgGold;
+      
+      return orgGold + Math.max(Math.max(pickfromLeft, pickfromRight),
+	      Math.max(pickfromUp, pickFromDown));
+      
     }
 }
