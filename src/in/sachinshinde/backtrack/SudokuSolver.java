@@ -84,10 +84,10 @@ public class SudokuSolver {
 	    if(board[row][i] != '.' && board[row][i] == c)	// search in same col
 		return false;
 	    
-	    int nRowIndex = nRow + i / 3;
-	    int nColIndex = nCol + i % 3;
+	    int nRow3x3 = nRow + i / 3;
+	    int nCol3X3 = nCol + i % 3;
 	    
-	    if(board[nRowIndex][nColIndex] != '.' && board[nRowIndex][nColIndex] == c) // search in triplet
+	    if(board[nRow3x3][nCol3X3] != '.' && board[nRow3x3][nCol3X3] == c) // search in triplet
 		return false;
 	    
 	    // How the triplet is traversed ?
