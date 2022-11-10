@@ -6,36 +6,28 @@ package in.sachinshinde.bst;
 
 public class InorderPredecessorAndSuccessorInBST {
 	
-	public Node inorderSuccessor(Node root, Node s) {
+	public Node inorderSuccessor(Node root, Node s) {    
+	    if(root == null)
+		return null;
 
-        if (root == null) {
-            return null;
-        }
-
-        if (root.key <= s.key) {
-            return inorderSuccessor(root.right, s);
-        }
-        else {
-            Node left = inorderSuccessor(root.left, s);
-            return left == null ? root : left;
-        }
-
-    }
+	    if(root.key <= s.key)
+		return inorderSuccessor(root.right, s);
+	    else {	
+		Node left = inorderSuccessor(root.left, s);
+		return left == null ? root : left;
+	    }
+	}
 	
 	public Node inorderPredecessor(Node root, Node p) {
-
-        if (root == null) {
-            return null;
-        }
-
-        if (root.key <= p.key) {
-            Node right =  inorderPredecessor(root.right, p);
-            return right == null ? root : right;
-        }
-        else {
-            return inorderSuccessor(root.left, p);
-        }
-
-    }
+            if(root == null)
+                return null;
+    
+            if(root.key <= p.key) {
+                Node right =  inorderPredecessor(root.right, p);
+                return right == null ? root : right;
+            }
+            else
+                return inorderSuccessor(root.left, p);
+	}
 	
 }
