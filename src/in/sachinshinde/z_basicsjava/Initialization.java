@@ -67,5 +67,15 @@ public class Initialization {
 	//	12. List of hashsets:
 	List<HashSet<Integer>> cols = new ArrayList<HashSet<Integer>>();
 	
-
+	//	13. Initialize 2D array
+	public int[][] getMatrix() {
+	    int[][] mat = new int[1][1];
+	    mat[0][0] = 1;
+	    return mat;
+	}
+	public int[][] getMatrix_byList() {
+	    List<int[]> mat = new ArrayList<>();
+	    mat.add(new int[] {1});
+	    return mat.toArray(new int[1][1]);
+	}
 }
