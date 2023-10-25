@@ -91,3 +91,61 @@ public class BusRoutes {
 	System.out.println(numBusRequired);	//	-1
     }
 }
+
+/*
+
+-	How do you come to a conclusion to use the Map<Integer, List<Integer>> at an initial ?
+	-->
+		Lets take an example
+			[1,2,7]
+			[3,6,7]
+			
+			If I starts with a bus [1] what are the possible destinations I can reach ?
+			 
+			[1] -> [2]
+			[1] -> [7]
+			
+			[2] -> [1]
+			[2] -> [7]
+			
+			[7] -> [1]
+			[7] -> [2]
+			[7] -> [3]
+			[7] -> [6]
+			
+			[3] -> [6]
+			[3] -> [7]
+			
+			[6] -> [3]
+			[6] -> [7]
+			
+			Can we store them better ?
+			
+			[1] -> [2,7]
+			[2] -> [1,7]
+			[7] -> [1,2,3,6]
+			[3] -> [6,7]
+			[6] -> [3,7]
+			
+			Hence, it's better to use Map<Integer, List<Integer>> to store the initial analysis.
+			We could use Map<Integer, Set<Integer>> as the bus routes are unique.
+		
+			
+	-	What is the usage of "curStop", "nextStop" [integer] ?
+		and likewise of "busTaken" and "stopVisited" [set] ?
+		-->	
+			"curStop"   :	The point from the queue from which next bus can be taken
+			"nextStop"  :	The point from the routes of same bus where you can take exit
+			
+			"busTaken"     : To keep records of what are the stops you passed while traveling with same bus
+			"stopVisited"  : To keep records of what are the stops you passed after taking next bus.	
+			
+			
+	-	What are the data structures being used ?
+		-->
+			List  -> ArrayList	: for initial analysis 
+			Set   -> HashSet	: for tracking
+			Map   -> HashMap	: for initial analysis
+			Queue -> LinkedList	: for BFS search
+			
+*/
