@@ -9,12 +9,12 @@ import java.util.List;
  */
 
 public class PathSumInBinaryTree {
-	//	Get all path node keys from root to leaf node having sum = targetSum
-	 public List<List<Integer>> pathSum(Node root, int sum) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> currentPath = new ArrayList<>();
-        pathSumUtil(root, sum, result, currentPath);
-        return result;
+    //	Get all path node keys from root to leaf node having sum = targetSum
+    public List<List<Integer>> pathSum(Node root, int sum) {
+	List<List<Integer>> result = new ArrayList<>();
+	List<Integer> currentPath = new ArrayList<>();
+	pathSumUtil(root, sum, result, currentPath);
+	return result;
     }
 
     private void pathSumUtil(Node root, int sum, List<List<Integer>> result, List<Integer> currentPath) {
@@ -40,15 +40,15 @@ public class PathSumInBinaryTree {
     
     public static void main(String[] args) {
     	PathSumInBinaryTree pathSum = new PathSumInBinaryTree();
-		Node root = new Node(1);
-		root.left = new Node(1);
-		root.left.left = new Node(1);
-		root.right = new Node(2);
-		List<List<Integer>> result = pathSum.pathSum(root, 3);
-		System.out.println(result);	//	[[1, 1, 1], [1, 2]]
-		System.out.println(pathSum.hasPathSum(root, 2));	// false
-		System.out.println(pathSum.hasPathSum(root, 3));	// true
-	}
+	Node root = new Node(1);
+	root.left = new Node(1);
+	root.left.left = new Node(1);
+	root.right = new Node(2);
+	List<List<Integer>> result = pathSum.pathSum(root, 3);
+	System.out.println(result);	//	[[1, 1, 1], [1, 2]]
+	System.out.println(pathSum.hasPathSum(root, 2));	// false
+	System.out.println(pathSum.hasPathSum(root, 3));	// true
+    }
 
     //	Program 2 : Check if the pathSum exists from root node to any leaf node
     public boolean hasPathSum(Node root, int sum) {
