@@ -158,7 +158,7 @@ public class MeetingRooms2 {
 	for(int i=0; i<intervals.length; i++)
 	    classicIntervals[i] = new Interval(intervals[i][0], intervals[i][1]);
 	    
-	return minMeetingRooms2(classicIntervals);
+	return minMeetingRooms3(classicIntervals);
     }
 
  //------------------------------------------------------------------------------------------- //
