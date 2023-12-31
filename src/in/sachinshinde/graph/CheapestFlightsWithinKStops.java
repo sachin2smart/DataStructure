@@ -1,9 +1,12 @@
 package in.sachinshinde.graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 //	https://leetcode.com/problems/cheapest-flights-within-k-stops/
 
@@ -60,7 +63,7 @@ public class CheapestFlightsWithinKStops {
     
     int totalCost;
     
-    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+    public int findCheapestPrice_dfs(int n, int[][] flights, int src, int dst, int k) {
 	totalCost = Integer.MAX_VALUE;
 	Map<Integer, List<int[]>> hm = new HashMap<>();
 	
@@ -84,18 +87,75 @@ public class CheapestFlightsWithinKStops {
 	    return;
 	}
 	
-	if(!hm.containsKey(src))
-	    return;
-	
-	for(int[] flight: hm.get(src))
-	    if(flight[1] + currCost < totalCost)	//  flight[1] is the cost to reach destination flight[0]
-		dfs(hm, flight[0], dst, k-1, flight[1] + currCost);	// flight[0] is the next stop/layover (dst) 
+	if(hm.containsKey(src))
+    	    for(int[] flight: hm.get(src))
+    		if(flight[1] + currCost < totalCost)	//  flight[1] is the cost to reach destination flight[0]
+    		    dfs(hm, flight[0], dst, k-1, flight[1] + currCost);	// flight[0] is the next stop/layover (dst) 
 									//	from flight[1] (src)
-	
     }
 
 //------------------------------------------------------------------------------------------------------------------
-
+    
+    //	Method 1: BFS
+    public int findCheapestPrice_bfs(int n, int[][] flights, int src, int dst, int k) {
+	Map<Integer, List<int[]>> hm = new HashMap<>();
+	
+	for(int[] flight: flights) {
+	    hm.putIfAbsent(flight[0], new ArrayList<>());
+	    hm.get(flight[0]).add(new int[] {flight[1], flight[2]});
+	}
+	
+	int step = 0;
+	int ans = Integer.MAX_VALUE;
+	
+	Queue<int[]> q = new LinkedList<>();
+	q.offer(new int[] {src, 0});
+	
+	while(!q.isEmpty()) {
+	    int qSize = q.size();
+	    for(int i = 0; i < qSize; i++) {
+        	int[] curr = q.poll();
+        	    
+        	if(curr[0] == dst)
+        	    ans = Math.min(ans, curr[1]);
+        	    
+        	if(hm.containsKey(curr[0]))
+        	    for(int[] flight: hm.get(curr[0]))
+        		if(curr[1] + flight[1] < ans)
+        		    q.offer(new int[] {flight[0], curr[1] + flight[1]});
+	    }
+	    if(step++ > k)
+		break;
+	 }
+	
+	return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+//------------------------------------------------------------------------------------------------------------------
+    //	Method 3: Bellmon Ford
+    
+    public int findCheapestPrice_BellmonFord(int n, int[][] flights, int src, int dst, int k) {
+        int[] costs = new int[n];
+        Arrays.fill(costs, Integer.MAX_VALUE);
+        costs[src] = 0;
+        
+        for(int i=0; i<=k; i++) {
+            int[] currCosts = Arrays.copyOf(costs, n);
+            for(int[] flight: flights) {
+                int currFlight = flight[0];
+                int nextFlight = flight[1];
+                int price = flight[2];
+                
+                if(costs[currFlight] == Integer.MAX_VALUE)
+                    continue;
+                
+                currCosts[nextFlight] = Math.min(currCosts[nextFlight], costs[currFlight] + price);
+            }
+            costs = currCosts;
+        }
+        return costs[dst] == Integer.MAX_VALUE?-1 : costs[dst];
+    }
+//------------------------------------------------------------------------------------------------------------------
+    
     public static void main(String[] args) {
 	CheapestFlightsWithinKStops flights = new CheapestFlightsWithinKStops();
 	//----------------------------------------------------------------------------------
@@ -104,17 +164,23 @@ public class CheapestFlightsWithinKStops {
 	    				{2,0,100},
 	    				{1,3,600},
 	    				{2,3,200}};
-	System.out.println(flights.findCheapestPrice(4, flights1, 0, 3, 1));	//	700
+	System.out.println(flights.findCheapestPrice_dfs(4, flights1, 0, 3, 1));	//	700
+	System.out.println(flights.findCheapestPrice_bfs(4, flights1, 0, 3, 1));	//	700
+	System.out.println(flights.findCheapestPrice_BellmonFord(4, flights1, 0, 3, 1));	//	700
 	//----------------------------------------------------------------------------------	
 	int[][] flights2 = new int[][] {{0,1,100}, 
 	    				{1,2,100},
 	    				{0,2,500}};
-	System.out.println(flights.findCheapestPrice(3, flights2, 0, 2, 1));	//	200
+	System.out.println(flights.findCheapestPrice_dfs(3, flights2, 0, 2, 1));	//	200
+	System.out.println(flights.findCheapestPrice_bfs(3, flights2, 0, 2, 1));	//	200
+	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights2, 0, 2, 1));	//	200
 	//----------------------------------------------------------------------------------
 	int[][] flights3 = new int[][] {{0,1,100}, 
                         		{1,2,100},
                         		{0,2,500}};
-	System.out.println(flights.findCheapestPrice(3, flights3, 0, 2, 0));	//	500
+	System.out.println(flights.findCheapestPrice_dfs(3, flights3, 0, 2, 0));	//	500
+	System.out.println(flights.findCheapestPrice_bfs(3, flights3, 0, 2, 0));	//	500
+	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights3, 0, 2, 0));	//	500
 	//----------------------------------------------------------------------------------
     }
 }
