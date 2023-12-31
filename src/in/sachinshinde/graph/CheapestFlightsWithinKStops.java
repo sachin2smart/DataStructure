@@ -89,7 +89,8 @@ public class CheapestFlightsWithinKStops {
 	
 	for(int[] flight: hm.get(src))
 	    if(flight[1] + currCost < totalCost)	//  flight[1] is the cost to reach destination flight[0]
-		dfs(hm, flight[0], dst, k-1, flight[1] + currCost);	// flight[0] is the next stop from src
+		dfs(hm, flight[0], dst, k-1, flight[1] + currCost);	// flight[0] is the next stop/layover (dst) 
+									//	from flight[1] (src)
 	
     }
 
