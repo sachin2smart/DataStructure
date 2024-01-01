@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 //	https://leetcode.com/problems/cheapest-flights-within-k-stops/
@@ -155,7 +156,48 @@ public class CheapestFlightsWithinKStops {
         return costs[dst] == Integer.MAX_VALUE?-1 : costs[dst];
     }
 //------------------------------------------------------------------------------------------------------------------
+    //	Method 3: Dijkstra
     
+    public int findCheapestPrice_Dijkstra(int n, int[][] flights, int src, int dst, int k) {
+	//	[src --> [dst --> price]]
+	Map<Integer, Map<Integer, Integer>> srcToDstPriceMap = new HashMap<>();
+	
+	for(int[] flight: flights) {
+	    srcToDstPriceMap.putIfAbsent(flight[0], new HashMap<>());
+	    srcToDstPriceMap.get(flight[0]).put(flight[1], flight[2]);
+	}
+	
+	Queue<int[]> pq = new PriorityQueue<>(
+		(a,b) -> (Integer.compare(a[1], b[1])));
+	pq.add(new int[] {src, 0, k+1});
+	
+	
+	while(!pq.isEmpty()) {
+	    int[] currTravelSpot = pq.poll();
+	    
+	    int currCity = currTravelSpot[0];
+	    int currPrice = currTravelSpot[1];
+	    int numStopToPass = currTravelSpot[2];
+	    
+	    if(currCity == dst)
+		return currPrice;
+	    
+	    if(numStopToPass > 0) {
+		Map<Integer, Integer> dstToPriceMap = 
+			srcToDstPriceMap.getOrDefault(currCity, new HashMap<>());
+		
+		for(int destCity: dstToPriceMap.keySet())
+		    pq.add(new int[] {
+			    destCity, 
+			    currPrice + dstToPriceMap.get(destCity), 
+			    numStopToPass - 1});
+	    }
+	}
+	
+	return -1;
+    }
+//------------------------------------------------------------------------------------------------------------------
+
     public static void main(String[] args) {
 	CheapestFlightsWithinKStops flights = new CheapestFlightsWithinKStops();
 	//----------------------------------------------------------------------------------
@@ -166,21 +208,24 @@ public class CheapestFlightsWithinKStops {
 	    				{2,3,200}};
 	System.out.println(flights.findCheapestPrice_dfs(4, flights1, 0, 3, 1));	//	700
 	System.out.println(flights.findCheapestPrice_bfs(4, flights1, 0, 3, 1));	//	700
-	System.out.println(flights.findCheapestPrice_BellmonFord(4, flights1, 0, 3, 1));	//	700
+	System.out.println(flights.findCheapestPrice_BellmonFord(4, flights1, 0, 3, 1));//	700
+	System.out.println(flights.findCheapestPrice_Dijkstra(4, flights1, 0, 3, 1));	//	700
 	//----------------------------------------------------------------------------------	
 	int[][] flights2 = new int[][] {{0,1,100}, 
 	    				{1,2,100},
 	    				{0,2,500}};
 	System.out.println(flights.findCheapestPrice_dfs(3, flights2, 0, 2, 1));	//	200
 	System.out.println(flights.findCheapestPrice_bfs(3, flights2, 0, 2, 1));	//	200
-	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights2, 0, 2, 1));	//	200
+	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights2, 0, 2, 1));//	200
+	System.out.println(flights.findCheapestPrice_Dijkstra(3, flights2, 0, 2, 1));	//	200
 	//----------------------------------------------------------------------------------
 	int[][] flights3 = new int[][] {{0,1,100}, 
                         		{1,2,100},
                         		{0,2,500}};
 	System.out.println(flights.findCheapestPrice_dfs(3, flights3, 0, 2, 0));	//	500
 	System.out.println(flights.findCheapestPrice_bfs(3, flights3, 0, 2, 0));	//	500
-	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights3, 0, 2, 0));	//	500
+	System.out.println(flights.findCheapestPrice_BellmonFord(3, flights3, 0, 2, 0));//	500
+	System.out.println(flights.findCheapestPrice_Dijkstra(3, flights3, 0, 2, 0));	//	500
 	//----------------------------------------------------------------------------------
     }
 }
