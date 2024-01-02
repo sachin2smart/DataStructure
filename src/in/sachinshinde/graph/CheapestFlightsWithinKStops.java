@@ -97,7 +97,7 @@ public class CheapestFlightsWithinKStops {
 
 //------------------------------------------------------------------------------------------------------------------
     
-    //	Method 1: BFS
+    //	Method 2: BFS
     public int findCheapestPrice_bfs(int n, int[][] flights, int src, int dst, int k) {
 	Map<Integer, List<int[]>> hm = new HashMap<>();
 	
@@ -156,7 +156,7 @@ public class CheapestFlightsWithinKStops {
         return costs[dst] == Integer.MAX_VALUE?-1 : costs[dst];
     }
 //------------------------------------------------------------------------------------------------------------------
-    //	Method 3: Dijkstra
+    //	Method 4: Dijkstra
     
     public int findCheapestPrice_Dijkstra(int n, int[][] flights, int src, int dst, int k) {
 	//	[src --> [dst --> price]]
@@ -187,8 +187,7 @@ public class CheapestFlightsWithinKStops {
 			srcToDstPriceMap.getOrDefault(currCity, new HashMap<>());
 		
 		for(int destCity: dstToPriceMap.keySet()) {
-		    pq.add(new int[] {
-			    destCity, currPrice + dstToPriceMap.get(destCity), numStopToPass - 1});
+		    pq.add(new int[] { destCity, currPrice + dstToPriceMap.get(destCity), numStopToPass - 1});
 		}
 	    }
 	}
@@ -196,8 +195,7 @@ public class CheapestFlightsWithinKStops {
 	return -1;
     }
 //------------------------------------------------------------------------------------------------------------------
-//------------------------------------------------------------------------------------------------------------------
-    //	Method 3: Dijkstra 2
+    //	Method 4: Dijkstra
     
     public int findCheapestPrice_Dijkstra2(int n, int[][] flights, int src, int dst, int k) {
 	Map<Integer, List<int[]>> hm = new HashMap<>();
