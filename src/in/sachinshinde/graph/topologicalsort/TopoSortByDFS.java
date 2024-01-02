@@ -1,4 +1,4 @@
-package in.sachinshinde.graph;
+package in.sachinshinde.graph.topologicalsort;
 
 import java.util.Iterator;
 import java.util.LinkedList;

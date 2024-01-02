@@ -1,4 +1,4 @@
-package in.sachinshinde.graph;
+package in.sachinshinde.graph.dfs;
 
 import java.util.Arrays;
 import java.util.Iterator;

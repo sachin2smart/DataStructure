@@ -1,6 +1,8 @@
-package in.sachinshinde.graph;
+package in.sachinshinde.graph.bellmonford;
 
 import java.util.ArrayList;
+
+import in.sachinshinde.graph.Node;
 
 // Bellman Ford Algorithm : 	Single-source shortest path problem (for weighted directed graphs)
 

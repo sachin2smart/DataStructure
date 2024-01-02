@@ -1,4 +1,4 @@
-package in.sachinshinde.graph;
+package in.sachinshinde.graph.dijkstra;
 
 import java.util.ArrayList;
 import java.util.Arrays;

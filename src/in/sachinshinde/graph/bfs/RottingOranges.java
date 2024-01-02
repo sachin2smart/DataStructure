@@ -1,4 +1,4 @@
-package in.sachinshinde.graph;
+package in.sachinshinde.graph.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
