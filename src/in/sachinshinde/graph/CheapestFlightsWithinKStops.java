@@ -188,9 +188,7 @@ public class CheapestFlightsWithinKStops {
 		
 		for(int destCity: dstToPriceMap.keySet()) {
 		    pq.add(new int[] {
-			    destCity, 
-			    currPrice + dstToPriceMap.get(destCity), 
-			    numStopToPass - 1});
+			    destCity, currPrice + dstToPriceMap.get(destCity), numStopToPass - 1});
 		}
 	    }
 	}
@@ -227,10 +225,7 @@ public class CheapestFlightsWithinKStops {
 	    if(numStopToPass > 0) {
 		if(hm.containsKey(currCity)) {
 		    for(int nextStop[]: hm.get(currCity)) {
-			pq.add(new int[] {
-				nextStop[0], 
-				currPrice + nextStop[1], 
-				numStopToPass - 1});
+			pq.add(new int[] { nextStop[0], currPrice + nextStop[1], numStopToPass - 1});
 		    }
 		}
 	    }
