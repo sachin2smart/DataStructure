@@ -16,7 +16,7 @@ import java.util.List;
  * 
  */
 
-public class CombinationSumNoDups {
+public class CombinationSum2 {
 	
 	public static List<List<Integer>> getCombinationSumNoDups(int[] nums, int target) {
         List<List<Integer>> subsets = new ArrayList<>();
@@ -42,6 +42,32 @@ public class CombinationSumNoDups {
         }
     }
     
+    //	Method 2:
+    public List<List<Integer>> combinationSum2(int[] nums, int target) {
+        List<List<Integer>> subsets = new ArrayList<>();
+        Arrays.sort(nums);
+        constructSubsets(0, nums, target, subsets, new ArrayList<>());
+        return subsets;
+    }
+    
+    private void constructSubsets(int start, int[] nums, int target, List<List<Integer>> subsets, List<Integer> currSumArray) {
+        if(target == 0) {
+            subsets.add(new ArrayList<>(currSumArray));
+            return;
+        }
+        for(int i=start; i<nums.length; i++) {
+            if(i>start && nums[i] == nums[i-1])
+                continue;
+            
+            if(nums[i] > target)
+                break;
+            
+            currSumArray.add(nums[i]);
+            constructSubsets(i+1, nums, target - nums[i], subsets, currSumArray);
+            currSumArray.remove(currSumArray.size() - 1);
+        }
+    }
+    
     public static void main(String args[]) {
         int[] nums = new int[] {2,5,2,1,2};
         List<List<Integer>> ans = getCombinationSumNoDups(nums, 5);
@@ -49,6 +75,9 @@ public class CombinationSumNoDups {
         System.out.println("The subsets with sum 5 :");
         for(List<Integer> tupple: ans)
             System.out.println(" "+ tupple);
+        
+        CombinationSum2 array = new CombinationSum2();
+        System.out.println(array.combinationSum2(nums, 5));	//	[[1, 2, 2], [5]]
     }
     
 }
