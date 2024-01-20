@@ -132,7 +132,7 @@ public class SmallestRangeFromKLists {
 	return new int[]{min, max};
     }
     
-    // Method 2 : Using PriorityQueue
+    // Method 3 : Using PriorityQueue
     public int[] smallestRange_3(List<List<Integer>> nums) {
         int minx = 0;
         int miny = Integer.MAX_VALUE;
@@ -167,6 +167,42 @@ public class SmallestRangeFromKLists {
         return new int[] { minx, miny};
     }
     
+    // Method 4 : Using PriorityQueue<int[]>
+    public int[] smallestRange_4(List<List<Integer>> nums) {
+	PriorityQueue<int[]> pq = new PriorityQueue<>((a,b) -> a[2] - b[2]);
+	int max = Integer.MIN_VALUE;
+	
+	for(int i=0; i<nums.size(); i++) {
+	    List<Integer> currList = nums.get(i);
+	    int firstEle = currList.get(0);
+	    max = Math.max(max, firstEle);
+	    pq.offer(new int[] {i, 0, firstEle});
+	}
+	
+	int a = 0, b = Integer.MAX_VALUE;
+	
+	while(true) {
+	    int[] currQueue = pq.poll();
+	    int c = currQueue[2], d = max;
+	    
+	    if(d-c < b-a ||(d-c == b-a) && c<a) {
+		a = c;
+		b = d;
+	    }
+	    
+	    List<Integer> currList = nums.get(currQueue[0]); 
+	    if(++currQueue[1] == currList.size()) {
+		break;
+	    }
+	    
+	    currQueue[2] = currList.get(currQueue[1]);
+	    max = Math.max(max, currQueue[2]);
+	    pq.offer(currQueue);
+	}
+	
+	return new int[] {a, b};
+    }
+    
     public static void main(String[] args) {
 	SmallestRangeFromKLists range = new SmallestRangeFromKLists();
 	System.out.println(Arrays.toString(
@@ -187,6 +223,14 @@ public class SmallestRangeFromKLists {
 	
 	System.out.println(Arrays.toString(
 		range.smallestRange_3(
+			Arrays.asList(
+				Arrays.asList(4,10,15,24,26),
+				Arrays.asList(0,9,12,20),
+				Arrays.asList(5,18,22,30)
+				))));		// ans :  [20, 24]
+	
+	System.out.println(Arrays.toString(
+		range.smallestRange_4(
 			Arrays.asList(
 				Arrays.asList(4,10,15,24,26),
 				Arrays.asList(0,9,12,20),
