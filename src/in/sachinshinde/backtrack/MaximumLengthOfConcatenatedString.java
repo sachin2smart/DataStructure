@@ -84,11 +84,35 @@ public class MaximumLengthOfConcatenatedString {
     
     // -------------------------------------------------------------------------------------
     
+    public int maxLength2(List<String> arr) {
+        return backtrack(arr, 0, "");
+    }
+    
+    private int backtrack(List<String> arr, int start, String currStr) {
+        if(!containsUniqueChars(currStr)) {
+            return 0;
+        }
+
+        int maxLength = currStr.length();
+        
+        for(int i=start; i<arr.size(); i++) {
+            maxLength = Math.max(maxLength, backtrack(arr, i + 1, currStr + arr.get(i)));
+        }
+        
+        return maxLength;
+    }
+    
+    // -------------------------------------------------------------------------------------
+    
     public static void main(String[] args) {
 	MaximumLengthOfConcatenatedString string = new MaximumLengthOfConcatenatedString();
 	System.out.println(string.maxLength(Arrays.asList("un","iq","ue")));		    // 4
 	System.out.println(string.maxLength(Arrays.asList("cha","r","act","ers")));	    // 6
 	System.out.println(string.maxLength(Arrays.asList("abcdefghijklmnopqrstuvwxyz")));  // 26
+	
+	System.out.println(string.maxLength2(Arrays.asList("un","iq","ue")));		    // 4
+	System.out.println(string.maxLength2(Arrays.asList("cha","r","act","ers")));	    // 6
+	System.out.println(string.maxLength2(Arrays.asList("abcdefghijklmnopqrstuvwxyz")));  // 26
     }
     
 }
