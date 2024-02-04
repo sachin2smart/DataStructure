@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lpst;
+package in.sachinshinde.dp.longest;
 
 //	https://leetcode.com/problems/longest-palindromic-substring/
 

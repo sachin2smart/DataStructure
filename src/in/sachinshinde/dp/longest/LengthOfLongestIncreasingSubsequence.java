@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lis;
+package in.sachinshinde.dp.longest;
 
 import java.util.ArrayList;
 import java.util.Arrays;

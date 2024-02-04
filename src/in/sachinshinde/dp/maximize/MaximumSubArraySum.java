@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.range_sum;
+package in.sachinshinde.dp.maximize;
 
 //	https://leetcode.com/problems/maximum-subarray/
 

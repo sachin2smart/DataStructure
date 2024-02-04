@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lcs;
+package in.sachinshinde.dp.longest;
 
 //	https://leetcode.com/problems/uncrossed-lines/
 

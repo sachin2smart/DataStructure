@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lcs;
+package in.sachinshinde.dp.longest;
 
 //	https://leetcode.com/problems/longest-common-subsequence/
 //	https://www.youtube.com/watch?v=NnD96abizww

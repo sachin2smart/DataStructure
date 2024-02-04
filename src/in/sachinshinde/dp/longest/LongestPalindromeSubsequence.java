@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lps;
+package in.sachinshinde.dp.longest;
 
 public class LongestPalindromeSubsequence {
 

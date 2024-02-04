@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.lcss;
+package in.sachinshinde.dp.longest;
 
 import java.util.HashMap;
 import java.util.HashSet;

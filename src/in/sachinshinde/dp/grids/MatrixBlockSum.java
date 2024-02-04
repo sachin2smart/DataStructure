@@ -1,4 +1,4 @@
-package in.sachinshinde.dp.matrix_2d_array;
+package in.sachinshinde.dp.grids;
 
 import java.util.Arrays;
 
