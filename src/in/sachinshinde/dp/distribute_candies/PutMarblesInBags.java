@@ -42,7 +42,11 @@ import java.util.Arrays;
         1 <= k <= weights.length <= 105
         1 <= weights[i] <= 109
  */
+
+//	video Solution: 	https://youtu.be/K0opAL-J07U
+
 public class PutMarblesInBags {
+    
     public long putMarbles(int[] weights, int k) {
         int n = weights.length;
         int[] pairs = new int[n-1];
@@ -63,11 +67,34 @@ public class PutMarblesInBags {
         return max-min;
     }
     
+    public long putMarbles2(int[] weights, int k) {
+        int n = weights.length;
+        int[] pairs = new int[n-1];
+        
+        for(int i=1; i<n; i++) {
+            pairs[i-1] = weights[i] + weights[i-1];
+        }
+        
+        Arrays.sort(pairs);
+        
+        long res = 0;
+        
+        for(int i=0; i<k-1; i++) {
+            res += pairs[n-i-2] - pairs[i];
+        }
+        
+        return res;
+    }
+    
     public static void main(String[] args) {
 	PutMarblesInBags marbles = new PutMarblesInBags();
 	System.out.println(marbles.putMarbles(new int[] {1,3,5,1}, 2));		// 4
 	System.out.println(marbles.putMarbles(new int[] {1,2,5,1}, 3));		// 4
 	System.out.println(marbles.putMarbles(new int[] {1,3}, 2));		// 0
+	
+	System.out.println(marbles.putMarbles2(new int[] {1,3,5,1}, 2));	// 4
+	System.out.println(marbles.putMarbles2(new int[] {1,2,5,1}, 3));	// 4
+	System.out.println(marbles.putMarbles2(new int[] {1,3}, 2));		// 0
     }
 }
 
