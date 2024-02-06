@@ -123,7 +123,27 @@ public class TopKFrequentElements {
         return result;
     }
     //	---------------------------------------------------------------------------------------------
+    public int[] topKFrequent4(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        
+        for(int num : nums)
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        
+        Queue<Integer> heap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
+        
+        for(int key : map.keySet()) 
+            heap.add(key);
+        
+        int[] res = new int[k];
+        
+        for(int i = 0; i < k; i++)
+            res[i] = heap.poll();
+        
+        return res;
+    }
 
+    //	---------------------------------------------------------------------------------------------
+    
     public static void main(String[] args) {
 	TopKFrequentElements ele = new TopKFrequentElements();
 	System.out.println(Arrays.toString(ele.topKFrequent(new int[] {1,1,1,2,2,3}, 2)));	// [1,2]
@@ -134,5 +154,8 @@ public class TopKFrequentElements {
 	
 	System.out.println(Arrays.toString(ele.topKFrequent3(new int[] {1,1,1,2,2,3}, 2)));	// [1,2]
 	System.out.println(Arrays.toString(ele.topKFrequent3(new int[] {1}, 1)));		// [1]
+	
+	System.out.println(Arrays.toString(ele.topKFrequent4(new int[] {1,1,1,2,2,3}, 2)));	// [1,2]
+	System.out.println(Arrays.toString(ele.topKFrequent4(new int[] {1}, 1)));		// [1]
     }
 }
