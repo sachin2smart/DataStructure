@@ -48,6 +48,9 @@ package in.sachinshinde.stack;
             s[i] is either '[' or ']'.
             The number of opening brackets '[' equals n / 2, and the number of closing brackets ']' equals n / 2.
  */
+
+//	Video URL : https://youtu.be/3YDBT9ZrfaU
+
 public class MinimumNumberOfSwapsToMakeTheStringBalanced {
 
     public int minSwaps(String s) {
