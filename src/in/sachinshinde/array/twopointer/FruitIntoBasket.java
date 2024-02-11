@@ -129,6 +129,22 @@ public class FruitIntoBasket {
         return Math.max(max, curMax);
     }
     
+    public int totalFruit4(int[] fruits) {
+        int max = 0, currMax = 0, next = 0, a = 0, b = 0;
+        for (int c :  fruits) {
+            currMax = (c == a || c == b) ? currMax+1 : next+1;
+            next = (c == b) ? next+1 : 1;
+            
+            if (b != c) {
+        	a = b; 
+        	b = c;
+            }
+            
+            max = Math.max(max, currMax);
+        }
+        return max;
+    }
+    
     public static void main(String[] args) {
 	FruitIntoBasket fruits = new FruitIntoBasket();
 	
@@ -143,5 +159,9 @@ public class FruitIntoBasket {
 	System.out.println(fruits.totalFruit3(new int[] {1,2,1}));	//	3
 	System.out.println(fruits.totalFruit3(new int[] {0,1,2,2}));	//	3
 	System.out.println(fruits.totalFruit3(new int[] {1,2,3,2,2}));	//	4
+	
+	System.out.println(fruits.totalFruit4(new int[] {1,2,1}));	//	3
+	System.out.println(fruits.totalFruit4(new int[] {0,1,2,2}));	//	3
+	System.out.println(fruits.totalFruit4(new int[] {1,2,3,2,2}));	//	4
     }
 }
