@@ -78,4 +78,18 @@ public class Initialization {
 	    mat.add(new int[] {1});
 	    return mat.toArray(new int[1][1]);
 	}
+
+	// Initialize array with some default value for all places
+	private void arrTest() {
+		int arr[] = new int[10];
+		Arrays.fill(arr, -1);
+	}
+
+	// instead of declaring like this -
+	ArrayList<ArrayList<Integer>> arr1 = new ArrayList<ArrayList<Integer>>();
+	// declare like this -
+	ArrayList<ArrayList<Integer>> arr2 = new ArrayList<>(); // No need to add the explicite data type
+
+
+
 }
