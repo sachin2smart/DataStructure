@@ -21,22 +21,23 @@ import java.util.List;
 public class AllPathsFromSourceToTarget {
 
 	public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-		List<List<Integer>> res = new ArrayList<>();
-		List<Integer> path = new ArrayList<Integer>();
-		path.add(0);
-		dfs(graph, path, 0, res);
-		return res;
+		List<List<Integer>> finalResult = new ArrayList<>();
+		List<Integer> currResultPath = new ArrayList<>();
+		int currNodeIndex = 0;
+		currResultPath.add(currNodeIndex);
+		dfs(graph, finalResult, currResultPath, currNodeIndex);
+		return finalResult;
 	}
 
-	private void dfs(int[][] graph, List<Integer> path, int node, List<List<Integer>> res) {
-		if(node == graph.length-1) {
-			res.add(new ArrayList<>(path));
+	private void dfs(int[][] graph,  List<List<Integer>> finalResult, List<Integer> currResultPath, int currNodeIndex) {
+		if(currNodeIndex == graph.length-1) {
+			finalResult.add(new ArrayList<>(currResultPath));
 			return;
 		}
-		for(int nextNode: graph[node]) {
-			path.add(nextNode);
-			dfs(graph, path, nextNode, res);
-			path.remove(path.size()-1);
+		for(int nextNodeIndex: graph[currNodeIndex]) {
+			currResultPath.add(nextNodeIndex);
+			dfs(graph, finalResult, currResultPath, nextNodeIndex);
+			currResultPath.remove(currResultPath.size()-1);
 		}
 	}
 	
@@ -48,4 +49,5 @@ public class AllPathsFromSourceToTarget {
 		graph = new int[][] {{4,3,1},{3,2,4},{3},{4},{}};
 		System.out.println(paths.allPathsSourceTarget(graph));	//	[[0, 4], [0, 3, 4], [0, 1, 3, 4], [0, 1, 2, 3, 4], [0, 1, 4]]
 	}
+
 }
