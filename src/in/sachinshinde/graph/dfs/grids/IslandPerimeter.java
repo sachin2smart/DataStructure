@@ -1,4 +1,4 @@
-package in.sachinshinde.graph.dfs;
+package in.sachinshinde.graph.dfs.grids;
 
 //	https://leetcode.com/problems/island-perimeter/
 

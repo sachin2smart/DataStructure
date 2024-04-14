@@ -1,4 +1,4 @@
-package in.sachinshinde.graph.dfs;
+package in.sachinshinde.graph.dfs.grids;
 
 import java.util.Arrays;
 
