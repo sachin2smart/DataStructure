@@ -17,30 +17,31 @@ package in.sachinshinde.graph.dfs;
 public class CountSubIslands {
 
 	public int countSubIslands(int[][] grid1, int[][] grid2) {
-        int res = 0;
-        for (int i = 0; i < grid1.length; i++)
-            for (int j = 0; j < grid1[0].length; j++)
-                if (grid2[i][j] == 1)
-                    res += dfs(grid1, grid2, i, j);
-        return res;
+        int subIslandsCount = 0;
+        for (int i = 0; i < grid1.length; i++) {
+            for (int j = 0; j < grid1[0].length; j++) {
+                if (grid2[i][j] == 1 && grid1[i][j] == 1) {
+                    subIslandsCount += dfs(grid1, grid2, i, j);
+                }
+            }
+        }
+        return subIslandsCount;
     }
 
 
     private int dfs(int[][] grid1, int[][] grid2, int i, int j) {
+        // boundary check
+        if (i < 0 || i >= grid1.length || j < 0 || j >= grid1[0].length || grid2[i][j] == 0) {    // last check for grid2
+            return 1;    // Return 1 not 0 -- IMP --
+        }
 
-        int res = 1;
+        grid2[i][j] = 0;	// updates only for grid2 : ** this will mark the node being visited **
 
-        if (i < 0 || i >= grid1.length || j < 0 || j >= grid1[0].length || grid2[i][j] == 0)	// last check for grid2
-                return 1;	// Return 1 not 0 -- IMP --
-
-        grid2[i][j] = 0;	// updates only for grid2
-
-        res &= dfs(grid1, grid2, i - 1, j);	// AND Operation (1&0=0 , 0&0=0, 1&1=1, 0&1=0)
-        res &= dfs(grid1, grid2, i + 1, j);	// AND Operation
-        res &= dfs(grid1, grid2, i, j - 1);	// AND Operation
-        res &= dfs(grid1, grid2, i, j + 1);	// AND Operation
-
-        return res & grid1[i][j];	//	result ANDed with grid1
+        return grid1[i][j]
+                & dfs(grid1, grid2, i - 1, j) // flow to left and check if island exists
+                & dfs(grid1, grid2, i + 1, j) // flow to right and check if island exists
+                & dfs(grid1, grid2, i, j - 1) // flow to down and check if island exists
+                & dfs(grid1, grid2, i, j + 1); // flow to up and check if island exists
     }
     
     public static void main(String[] args) {
