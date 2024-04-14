@@ -1,4 +1,4 @@
-package in.sachinshinde.graph.dfs;
+package in.sachinshinde.graph.dfs.grids;
 
 //	https://leetcode.com/problems/number-of-enclaves/
 
@@ -12,21 +12,26 @@ package in.sachinshinde.graph.dfs;
 
 //	Approach : DFS
 
+//  Enclave == A land portion which is not connected to the border
+
 public class NumberOfEnclaves {
 	
     public int numEnclaves(int[][] grid) {
         int count=0;
         for(int i=0; i < grid.length; i++) {
             for(int j=0; j < grid[i].length; j++) {
-                if(i==0 || j==0 || i==grid.length-1 || j==grid[i].length-1)
+                // check from every border cell
+                if(i == 0 || j == 0 || i == grid.length-1 || j == grid[i].length-1) {
                     dfs(grid, i, j);
+                }
             }
         }
         
         for(int i=0; i < grid.length; i++) {
             for(int j=0; j < grid[i].length; j++) {
-                if(grid[i][j]==1)
+                if(grid[i][j] == 1) {
                     count++;
+                }
             }
         }
         
@@ -34,13 +39,33 @@ public class NumberOfEnclaves {
     }
     
     private void dfs(int grid[][], int i, int j) {
-        if(i >= 0 && i <= grid.length-1 && j >= 0 && j <= grid[i].length-1 && grid[i][j]==1) {
-            grid[i][j]=0;
+        // if island exists on the border - make that island as sea
+        if(i >= 0 && i <= grid.length-1 && j >= 0 && j <= grid[i].length-1 && grid[i][j] == 1) {
+            grid[i][j] = 0; // marking land as sea
             dfs(grid, i + 1, j);
             dfs(grid, i-1, j);
             dfs(grid, i, j + 1);
             dfs(grid, i, j-1);
         }
+    }
+
+    public static void main(String[] args) {
+        NumberOfEnclaves enclaves = new NumberOfEnclaves();
+        System.out.println(enclaves.numEnclaves(new int[][]{
+                {0,0,0,0},
+                {1,0,1,0},
+                {0,1,1,0},
+                {0,0,0,0}
+        }));    // 3
+
+        System.out.println(enclaves.numEnclaves(new int[][]{
+                {0,1,1,0},
+                {0,0,1,0},
+                {0,0,1,0},
+                {0,0,0,0}
+        }));    // 0
+
+
     }
     
 }
