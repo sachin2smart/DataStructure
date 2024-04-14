@@ -42,3 +42,17 @@ public class TestCloneByShallowCopy {
 
 
 }
+
+/*
+        Points:-
+        ------
+            [1] Shallow copy is the method of copying an object and is followed by default in cloning.
+                In this method, the fields of an old object X are copied to the new object Y.
+                While copying the object type field the reference is copied to Y i.e
+                    object Y will point to the same location as pointed out by X.
+                If the field value is a primitive type it copies the value of the primitive type.
+
+            [2] Any changes made in referenced objects in object X or Y will be reflected in other objects.
+
+            [3] Shallow copies are cheap and simple to make.
+ */
