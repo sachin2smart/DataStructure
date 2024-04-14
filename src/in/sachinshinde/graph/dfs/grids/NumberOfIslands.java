@@ -1,9 +1,9 @@
-package in.sachinshinde.graph.dfs;
+package in.sachinshinde.graph.dfs.grids;
 
 //	https://leetcode.com/problems/number-of-islands/
 
 /*
- * 	Given an m x n 2D binary grid grid which represents a map of '1's (land) and '0's (water), 
+ * 	Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water),
  * 	return the number of islands.
 
 	An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. 
@@ -20,36 +20,38 @@ public class NumberOfIslands {
 	 * 		- return 0 if value is 0 or crossing the border
 	 * 		- mark current value to 0
 	 * 		- move up, down, left, right to recursively check for sinking
-	 * 		- return 1 
-	 * 
-	 * ** Java tip : clone the given graph to make it useful for sinking, 
-	 * 				 keep original graph unaffected.
+	 * 		- return 1
 	 */
-	
-	char[][] g;
+
 	
 	public int getNumOfIslands(char[][] grid) {
-		g = grid;
 		int numIslands = 0;
 		
-		for(int i=0; i<g.length; i++)
-			for(int j=0; j<g[i].length; j++)
-				numIslands += sink(i,j);
+		for(int i=0; i<grid.length; i++) {
+			for (int j = 0; j < grid[i].length; j++) {
+				if(grid[i][j] == '1') {
+					numIslands += dfs(grid, i, j);
+				}
+			}
+		}
 		
 		return numIslands;
 	}
 	
-	private int sink(int i, int j) {
-		if(i<0 || i==g.length || j<0 || j==g[i].length || g[i][j] =='0')
+	private int dfs(char[][] grid, int i, int j) {
+		//	boundary condition
+		if(i<0 || i == grid.length || j<0 || j  == grid[i].length || grid[i][j] == '0') {
 			return 0;
+		}
 
-		g[i][j] = '0';
-		
-		sink(i-1, j);
-		sink(i+1, j);
-		sink(i, j+1);
-		sink(i, j-1);
-		
+		// mark visited (making land into water)
+		grid[i][j] = '0';
+
+		dfs(grid, i-1, j);	//	sink island into the water on the "up" side if land exists
+		dfs(grid, i+1, j);	//	sink island into the water on the "down" side if land exists
+		dfs(grid, i, j+1);   //	sink island into the water on the "right" side if land exists
+		dfs(grid, i, j-1);	//	sink island into the water on the "left" side if land exists
+
 		return 1;
 	}
 	
