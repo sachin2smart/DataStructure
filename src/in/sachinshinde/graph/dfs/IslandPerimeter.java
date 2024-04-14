@@ -66,35 +66,51 @@ public class IslandPerimeter {
 	
 	//	Method 2 : DFS
 	public int islandPerimeter(int[][] grid) {
-        if(grid == null || grid.length == 0 || grid[0].length ==0) 
-        	return 0;
+        if(grid == null || grid.length == 0 || grid[0].length == 0) {
+			return 0;
+		}
         
-        for(int i = 0 ; i < grid.length ; i++)
-            for(int j = 0 ; j < grid[0].length ; j++) 
-                if(grid[i][j] == 1) 
-                    return getPerimeter(grid,i,j);
+        for(int i = 0 ; i < grid.length ; i++) {
+			for (int j = 0; j < grid[0].length; j++) {
+				if (grid[i][j] == 1) {
+					return getPerimeter(grid, i, j);
+				}
+			}
+		}
         
         return 0;
     }
     
     private int getPerimeter(int[][] grid, int i, int j){
-        if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) 
-        	return 1;
-        
-        if(grid[i][j] == 0)
-            return 1;
-        
-        if(grid[i][j] == -1) 
-        	return 0;
-        
-        int count = 0;
-        grid[i][j] = -1;
-        
-        count += getPerimeter(grid, i+1, j);
-        count += getPerimeter(grid, i-1, j);
-        count += getPerimeter(grid, i, j+1);
-        count += getPerimeter(grid, i, j-1);
-        
-        return count;
+		// if it crosses the border - means we have to stop here and return 1 indicating the edge at the border
+        if(i < 0 || i >= grid.length || j < 0 || j >= grid[0].length) {
+			return 1;
+		}
+
+		/*
+			Remember the sequence:
+				- check for water
+				- check for visited
+				- mark as visited
+		 */
+
+		// if there is water means we need to consider that there exists an edge
+        if(grid[i][j] == 0) {
+			return 1;
+		}
+
+		// if the island is already visited, means associated edge is already being counted for parameter, so exclude it
+        if(grid[i][j] == -1) {
+			return 0;
+		}
+
+		// Mark that the island is visited, don't mark it with 0 otherwise it will difficult to determine which is border and which represent visited
+		grid[i][j] = -1;
+
+		// visit neighbour islands
+        return getPerimeter(grid, i+1, j)
+				+ getPerimeter(grid, i-1, j)
+				+ getPerimeter(grid, i, j+1)
+				+ getPerimeter(grid, i, j-1);
     }
 }
