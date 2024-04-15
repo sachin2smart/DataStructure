@@ -8,27 +8,14 @@ package in.sachinshinde.binarytree;
 //	Output:root = [4,7,2,9,6,3,1]
 
 public class InvertBinaryTree {
-	
-	 public Node invertTree(Node root) {
-        if(root == null) 
-            return null;
-        
-        Node leftNode = root.left;
-        root.left = invertTree(root.right);
-        root.right = invertTree(leftNode);
-        
-        return root;
-    }
-	
 	public Node invert(Node node) { 
-		if (node == null) 
-			return node; 
+		if (node == null) {
+			return null;
+		}
 		
-		Node left = invert(node.left); 
-		Node right = invert(node.right); 
-
-		node.left = right; 
-		node.right = left; 
+		Node leftPrev = invert(node.left);
+		node.left = invert(node.right);
+		node.right = leftPrev;
 
 		return node; 
 	}
@@ -50,11 +37,12 @@ public class InvertBinaryTree {
 	}
 	
 	private void inOrder(Node root) {
-		if(root == null)
+		if(root == null) {
 			return;
-		
-		inOrder(root.left);
+		}
+
 		System.out.print(" " + root.key);
+		inOrder(root.left);
 		inOrder(root.right);
 	}
 }
