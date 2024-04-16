@@ -1,4 +1,4 @@
-package in.sachinshinde.binarytree;
+package in.sachinshinde.array;
 
 /*
  	You are given a license key represented as a string s 
