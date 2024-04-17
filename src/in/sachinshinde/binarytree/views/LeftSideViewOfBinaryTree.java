@@ -30,7 +30,7 @@ Binary Tree:
 
 public class LeftSideViewOfBinaryTree {
 
-    public void leftView(Node root, List<Integer> result, int level) {
+    private void leftView(Node root, List<Integer> result, int level) {
         if(root == null) {
             return;
         }
@@ -49,6 +49,10 @@ public class LeftSideViewOfBinaryTree {
         int level = 0;
         leftView(root, result, level);
         return result;
+
+        // if asked bottom to top view from left side-
+        // return result.stream().sorted(Collections.reverseOrder()).collect(Collectors.toList());
+        //  result will be : [8, 4, 2, 1]
     }
 
     public static void main(String[] args) {
