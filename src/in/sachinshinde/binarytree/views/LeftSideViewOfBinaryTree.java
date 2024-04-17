@@ -19,7 +19,7 @@ Binary Tree:
               8 9  10
 
 
-    Left Side View of Binary Tree : [1,2,4]
+    Left Side View of Binary Tree : [1,2,4,8]
 
     --------------------------------------------------
 
