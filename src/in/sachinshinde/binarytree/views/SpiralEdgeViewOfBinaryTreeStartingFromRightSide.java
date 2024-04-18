@@ -15,8 +15,8 @@ Binary Tree:
        2       3
       / \    /   \
      4   5  6     7
-             \   / \
-              8 9  10
+        /       /   \
+       8       9     10
 
 
     Spiral Edge View Of Binary Tree Starting From Right Side : [1, 3, 2, 7, 4, 10, 8]
