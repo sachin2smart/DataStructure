@@ -2,48 +2,106 @@ package in.sachinshinde.binarytree.traversals;
 
 import in.sachinshinde.binarytree.Node;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/*
+
+Binary Tree:
+-----------
+
+           1
+        /     \
+       2       3
+      / \    /   \
+     4   5  6     7
+        /       /   \
+       8       9     10
+
+
+	 Inorder Traversal   : [4, 2, 8, 5, 1, 6, 3, 9, 7, 10]
+
+	 Preorder Traversal  : [1, 2, 4, 5, 8, 3, 6, 7, 9, 10]
+
+	 Postorder Traversal : [4, 8, 5, 2, 6, 9, 10, 7, 3, 1]
+    --------------------------------------------------------------------------------------
+
+    Given: Root of a Binary Tree
+    Return: List of node values with Inorder, Preorder, Postorder traversals
+
+ */
+
 public class BinaryTreeTraversals {
 
-	public static void main(String args[]) {
-		Node root = new Node(10);
-		root.left = new Node(8);
-		root.left.left = new Node(3);
+	public static void main(String[] args) {
+		BinaryTreeTraversals tree = new BinaryTreeTraversals();
+
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
 		root.left.right = new Node(5);
-		root.right = new Node(2);
-		root.right.left = new Node(7);
-		
-		System.out.println("\n Inorder Traversal : ");
-		inOrderTraversal(root);
-		
-		System.out.println("\n Preorder Traversal : ");
-		preOrderTraversal(root);
-		
-		System.out.println("\n Postorder Traversal : ");
-		postOrderTraversal(root);
+		root.left.right.left = new Node(8);
+		root.right.left = new Node(6);
+		root.right.right = new Node(7);
+		root.right.right.left = new Node(9);
+		root.right.right.right = new Node(10);
+
+		List<Integer> resultInorder = tree.inorderTraversalUtil(root);
+		System.out.println("\n Inorder Traversal : " + resultInorder);
+
+		List<Integer> resultPreorder = tree.preorderTraversalUtil(root);
+		System.out.println("\n Preorder Traversal : " + resultPreorder);
+
+		List<Integer> resultPostorder = tree.postorderTraversalUtil(root);
+		System.out.println("\n Postorder Traversal : " + resultPostorder);
+	}
+
+	public List<Integer> inorderTraversalUtil(Node root){
+		List<Integer> result = new ArrayList<>();
+		inorder(root, result);
+		return result;
 	}
 	
-	private static void inOrderTraversal(Node root) {
-		if(root == null)
+	private static void inorder(Node root, List<Integer> result) {
+		if(root == null) {
 			return;
-		inOrderTraversal(root.left);
-		System.out.print(" "+root.key);
-		inOrderTraversal(root.right);
+		}
+
+		inorder(root.left, result);
+		result.add(root.key);
+		inorder(root.right, result);
 	}
-	
-	private static void preOrderTraversal(Node root) {
-		if(root == null)
-			return;
-		
-		System.out.print(" "+root.key);
-		preOrderTraversal(root.left);
-		preOrderTraversal(root.right);
+
+	public List<Integer> preorderTraversalUtil(Node root){
+		List<Integer> result = new ArrayList<>();
+		preorder(root, result);
+		return result;
 	}
-	
-	private static void postOrderTraversal(Node root) {
-		if(root == null)
+
+	private static void preorder(Node root, List<Integer> result) {
+		if(root == null) {
 			return;
-		postOrderTraversal(root.left);
-		postOrderTraversal(root.right);
-		System.out.print(" "+root.key);
+		}
+
+		result.add(root.key);
+		preorder(root.left, result);
+		preorder(root.right, result);
+	}
+
+	public List<Integer> postorderTraversalUtil(Node root){
+		List<Integer> result = new ArrayList<>();
+		postorder(root, result);
+		return result;
+	}
+
+	private static void postorder(Node root, List<Integer> result) {
+		if(root == null) {
+			return;
+		}
+
+		postorder(root.left, result);
+		postorder(root.right, result);
+		result.add(root.key);
 	}
 }
