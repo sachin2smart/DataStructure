@@ -5,6 +5,7 @@
   - [Backtrack](src/in/sachinshinde/backtrack)
   - [Binary Tree](src/in/sachinshinde/binarytree)
     - [Views](docs/BinaryTreeViews.md)
+    - [Traversals](docs/BinaryTreeTraversals.md)
   - [Binary Search Tree](src/in/sachinshinde/bst)
   - [DP](src/in/sachinshinde/dp)
     - Coin Change
