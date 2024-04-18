@@ -19,15 +19,15 @@ Binary Tree:
        8       9     10
 
 
-    Spiral Edge View Of Binary Tree Starting From Right Side : [1, 3, 2, 7, 4, 10, 8]
+    Spiral Clockwise Edge View Of Binary Tree : [1, 3, 2, 7, 4, 10, 8]
 
     --------------------------------------------------------------------------------
 
     Given: Root of a Binary Tree
-    Return: List of Node values viewed from Right Side Spiral Edge View
+    Return: List of Node values viewed from Spiral Clockwise Edge View
 
  */
-public class SpiralEdgeViewOfBinaryTreeStartingFromRightSide {
+public class SpiralClockwiseEdgeViewOfBinaryTree {
 
     public static void main(String[] args) {
         Node root = new Node(1);
@@ -60,7 +60,7 @@ public class SpiralEdgeViewOfBinaryTreeStartingFromRightSide {
             }
         }
 
-        System.out.print("Spiral Edge View of Binary Tree starting from Right Side is : " + spiralEdgeView);
+        System.out.print("Spiral Clockwise Edge View of Binary Tree is : " + spiralEdgeView);
         // [1, 3, 2, 7, 4, 10, 8]
     }
 }
