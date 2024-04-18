@@ -14,8 +14,8 @@ Binary Tree:
        2       3
       / \    /   \
      4   5  6     7
-             \   / \
-              8 9  10
+        /       /   \
+       8       9     10
 
 
     Top View of Binary Tree : [4, 2, 1, 3, 7, 10]
@@ -58,7 +58,8 @@ public class TopViewOfBinaryTree {
             int currHd = currPair.hd;
             Node currNode = currPair.node;
 
-            hdToValueMap.computeIfAbsent(currHd, k -> currNode.key);
+            hdToValueMap.put(currHd, currNode.key);
+//            hdToValueMap.computeIfAbsent(currHd, k -> currNode.key);
 
             if(currNode.left != null) {
                 queue.add(new Pair(currHd - 1, currNode.left));
