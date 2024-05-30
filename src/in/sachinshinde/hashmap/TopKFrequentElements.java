@@ -41,12 +41,13 @@ public class TopKFrequentElements {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> hm = new HashMap<>();
         
-        for(int num: nums)
+        for(int num: nums) {
             hm.put(num, hm.getOrDefault(num, 0) + 1);
+        }
         
         hm = hm.entrySet()
             .stream()
-            .sorted((i1,i2) -> i2.getValue().compareTo(i1.getValue()))
+            .sorted((i1, i2) -> i2.getValue().compareTo(i1.getValue()))
             .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, 
         	    (e1,e2)-> e1, LinkedHashMap::new));
         
@@ -124,20 +125,19 @@ public class TopKFrequentElements {
     }
     //	---------------------------------------------------------------------------------------------
     public int[] topKFrequent4(int[] nums, int k) {
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> hm = new HashMap<>();
         
-        for(int num : nums)
-            map.put(num, map.getOrDefault(num, 0) + 1);
+        for(int num : nums) {
+            hm.put(num, hm.getOrDefault(num, 0) + 1);
+        }
         
-        Queue<Integer> heap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
-        
-        for(int key : map.keySet()) 
-            heap.add(key);
+        Queue<Integer> pq = new PriorityQueue<>((a, b) -> hm.get(b) - hm.get(a));
+        pq.addAll(hm.keySet());
         
         int[] res = new int[k];
-        
-        for(int i = 0; i < k; i++)
-            res[i] = heap.poll();
+        for(int i = 0; i < k; i++) {
+            res[i] = pq.poll();
+        }
         
         return res;
     }

@@ -1,7 +1,6 @@
 package in.sachinshinde.stack.monotonic;
 
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.*;
 
 //	https://leetcode.com/problems/next-greater-element-ii
 
@@ -20,7 +19,7 @@ public class NextGreaterElement2 {
 		int[] res = new int[nums.length];
 		
 		//	stack with initial value as 0
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
         stack.add(0);
         
         //	set all results in arr to -1
@@ -58,7 +57,7 @@ public class NextGreaterElement2 {
 		NextGreaterElement2 nextGreaterElement2 = new NextGreaterElement2();
 		System.out.println(Arrays.toString(nextGreaterElement2.nextGreaterElements(nums)));	//	2,3,-1,3,2
 		System.out.println(Arrays.toString(nextGreaterElement2.nextGreaterElements2(nums))); //	2,3,-1,3,2
-		
+        System.out.println(Arrays.toString(nextGreaterElement2.nextGreaterElements3(nums))); //	2,3,-1,3,2
 	}
 	
 	public int[] nextGreaterElements2(int[] nums) {
@@ -66,7 +65,7 @@ public class NextGreaterElement2 {
         int n = nums.length;
         int[] res = new int[n];
         Arrays.fill(res, -1);
-        for (int i = 0; i < 2 * n; i++) {
+        for (int i = 0; i < 2 * n; i++) { // why to iterate 2n times ?
             while (!stack.isEmpty() && nums[i % n] > nums[stack.peek()]) {
                 res[stack.pop()] = nums[i % n];
             }
@@ -74,7 +73,38 @@ public class NextGreaterElement2 {
         }
         return res;
     }
-	
+
+    public int[] nextGreaterElements3(int[] nums) {
+        int[] res = new int[nums.length];
+        Arrays.fill(res, -1);       // we ar going to store the indices into the stack, not the integer values
+        Deque<Integer> dq = new LinkedList<>();     // you can use Stack here; but is not good for performance
+        for(int i = 0; i < nums.length; i++) {
+            while(!dq.isEmpty() && nums[i] > nums[dq.peek()]) {
+                res[dq.pop()] = nums[i];
+            }
+            dq.push(i);
+        }
+        for (int num : nums) {
+            while (!dq.isEmpty() && num > nums[dq.peek()]) {
+                res[dq.pop()] = num;
+            }
+        }
+        return res;
+    }
+
+    public int[] nextGreaterElements4(int[] nums) {
+        Deque<Integer> dq = new ArrayDeque<>();
+        int n = nums.length;
+        int[] res = new int[n];
+        Arrays.fill(res, -1);
+        for (int i = 0; i < 2 * n; i++) { // why to iterate 2n times ?
+            while (!dq.isEmpty() && nums[i % n] > nums[dq.peek()]) {
+                res[dq.pop()] = nums[i % n];
+            }
+            dq.push(i % n);
+        }
+        return res;
+    }
 }
 
 /*

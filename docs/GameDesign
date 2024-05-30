@@ -1,0 +1,90 @@
+We have a List of Games.
+Each game includes a score and winning player.
+Each player has a name which is unique. Scores are not unique.
+The score is the number of points the winner scored.
+
+1. Find the highest score
+2. Find the kth highest score
+    Class Games {
+
+        Queue<Player> playerQueue = new PriorityQueue<>((a,b) -> b.score - a.score);
+
+        Deque<Player> playersQueue = new LinkedList();
+
+        public int getMaxScore() {
+            return payerQueue.peek();
+        }
+
+        public int getKthMaxScoreValue() {
+            int i=0;
+            Player prev = playerQueue.poll();
+
+            while(i < k-1) {
+                Player curr = playerQueue.poll();
+                if(curr.score != prev.score) {
+                    i++;
+                }
+                prev = curr;
+            }
+            return p.score;
+        }
+
+        public void updateScore(Player p, int Score){
+            Player p = playerQueue.get(p);
+            if(p == null) {
+                p = new Player();
+                p.score = score;
+            }
+            else {
+                p.score = score;
+                playerQueue.add(p);
+            }
+        }
+
+        public static void main(String[] args) {
+            Player p1 = new Player(1, 10);
+            Player p2 = new Player(2, 15);
+            Player p3 = new Player(3, 20);
+                        Player p3 = new Player(4, 15);
+                        k=3
+
+
+            up
+        }
+    }
+
+    Queue = [10]
+    10
+
+
+    - add 15
+    Queue = [ 15, 10]
+             15
+            /
+           10
+
+    20
+    Queue =
+    Class Payer {
+        int id;
+        int score
+    }
+
+
+games[]: List<String>
+Score: Int
+
+Queue<Player> playerQueue = new PriorityQueue<>((a,b) -> b.score - a.score);
+
+insertinon:
+    O(nlong(n))
+    O(n)
+
+getScore:
+    payeerQueue.peek();
+    Time :O(1)
+
+Player
+    id: Interger
+    score: Integer
+

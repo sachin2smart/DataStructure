@@ -1,7 +1,6 @@
 package in.sachinshinde.binarytree.traversals;
 
 import in.sachinshinde.binarytree.Node;
-import in.sachinshinde.binarytree.Tuple;
 
 import java.util.ArrayList;
 import java.util.Arrays;

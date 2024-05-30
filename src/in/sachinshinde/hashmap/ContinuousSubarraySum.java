@@ -55,28 +55,27 @@ public class ContinuousSubarraySum {
     
     //	-----------------------------------------------------------------------------
     public boolean checkSubarraySum(int[] nums, int k) {
-	// Map of <Remainder, Index> 
-	Map<Integer, Integer> hm = new HashMap<>();
-	hm.put(0, -1);
-	
-	int currSum = 0;
-	
-	for(int i=0; i<nums.length; i++) {
-	    currSum += nums[i];
-	    
-	    int rem = currSum % k;
-	    
-	    if(hm.containsKey(rem)) {
-		if(i - hm.get(rem) >= 2) {
-		    return true;
-		}
+        // Map of <Remainder, Index>
+        Map<Integer, Integer> hm = new HashMap<>();
+        hm.put(0, -1);
+
+        int currSum = 0;
+
+        for(int i = 0; i < nums.length; i++) {
+            currSum += nums[i];
+
+            int rem = currSum % k;
+
+            if(hm.containsKey(rem)) {
+                if(i - hm.get(rem) >= 2) {
+                    return true;
+                }
+            }
+            else {
+                hm.put(rem, i);
+            }
 	    }
-	    else {
-		hm.put(rem, i);
-	    }
-	}
-	
-	return false;
+	    return false;
     }
     //	-----------------------------------------------------------------------------    
     public boolean checkSubarraySum2(int[] nums, int k) {

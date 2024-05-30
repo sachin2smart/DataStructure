@@ -35,19 +35,21 @@ public class LongestMountain {
         
         int i = 1; 
         while(i <= n-2) {
-            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]) {	// identify the pick point
+            // a point from which we can go downward on left side and right side
+            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]) {	// identify the peak point
                 int j = i;
-                int count = 1;
+                int count = 1; // this for point i
 
                 while(j>0 && arr[j-1] < arr[j]) {	// deep on left side
                     j--;
-                    count++;
+                    count++; // this is for leftside, since j is already being decremented go till j>0 not j>=0
                 }
 
                 while(i<n-1 && arr[i] > arr[i+1]) {	// deep on right side
                     i++; 
-                    count++;
-                } 
+                    count++; // this is for rightSide, since "i" is being incremented go till i<n-1 not i<n
+                }
+                // new start point of "i" is either a flat surface or start of another mountain
                 ans = Math.max(ans, count);
             }
             else {
@@ -62,5 +64,6 @@ public class LongestMountain {
 	LongestMountain longestMountain = new LongestMountain();
 	System.out.println(longestMountain.longestMountain(new int[] {2,1,4,7,3,2,5}));	// 5
 	System.out.println(longestMountain.longestMountain(new int[] {2,2,2}));	// 0
+        System.out.println(longestMountain.longestMountain(new int[] {1,3,2}));	// 3
     }
 }

@@ -44,32 +44,32 @@ public class EncodeAndDecodeTinyUrl {
     	Map<Integer, String> urlMap;
     
     	public String encode(String longUrl) {
-		int id = 0;
-		String BASE_URL = "http://tinyurl.com/";
-				
-		for (int i = longUrl.length() - 1; i >= 0; i--) {
-		  if ('a' <= longUrl.charAt(i) &&
-			longUrl.charAt(i) <= 'z')
-			id = id * 62 + longUrl.charAt(i) - 'a';
-		  if ('A' <= longUrl.charAt(i) &&
-			longUrl.charAt(i) <= 'Z')
-			id = id * 62 + longUrl.charAt(i) - 'A' + 26;
-		  if ('0' <= longUrl.charAt(i) &&
-			longUrl.charAt(i) <= '9')
-			id = id * 62 + longUrl.charAt(i) - '0' + 52;
-		}
+			int id = 0;
+			String BASE_URL = "http://tinyurl.com/";
 
-		String encodedUrl = BASE_URL + Math.abs(id);
-		urlMap.put(Math.abs(id), longUrl);
-		return encodedUrl;
+			for (int i = longUrl.length() - 1; i >= 0; i--) {
+			  if ('a' <= longUrl.charAt(i) && longUrl.charAt(i) <= 'z') {
+				  id = id * 62 + longUrl.charAt(i) - 'a';
+			  }
+			  if ('A' <= longUrl.charAt(i) && longUrl.charAt(i) <= 'Z') {
+				  id = id * 62 + longUrl.charAt(i) - 'A' + 26;
+			  }
+			  if ('0' <= longUrl.charAt(i) && longUrl.charAt(i) <= '9') {
+				  id = id * 62 + longUrl.charAt(i) - '0' + 52;
+			  }
+			}
+
+			String encodedUrl = BASE_URL + Math.abs(id);
+			urlMap.put(Math.abs(id), longUrl);
+			return encodedUrl;
     	}	
 
     	// Decodes a shortened URL to its original URL.
         public String decode(String shortUrl) {
         	String BASE_URL = "http://tinyurl.com/";
         	String id = shortUrl.substring(BASE_URL.length());
-                Integer n = Integer.parseInt(id);
-                return urlMap.get(n);
+			Integer n = Integer.parseInt(id);
+            return urlMap.get(n);
         }
     
         public static void main(String[] args) {

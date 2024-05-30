@@ -11,18 +11,17 @@ import in.sachinshinde.binarytree.Node;
 public class MirrorTreeCheck {
 	
 	static boolean areMirrorTree(Node a, Node b) {
-		if(a == null && b == null)
+		if(a == null && b == null) {
 			return true;
+		}
 		
-		if(a == null || b == null)
+		if(a == null || b == null) {
 			return false;
-		
-		if(a.key == b.key &&
-			areMirrorTree(a.left, b.right) &&
-			areMirrorTree(a.right, b.left))
-				return true;
-		
-		return false;
+		}
+
+		return a.key == b.key &&
+				areMirrorTree(a.left, b.right) &&
+				areMirrorTree(a.right, b.left);
 	}
 	
 	public static void main(String[] args) {

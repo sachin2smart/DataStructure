@@ -45,22 +45,25 @@ public class WordPattern {
     public boolean wordPattern(String pattern, String s) {
         String[] words = s.split(" ");
         
-        if(words.length != pattern.length())
+        if(words.length != pattern.length()) {
             return false;
+        }
         
         Map<Object, Integer> hm = new HashMap<>();
         
-        for(Integer i=0; i<words.length; i++)
-            if(hm.put(words[i], i) != hm.put(pattern.charAt(i), i))
+        for(int i = 0; i<words.length; i++) {
+            if (hm.put(words[i], i) != hm.put(pattern.charAt(i), i)) {
                 return false;
+            }
+        }
         
         return true;
     }
     
     public static void main(String[] args) {
-	WordPattern pattern = new WordPattern();
-	System.out.println(pattern.wordPattern("abba", "dog cat cat dog"));	// true
-	System.out.println(pattern.wordPattern("abba", "dog cat cat fish"));	// false
-	System.out.println(pattern.wordPattern("aaaa", "dog cat cat dog"));	// false
+        WordPattern pattern = new WordPattern();
+        System.out.println(pattern.wordPattern("abba", "dog cat cat dog"));	// true
+        System.out.println(pattern.wordPattern("abba", "dog cat cat fish"));	// false
+        System.out.println(pattern.wordPattern("aaaa", "dog cat cat dog"));	// false
     }
 }

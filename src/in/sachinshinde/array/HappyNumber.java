@@ -22,10 +22,10 @@ import java.util.Set;
         Input: n = 19
         Output: true
         Explanation:
-        12 + 92 = 82
-        82 + 22 = 68
-        62 + 82 = 100
-        12 + 02 + 02 = 1
+        1^2 + 9^2 = 82
+        8^2 + 2^2 = 68
+        6^2 + 8^2 = 100
+        1^2 + 0^2 + 0^2 = 1
         
         Example 2:
         ---------
@@ -40,42 +40,44 @@ import java.util.Set;
 
 public class HappyNumber {
     public boolean isHappy(int n) {
-	int slow = n;
-	int fast = n;
-	
-	do {
-	  slow = squareOf(slow);
-	  fast = squareOf(squareOf(fast));
-	} while(slow != fast);
-	
-	return slow == 1;
+		int slow = n;
+		int fast = n;
+
+		do {
+		  slow = squareOf(slow);
+		  fast = squareOf(squareOf(fast));
+		} while(slow != fast);
+
+		return slow == 1;
     }
     
     private int squareOf(int n) {
-	int res = 0;
-	
-	while(n>0) {
-	    int r = n%10;
-	    res += r*r;
-	    n = n/10;
-	}
-	
-	return res;
+		int res = 0;
+
+		while(n>0) {
+			int r = n%10;
+			res += r*r;
+			n = n/10;
+		}
+
+		return res;
     }
     
     public boolean isHappy_2(int n) {
-	Set<Integer> set = new HashSet<Integer>();
-	
-	// while loops terminates when a duplicate value is being added into the set 
-	while(set.add(n)) {
-	    int square = squareOf(n); 
-	    if(square == 1)
-		return true;
-	    else
-		n = square;
-	}
-	
-	return false;
+		Set<Integer> set = new HashSet<Integer>();
+
+		// while loops terminates when a duplicate value is being added into the set
+		while(set.add(n)) {
+			int square = squareOf(n);
+			if(square == 1) {
+				return true;
+			}
+			else {
+				n = square;
+			}
+		}
+
+		return false;
     }
     
     public boolean isHappy_3(int n) {

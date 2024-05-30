@@ -30,18 +30,20 @@ public class LetterCasePermutation {
     }
     
     private static void backtrack(List<String> ans, int i, char[] charStr) {
-        if(i==charStr.length)
+        if(i==charStr.length) {
             ans.add(new String(charStr));
+        }
         else {
             if(Character.isLetter(charStr[i])) { 
-            	charStr[i] = Character.toUpperCase(charStr[i]);
+            	charStr[i] = Character.toUpperCase(charStr[i]); // in place update to uppercase
                 backtrack(ans, i+1, charStr);
                 
-                charStr[i] = Character.toLowerCase(charStr[i]);
+                charStr[i] = Character.toLowerCase(charStr[i]); // // in place update to lowercase
                 backtrack(ans, i+1, charStr);
             }
-            else
-                backtrack(ans, i+1, charStr); 
+            else {
+                backtrack(ans, i + 1, charStr);     // No modification for number
+            }
         }
     }
     

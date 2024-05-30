@@ -40,22 +40,17 @@ import java.util.Arrays;
 public class AppleResdistributionIntoBoxes {
 
     public int minimumBoxes(int[] apple, int[] capacity) {
-	int sum = 0;
-	for(int a : apple){
-	    sum += a;
-	}
-	Arrays.sort(capacity);
-	
-	int res = 0;
-	
-	for(int i = capacity.length-1; i >= 0; i--){
-	    if(sum > 0){
-		res++;
-	    }
-	    sum -= capacity[i];
-	}
-	
-	return res;
+		int sum = Arrays.stream(apple).sum();
+		Arrays.sort(capacity); // ascending order (big at last)
+		int res = 0;
+		for(int i = capacity.length-1; i >= 0; i--){
+			res++;
+			sum -= capacity[i];
+			if(sum <= 0){
+				break;
+			}
+		}
+		return res;
     }
 	
     public static void main(String[] args) {

@@ -31,35 +31,14 @@ package in.sachinshinde.array;
  */
 
 public class LongestHappyString {
-
-    String generate(int a, int b, int c, String _a, String _b, String _c) {
-	if (a < b)
-	    return generate(b, a, c, _b, _a, _c);
-	    
-	if (b < c)
-	    return generate(a, c, b, _a, _c, _b);
-	    
-	if (b == 0)
-	    return _a.repeat(Math.min(2, a));
-	    
-	int a_repeated = Math.min(2, a);
-	int b_repeated = a - a_repeated >= b ? 1 : 0;
-	    
-	return _a.repeat(a_repeated) + _b.repeat(b_repeated) +
-	        generate(a - a_repeated, b - b_repeated, c, _a, _b, _c);    
+    
+    public static void main(String[] args) {
+        LongestHappyString string = new LongestHappyString();
+        System.out.println(string.longestDiverseString(1, 1, 7));	//	ccaccbcc / ccbccacc
+        System.out.println(string.longestDiverseString(7, 1, 0));	//	aabaa
     }
     
     public String longestDiverseString(int a, int b, int c) {
-	return generate(a, b, c, "a", "b", "c");
-    }
-    
-    public static void main(String[] args) {
-	LongestHappyString string = new LongestHappyString();
-	System.out.println(string.longestDiverseString(1, 1, 7));	//	ccaccbcc / ccbccacc	
-	System.out.println(string.longestDiverseString(7, 1, 0));	//	aabaa
-    }
-    
-    public String longestDiverseString2(int a, int b, int c) {
         StringBuilder sb = new StringBuilder();
         
         int totalLength = a + b + c;
@@ -72,13 +51,15 @@ public class LongestHappyString {
                 continuousA++;
                 continuousB = 0;
                 continuousC = 0;  
-            } else if ((b >= a && b >= c && continuousB != 2) || (continuousA == 2 && b > 0) || (continuousC == 2 && b > 0)) {
+            }
+            else if ((b >= a && b >= c && continuousB != 2) || (continuousA == 2 && b > 0) || (continuousC == 2 && b > 0)) {
                 sb.append("b");
                 b--;
                 continuousB++;
                 continuousA = 0;
                 continuousC = 0;
-            } else if ((c >= a && c >= b && continuousC != 2) || (continuousB == 2 && c > 0) || (continuousA == 2 && c > 0)) {
+            }
+            else if ((c >= a && c >= b && continuousC != 2) || (continuousB == 2 && c > 0) || (continuousA == 2 && c > 0)) {
                 sb.append("c");
                 c--;
                 continuousC++;
@@ -88,4 +69,30 @@ public class LongestHappyString {
         }
         return sb.toString();
     }
+
+    public String longestDiverseString_sameAsAbove(int a, int b, int c) {
+        StringBuilder sb = new StringBuilder();
+        int total = a + b + c;
+        int sA = 0, sB = 0, sC = 0;
+
+        for(int i=0; i<total; i++) {
+            if((a >= b && a >= c && sA != 2) || (sB == 2 && a > 0) || (sC == 2 && a > 0)) {
+                sb.append("a");
+                a--; sA++;
+                sB = 0; sC = 0;
+            }
+            else if((b >= c && b >= a && sB != 2) || (sA == 2 && b > 0) || (sC == 2&& b > 0) ){
+                sb.append("b");
+                b--; sB++;
+                sA = 0; sC = 0;
+            }
+            else if((c >= b && c >= a && sC != 2) || (sA == 2 && c > 0) || (sB == 2 && c > 0) ){
+                sb.append("c");
+                c--; sC++;
+                sA = 0; sB = 0;
+            }
+        }
+        return sb.toString();
+    }
+
 }

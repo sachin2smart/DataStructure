@@ -2,7 +2,7 @@ package in.sachinshinde.array;
 
 import java.util.Arrays;
 
-//	https://leetcode.com/problems/array-partition-i/
+//	https://leetcode.com/problems/array-partition/
 
 /*
  *	Given an integer array nums of 2n integers, group these integers into 

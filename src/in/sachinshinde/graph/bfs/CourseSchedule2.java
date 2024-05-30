@@ -135,7 +135,7 @@ public class CourseSchedule2 {
 		System.out.println(Arrays.toString(courseSchedule2.findOrder(2, new int[][] {{1,0},{0,1}})));	//	[]
 		
 		//	Method 2 (Using in-degree)
-		System.out.println(Arrays.toString(courseSchedule2.findOrder(2, new int[][] {{1,0}})));	//	[0,1]
+		System.out.println(Arrays.toString(courseSchedule2.findOrder2(2, new int[][] {{1,0}})));	//	[0,1]
 		System.out.println(Arrays.toString(courseSchedule2.findOrder(2, new int[][] {{1,0},{0,1}})));	//	[]
 	}
 	
@@ -170,55 +170,52 @@ public class CourseSchedule2 {
 							3. Add the node N to the list maintaining topologically sorted order.
 							4. Continue from step 4.1.
 		 */
-		
-		boolean isPossible = true;
-		Map<Integer, List<Integer>> adjList = new HashMap<Integer, List<Integer>>();
-		int[] indegree = new int[numCourses];
-		int[] topologicalOrder = new int[numCourses];
+		Map<Integer, List<Integer>> coursesList = new HashMap<>();
+		int[] dependency = new int[numCourses];
+		int[] coursesTaken = new int[numCourses];
 
 	    // Create the adjacency list representation of the graph
 	    for (int i = 0; i < prerequisites.length; i++) {
-			int dest = prerequisites[i][0];
-			int src = prerequisites[i][1];
-			List<Integer> currAdjList = adjList.getOrDefault(src, 
-													new ArrayList<Integer>());
-			currAdjList.add(dest);
-			adjList.put(src, currAdjList);
+			int nextCourse = prerequisites[i][0];
+			int firstCourse = prerequisites[i][1];
+			List<Integer> currCourseList = coursesList.getOrDefault(firstCourse, new ArrayList<>());
+			currCourseList.add(nextCourse);
+			coursesList.put(firstCourse, currCourseList);
 	
 			// Record in-degree of each vertex
-			indegree[dest] += 1;
+			dependency[nextCourse] += 1;
 	    }
 	
 	    // Add all vertices with 0 in-degree to the queue
-	    Queue<Integer> q = new LinkedList<Integer>();
-	    for (int i = 0; i < numCourses; i++) {
-			if (indegree[i] == 0) {
-				q.add(i);
+	    Queue<Integer> queueOfCourses = new LinkedList<>();
+	    for (int course = 0; course < numCourses; course++) {
+			if (dependency[course] == 0) {
+				queueOfCourses.add(course);
 			}
 	    }
 	
-	    int i = 0;
+	    int courseIndex = 0;
 	    // Process until the Q becomes empty
-	    while (!q.isEmpty()) {
-			int node = q.remove();
-			topologicalOrder[i++] = node;
+	    while (!queueOfCourses.isEmpty()) {
+			int currCourse = queueOfCourses.remove();
+			coursesTaken[courseIndex++] = currCourse;
 	
 			// Reduce the in-degree of each neighbor by 1
-			if (adjList.containsKey(node)) {
-				for (Integer neighbor : adjList.get(node)) {
-					indegree[neighbor]--;
+			if (coursesList.containsKey(currCourse)) {
+				for (Integer dependentCourse: coursesList.get(currCourse)) {
+					dependency[dependentCourse]--;
 	
 				// If in-degree of a neighbor becomes 0, add it to the Q
-				if (indegree[neighbor] == 0) {
-					q.add(neighbor);
+				if (dependency[dependentCourse] == 0) {
+					queueOfCourses.add(dependentCourse);
 				}
 	        }
 	    }
 	  }
 	
 	    // Check to see if topological sort is possible or not.
-	    if (i == numCourses) {
-			return topologicalOrder;
+	    if (courseIndex == numCourses) {
+			return coursesTaken;
 	    }
 	
 	    return new int[0];

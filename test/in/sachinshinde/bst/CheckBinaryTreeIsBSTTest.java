@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import in.sachinshinde.bst.CheckBinaryTreeIsBST;
-import in.sachinshinde.bst.Node;
+import in.sachinshinde.bst.checks_on_bst.CheckBinaryTreeIsBST;
 
 public class CheckBinaryTreeIsBSTTest {
 

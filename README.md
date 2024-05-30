@@ -20,10 +20,10 @@
     - DFS
     - Union Find
   - [Greedy](src/in/sachinshinde/greedy)
-  - [Heap](src/in/sachinshinde/heap)
+  - [Heap](src/in/sachinshinde/queue)
   - [LinkedList](src/in/sachinshinde/linkedlist)
   - [Misc](src/in/sachinshinde/misc)
-  - [Queue](src/in/sachinshinde/queue)
+  - [Queue](src/in/sachinshinde/heap_priority_queue)
   - [Recursion](src/in/sachinshinde/recursion)
   - [Sort](src/in/sachinshinde/sort)
   - [Stack](src/in/sachinshinde/stack)

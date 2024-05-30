@@ -69,43 +69,44 @@ import java.util.stream.Collectors;
 public class FindAllPossibleRecipesFromGivenSupplies {
 
     public List<String> findAllRecipes(String[] recipes, List<List<String>> ingredients, String[] supplies) {
-	List<String> createdRecipes = new ArrayList<>();
+		List<String> createdRecipes = new ArrayList<>();
+		Set<String> suppliesSet = new HashSet<>(Arrays.asList(supplies));
+		Map<String, List<String>> recipeDependencies = new HashMap<>();
+		Map<String, Integer> dependency = new HashMap<>();
 
-	Set<String> suppliesSet = new HashSet<>();
-	for (String supply : supplies)
-	    suppliesSet.add(supply);
-
-	Map<String, List<String>> recipeDependencies = new HashMap<>();
-	Map<String, Integer> dependency = new HashMap<>();
-
-	// build graph
-	for (int i = 0; i < recipes.length; i++)
-	    for (String ingredient : ingredients.get(i))
-		if (!suppliesSet.contains(ingredient)) {
-		    recipeDependencies.putIfAbsent(ingredient, new ArrayList<>());
-		    recipeDependencies.get(ingredient).add(recipes[i]);
-		    dependency.merge(recipes[i], 1, Integer::sum);
+		// build graph
+		for (int i = 0; i < recipes.length; i++) {
+			for (String ingredient : ingredients.get(i)) {
+				if (!suppliesSet.contains(ingredient)) {
+					recipeDependencies.putIfAbsent(ingredient, new ArrayList<>());
+					recipeDependencies.get(ingredient).add(recipes[i]);
+					dependency.merge(recipes[i], 1, Integer::sum);
+				}
+			}
 		}
 
-	// topology
-	Queue<String> recipeSequence = Arrays.stream(recipes).filter(recipe -> dependency.getOrDefault(recipe, 0) == 0)
-		.collect(Collectors.toCollection(ArrayDeque::new));
+		// topology
+		Queue<String> recipeSequence = Arrays.stream(recipes)
+				.filter(recipe -> dependency.getOrDefault(recipe, 0) == 0)
+				.collect(Collectors.toCollection(ArrayDeque::new));
 
-	while (!recipeSequence.isEmpty()) {
-	    String recipeMadeSoFar = recipeSequence.poll();
-	    createdRecipes.add(recipeMadeSoFar);
+		while (!recipeSequence.isEmpty()) {
+			String recipeMadeSoFar = recipeSequence.poll();
+			createdRecipes.add(recipeMadeSoFar);
 
-	    if (!recipeDependencies.containsKey(recipeMadeSoFar))
-		continue;
+			if (!recipeDependencies.containsKey(recipeMadeSoFar)) {
+				continue;
+			}
 
-	    for (String dependentRecipe : recipeDependencies.get(recipeMadeSoFar)) {
-		dependency.merge(dependentRecipe, -1, Integer::sum);
-		if (dependency.get(dependentRecipe) == 0)
-		    recipeSequence.offer(dependentRecipe);
-	    }
-	}
+			for (String dependentRecipe : recipeDependencies.get(recipeMadeSoFar)) {
+				dependency.merge(dependentRecipe, -1, Integer::sum);
+				if (dependency.get(dependentRecipe) == 0) {
+					recipeSequence.offer(dependentRecipe);
+				}
+			}
+		}
 
-	return createdRecipes;
+		return createdRecipes;
     }
 
     public List<String> findAllRecipes2(String[] recipes, List<List<String>> ingredients, String[] supplies) {

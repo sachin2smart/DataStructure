@@ -90,6 +90,29 @@ public class Initialization {
 	// declare like this -
 	ArrayList<ArrayList<Integer>> arr2 = new ArrayList<>(); // No need to add the explicite data type
 
+	public void func() {
+		// List of integer array
+		List<int[]> l1 = new LinkedList<>();
+		l1.add(new int[2]);
+		System.out.println(Arrays.toString(l1.get(0)));	// [0, 0]
+		int[] arr1 = new int[]{1,2};
+		l1.add(arr1);
+		System.out.println(Arrays.toString(l1.get(1)));	//	[1, 2]
 
+		// Array of list
+		List<Integer>[] l2 = new ArrayList[4];
+		l2[0] = new ArrayList<>();
+		System.out.println(l2[0]);	//	[]
+		List<Integer> arr2 = new ArrayList<>();
+		arr2.add(1);
+		arr2.add(2);
+		l2[1] = arr2;
+		System.out.println(l2[1]);	//	[1, 2]
+	}
+
+	public static void main(String[] args) {
+		Initialization initialization = new Initialization();
+		initialization.func();
+	}
 
 }

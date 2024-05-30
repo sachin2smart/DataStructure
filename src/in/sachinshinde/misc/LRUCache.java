@@ -47,7 +47,8 @@ public class LRUCache {
 	      remove(node);
 	      insert(node);
 	      return node.value;
-	  } else {
+	  }
+	  else {
 	      return -1;
 	  }
 	}

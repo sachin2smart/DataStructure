@@ -1,13 +1,6 @@
 package in.sachinshinde.graph.bfs;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 //	https://leetcode.com/problems/bus-routes/
 
@@ -32,24 +25,30 @@ import java.util.Set;
  */
 
 public class BusRoutes {
+
+    // Video Solution
     public int numBusesToDestination(int[][] routes, int source, int target) {
+        // base case
+        if (source == target) {
+            return 0;
+        }
+
+        // data transformations
         Map<Integer, List<Integer>> graph = new HashMap<>();
-        for (int k = 0; k < routes.length; k++) {
-            int[] route = routes[k];
-            int n = route.length;
-            for (int i = 0; i < n; i++) {
-                int stop = route[i];
-                if (!graph.containsKey(stop))
+        for (int i = 0; i < routes.length; i++) {
+            int[] route = routes[i];
+            for (int stop : route) {
+                if (!graph.containsKey(stop)) {
                     graph.put(stop, new ArrayList<>());
-                graph.get(stop).add(k);
+                }
+                graph.get(stop).add(i);
             }
         }
-        
-        if (!graph.containsKey(source) || !graph.containsKey(target)) 
+
+        // base check
+        if (!graph.containsKey(source) || !graph.containsKey(target)) {
             return -1;
-        
-        if (source == target) 
-            return 0;
+        }
         
         Queue<Integer> q = new LinkedList<>();
         Set<Integer> busTaken = new HashSet<>();
@@ -57,38 +56,90 @@ public class BusRoutes {
         
         q.add(source);
         
-        int cnt = 0;
+        int count = 0;
         
         while (!q.isEmpty()) {
-            cnt++;
+            count++;
             int size = q.size();
             for (int i = 0; i < size; i++) {
-                int curStop = q.poll();
+                int curStop = q.remove();
                 for (int bus : graph.get(curStop)) {
-                    if (busTaken.contains(bus)) 
-                        continue;
-                    busTaken.add(bus);
-                    for (int nextStop : routes[bus]) {
-                        if (stopVisited.contains(nextStop)) 
-                            continue;
-                        if (nextStop == target) 
-                            return cnt;
-                        q.add(nextStop);
-                        stopVisited.add(nextStop);
+                    if (!busTaken.contains(bus)) {
+                        busTaken.add(bus);
+                        for (int nextStop : routes[bus]) {
+                            if (!stopVisited.contains(nextStop)) {
+                                if (nextStop == target) {
+                                    return count;
+                                }
+                                q.add(nextStop);
+                                stopVisited.add(nextStop);
+                            }
+                        }
                     }
                 }
             }
         }
         return -1;
     }
-    
+
+    public int numBusesToDestination3(int[][] routes, int source, int target) {
+        if(source == target) {
+            return 0;
+        }
+
+        Map<Integer, List<Integer>> stopsGraph = new HashMap<>();
+        for(int i = 0; i < routes.length; i++) {
+            for(int stop : routes[i]) {
+                stopsGraph.putIfAbsent(stop, new ArrayList<>());
+                stopsGraph.get(stop).add(i);
+            }
+        }
+
+        if(!stopsGraph.containsKey(source) || !stopsGraph.containsKey(target)) {
+            return -1;
+        }
+
+        Queue<Integer> stopsQueue = new LinkedList<>();
+        boolean[] seenBuses = new boolean[routes.length];
+        Set<Integer> visitedStops = new HashSet<>();
+
+        stopsQueue.offer(source);
+        visitedStops.add(source);
+
+        int count = 0;
+
+        while(!stopsQueue.isEmpty()) {
+            count++;
+            int size = stopsQueue.size();
+
+            for(int i = 0; i < size; i++) {
+                int stop = stopsQueue.remove();
+                for(int bus : stopsGraph.get(stop)){
+                    if(!seenBuses[bus]) {
+                        seenBuses[bus] = true;
+                        for (int nextStop : routes[bus]) {
+                            if (!visitedStops.contains(nextStop)) {
+                                if (nextStop == target) {
+                                    return count;
+                                }
+                                stopsQueue.add(nextStop);
+                                visitedStops.add(nextStop);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-	BusRoutes busRoutes = new BusRoutes();
-	int numBusRequired = busRoutes.numBusesToDestination(new int[][] {{1,2,7},{3,6,7}}, 1, 6);
-	System.out.println(numBusRequired);	//	2
-	
-	numBusRequired = busRoutes.numBusesToDestination(new int[][] {{7,12},{4,5,15},{6},{15,19},{9,12,13}}, 15, 12);
-	System.out.println(numBusRequired);	//	-1
+        BusRoutes busRoutes = new BusRoutes();
+        int numBusRequired = busRoutes.numBusesToDestination3(new int[][] {{1,2,7},{3,6,7}}, 1, 6);
+        System.out.println(numBusRequired);	//	2
+
+        numBusRequired = busRoutes.numBusesToDestination(new int[][] {{7,12},{4,5,15},{6},{15,19},{9,12,13}}, 15, 12);
+        System.out.println(numBusRequired);	//	-1
     }
 }
 

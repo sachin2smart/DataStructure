@@ -98,16 +98,15 @@ public class MinimumRoundsToCompleteAllTasks {
     }
     
     public static void main(String[] args) {
-	MinimumRoundsToCompleteAllTasks rounds = new MinimumRoundsToCompleteAllTasks();
-	System.out.println(rounds.minimumRounds(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
-	System.out.println(rounds.minimumRounds(new int[] {2,3,3}));	// -1
-	
-	System.out.println(rounds.minimumRounds_2(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
-	System.out.println(rounds.minimumRounds_2(new int[] {2,3,3}));	// -1
-	
-	System.out.println(rounds.minimumRounds_3(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
-	System.out.println(rounds.minimumRounds_3(new int[] {2,3,3}));	// -1
-	
+        MinimumRoundsToCompleteAllTasks rounds = new MinimumRoundsToCompleteAllTasks();
+        System.out.println(rounds.minimumRounds(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
+        System.out.println(rounds.minimumRounds(new int[] {2,3,3}));	// -1
+
+        System.out.println(rounds.minimumRounds_2(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
+        System.out.println(rounds.minimumRounds_2(new int[] {2,3,3}));	// -1
+
+        System.out.println(rounds.minimumRounds_3(new int[] {2,2,3,3,2,4,4,4,4,4}));	// 4
+        System.out.println(rounds.minimumRounds_3(new int[] {2,3,3}));	// -1
     }
     
 }

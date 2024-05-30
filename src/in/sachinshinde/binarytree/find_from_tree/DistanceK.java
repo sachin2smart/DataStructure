@@ -65,29 +65,28 @@ public class DistanceK {
         int currLevel = 0;
         
         while(!q.isEmpty()) {
-            if(currLevel == k) 
-        	break;
-            
-            int size = q.size();
-            
-            for(int i=0; i<size; i++) {
-        	Node currNode = q.poll();
-                if(currNode.left != null && visited.get(currNode.left) == null) {
-                    visited.put(currNode.left, true);
-            		q.offer(currNode.left);
+            if(currLevel != k) {
+                int size = q.size();
+
+                for (int i = 0; i < size; i++) {
+                    Node currNode = q.poll();
+                    if (currNode.left != null && visited.get(currNode.left) == null) {
+                        visited.put(currNode.left, true);
+                        q.offer(currNode.left);
+                    }
+
+                    if (currNode.right != null && visited.get(currNode.right) == null) {
+                        visited.put(currNode.right, true);
+                        q.offer(currNode.right);
+                    }
+
+                    if (parentTracker.get(currNode) != null && visited.get(parentTracker.get(currNode)) == null) {
+                        visited.put(parentTracker.get(currNode), true);
+                        q.offer(parentTracker.get(currNode));
+                    }
                 }
-                
-                if(currNode.right != null && visited.get(currNode.right) == null) {
-                    visited.put(currNode.right, true);
-                    q.offer(currNode.right);
-                }
-                
-                if(parentTracker.get(currNode) != null && visited.get(parentTracker.get(currNode)) == null) {
-                    visited.put(parentTracker.get(currNode), true);
-                    q.offer(parentTracker.get(currNode));
-                }
+                currLevel++;
             }
-            currLevel++;
         }
         
         List<Integer> result = new ArrayList<>();
@@ -99,20 +98,20 @@ public class DistanceK {
     }
     
     private void markParents(Node root, Map<Node, Node> parentTracker) {
-	Queue<Node> q = new LinkedList<Node>();
-	q.offer(root);
-	
-	while(!q.isEmpty()) {
-	    Node currNode = q.poll();
-	    if(currNode.left != null) {
-		parentTracker.put(currNode.left, currNode);
-		q.add(currNode.left);
-	    }
-	    if(currNode.right != null) {
-		parentTracker.put(currNode.right, currNode);
-		q.add(currNode.right);
-	    }
-	}
+        Queue<Node> q = new LinkedList<Node>();
+        q.offer(root);
+
+        while(!q.isEmpty()) {
+            Node currNode = q.poll();
+            if(currNode.left != null) {
+                parentTracker.put(currNode.left, currNode);
+                q.add(currNode.left);
+            }
+            if(currNode.right != null) {
+                parentTracker.put(currNode.right, currNode);
+                q.add(currNode.right);
+            }
+        }
     }
 
 //---------------------------------------------------------------------------------------------------------

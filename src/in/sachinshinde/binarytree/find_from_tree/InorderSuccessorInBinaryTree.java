@@ -7,30 +7,34 @@ import java.util.Stack;
 public class InorderSuccessorInBinaryTree {
 
     public Node inorderSuccessor(Node root, Node p) {
-	if(root == null)
-	    return null;
-	
-	boolean found = false;
-	Stack<Node> st = new Stack<>();
-	Node curr = root;
-	
-	while(curr != null || !st.isEmpty()) {
-	    while(curr != null) {
-		st.push(curr);
-		curr = curr.left;
-	    }
-	    curr = st.pop();
-	    
-	    if(found) 
-		return curr;
-	    
-	    if(curr == p)
-		found = true;
-	    
-	    curr = curr.right;
-	}
-	
-	return null;
+		if(root == null) {
+			return null;
+		}
+
+		boolean found = false;
+		Stack<Node> st = new Stack<>();
+		Node curr = root;
+
+		while(curr != null || !st.isEmpty()) {
+			while(curr != null) {
+				st.push(curr);
+				curr = curr.left;
+			}
+
+			curr = st.pop();
+
+			if(found) {
+				return curr;
+			}
+
+			if(curr == p) {
+				found = true;
+			}
+
+			curr = curr.right;
+		}
+
+		return null;
     }
     
     public static void main(String[] args) {

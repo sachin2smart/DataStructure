@@ -17,38 +17,47 @@ package in.sachinshinde.dp.longest;
 
 public class LongestPalindromicSubstring {
     private int start, maxLen;
-    
+
     public String longestPalindrome(String s) {
-		int len = s.length();
-		if (len < 2)
+		int n = s.length();
+		if (n < 2) {
 			return s;
-		
-	    for (int i = 0; i < len-1; i++) {
-	     	extendPalindrome(s, i, i);  //assume odd length
-	     	extendPalindrome(s, i, i+1); //assume even length
+		}
+		char[] t = s.toCharArray();
+
+	    for (int i = 0; i < n-1; i++) {
+	     	extendPalindrome(t, i, i);  //assume odd length
+			if(t[i] == t[i+1]) {
+				extendPalindrome(t, i, i + 1); //assume even length
+			}
 	    }
 	    return s.substring(start, start + maxLen);
 	}
 
-	private void extendPalindrome(String s, int j, int k) {
-		while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
-			j--;
-			k++;
+	private void extendPalindrome(char[] t, int leftPtr, int rightPtr) {
+		while (leftPtr >= 0 && rightPtr < t.length && t[leftPtr] == t[rightPtr]) {
+			leftPtr--;
+			rightPtr++;
 		}
-		if (maxLen < k - j - 1) {
-			start = j + 1;
-			maxLen = k - j - 1;
+		if (maxLen < rightPtr - leftPtr - 1) {
+			start = leftPtr + 1;
+			maxLen = rightPtr - leftPtr - 1;
 		}
 	}
 	
 	public static void main(String[] args) {
-		LongestPalindromicSubstring longestPalindromicSubstring = new LongestPalindromicSubstring();
-		System.out.println(longestPalindromicSubstring.longestPalindrome("babad"));	//	bab
-		longestPalindromicSubstring = new LongestPalindromicSubstring();
-		System.out.println(longestPalindromicSubstring.longestPalindrome("cbbd"));	//	bb
-		longestPalindromicSubstring = new LongestPalindromicSubstring();
-		System.out.println(longestPalindromicSubstring.longestPalindrome("babcbaabcbaccba"));		//	abcbaabcba
-		longestPalindromicSubstring = new LongestPalindromicSubstring();
-		System.out.println(longestPalindromicSubstring.longestPalindrome("cdbabcbabdab"));	//	dbabcbabd
+		LongestPalindromicSubstring lps = new LongestPalindromicSubstring();
+
+		lps.start = 0; lps.maxLen = 0;
+		System.out.println(lps.longestPalindrome("babad"));	//	bab
+
+		lps.start = 0; lps.maxLen = 0;
+		System.out.println(lps.longestPalindrome("cbbd"));	//	bb
+
+		lps.start = 0; lps.maxLen = 0;
+		System.out.println(lps.longestPalindrome("babcbaabcbaccba"));   //	abcbaabcba
+
+		lps.start = 0; lps.maxLen = 0;
+		System.out.println(lps.longestPalindrome("cdbabcbabdab"));	//	dbabcbabd
 	}
 }

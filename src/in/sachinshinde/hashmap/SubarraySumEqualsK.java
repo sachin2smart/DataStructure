@@ -41,10 +41,10 @@ public class SubarraySumEqualsK {
             sum += num;
             
             if(sum == k)
-        	res++;
+        	    res++;
             
             if(hm.containsKey(sum - k))		// if prefix sum found, add the corresponding count into the result
-        	res += hm.get(sum -k);
+        	    res += hm.get(sum -k);
             
             hm.put(sum, hm.getOrDefault(sum, 0) + 1);
         }
@@ -62,7 +62,7 @@ public class SubarraySumEqualsK {
             sum += num;
             
             if(hm.get(sum-k) != null)	//	hm value is of Integer type, if the key does not have a value - it will return a NULL 
-        	res += hm.get(sum-k);
+        	    res += hm.get(sum-k);
              
             hm.put(sum, hm.getOrDefault(sum, 0) + 1);
         }
@@ -71,8 +71,8 @@ public class SubarraySumEqualsK {
     }
     
     public static void main(String[] args) {
-	SubarraySumEqualsK sum = new SubarraySumEqualsK();
-	System.out.println(sum.subarraySum(new int[] {1,-1,1,1,1,1}, 3));	// 4
-	System.out.println(sum.subarraySum_2(new int[] {1,-1,1,1,1,1}, 3));	// 4
+        SubarraySumEqualsK sum = new SubarraySumEqualsK();
+        System.out.println(sum.subarraySum(new int[] {1,-1,1,1,1,1}, 3));	// 4
+        System.out.println(sum.subarraySum_2(new int[] {1,-1,1,1,1,1}, 3));	// 4
     }
 }

@@ -57,6 +57,36 @@ public class FindLeavesOfBinaryTree {
 		
 		List<List<Integer>> result = listOfLeavesOfBinaryTree.findLeaves(root);
 		System.out.println(Arrays.asList(result));
+
+		result = listOfLeavesOfBinaryTree.findLeaves2(root);
+		System.out.println(Arrays.asList(result));
 	}
-	
+
+	//	Solution 2
+	public List<List<Integer>> findLeaves2(Node root) {
+		List<List<Integer>> res = new ArrayList<>();
+		getHeight(root, res);
+		return res;
+	}
+
+	private int getHeight(Node root, List<List<Integer>> res) {
+		// return -1 for null nodes
+		if (root == null) {
+			return -1;
+		}
+
+		// first calculate the height of the left and right children
+		int leftHeight = getHeight(root.left, res);
+		int rightHeight = getHeight(root.right, res);
+
+		int currHeight = Math.max(leftHeight, rightHeight) + 1;
+
+		if (res.size() == currHeight) {
+			res.add(new ArrayList<>());
+		}
+
+		res.get(currHeight).add(root.key);
+
+		return currHeight;
+	}
 }

@@ -1,0 +1,302 @@
+Elevator Problem
+================
+There is an Amazon office building (say, YVR26 in Vancouver) with F floors and E elevators.
+Capacity of i_th elevator is P_i persons. Elevators themselves don't have controls,
+instead there are UI panels on each floor, and a rider selects a desired floor and UI
+responds with an elevator ID that will take that rider to a selected floor. An elevator
+may carry riders destined to differt floors on a single ride. There may be multiple UI panels
+per floor, allowing multiple ridersto make a selection at the same time.
+
+For simplicity let's assume that riders are "orderly" - always pressing the choice button once
+and get into the elevator.
+
+1. Please lay out the class(es) design for the elevator control system
+Elevator operators would probably like to collect and analyze some metrics on how the system
+behaves at different times of day and what the UX is like.
+2. What data the elevator operators may be interested in?
+3. How the data structure(s) to satisfy operator's needs may look like?
+4. How typical queries may look like?
+
+Class Design for Elevator Control System
+
+To design the elevator control system in Java, we will create classes for the main components of the system:
+Building, Floor, Elevator, UIPanel, and ElevatorControlSystem. 
+Additionally, we'll add a Request class to represent elevator requests.
+
+Here is a possible class design:
+
+ElevatorControlSystem.java
+--------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class ElevatorControlSystem {
+    private Building building;
+
+    public ElevatorControlSystem(int floors, int[] elevatorCapacities) {
+        this.building = new Building(floors, elevatorCapacities);
+    }
+
+    public int handleRequest(int floorNumber, int destinationFloor) {
+        return building.requestElevator(floorNumber, destinationFloor);
+    }
+
+    public static void main(String[] args) {
+        int[] elevatorCapacities = {5, 8, 6}; // Example capacities
+        ElevatorControlSystem ecs = new ElevatorControlSystem(10, elevatorCapacities);
+
+        // Simulate some requests
+        int elevatorId = ecs.handleRequest(0, 5);
+        System.out.println("Elevator ID: " + elevatorId);
+    }
+}
+
+Building.java
+--------------------------
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Building {
+    private List<Floor> floors;
+    private List<Elevator> elevators;
+
+    public Building(int floorCount, int[] elevatorCapacities) {
+        floors = new ArrayList<>();
+        elevators = new ArrayList<>();
+
+        for (int i = 0; i < floorCount; i++) {
+            floors.add(new Floor(i, this));
+        }
+
+        for (int i = 0; i < elevatorCapacities.length; i++) {
+            elevators.add(new Elevator(i, elevatorCapacities[i]));
+        }
+    }
+
+    public int requestElevator(int floorNumber, int destinationFloor) {
+        Elevator bestElevator = findBestElevator(floorNumber, destinationFloor);
+        if (bestElevator != null) {
+            bestElevator.addDestination(destinationFloor);
+            return bestElevator.getId();
+        }
+        return -1; // No elevator available
+    }
+
+    private Elevator findBestElevator(int floorNumber, int destinationFloor) {
+        // Implement a more complex logic to find the best elevator
+        for (Elevator elevator : elevators) {
+            if (elevator.isAvailable()) {
+                return elevator;
+            }
+        }
+        return null;
+    }
+}
+
+Floor.java
+--------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class Floor {
+    private int number;
+    private List<UIPanel> uiPanels;
+    private Building building;
+
+    public Floor(int number, Building building) {
+        this.number = number;
+        this.building = building;
+        this.uiPanels = new ArrayList<>();
+        // Assuming 2 UI panels per floor
+        for (int i = 0; i < 2; i++) {
+            this.uiPanels.add(new UIPanel(this));
+        }
+    }
+
+    public int requestElevator(int destinationFloor) {
+        return building.requestElevator(this.number, destinationFloor);
+    }
+
+    public int getNumber() {
+        return number;
+    }
+}
+
+Elevator.java
+--------------------------
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Elevator {
+    private int id;
+    private int capacity;
+    private int currentFloor;
+    private List<Integer> destinations;
+    private int passengers;
+
+    public Elevator(int id, int capacity) {
+        this.id = id;
+        this.capacity = capacity;
+        this.currentFloor = 0;
+        this.destinations = new ArrayList<>();
+        this.passengers = 0;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public boolean isAvailable() {
+        return passengers < capacity;
+    }
+
+    public void addDestination(int floor) {
+        destinations.add(floor);
+        Collections.sort(destinations); // Simple sorting for demonstration
+    }
+
+    public List<Integer> getDestinations() {
+        return destinations;
+    }
+}
+
+UIPanel.java
+--------------------------
+public class UIPanel {
+    private Floor floor;
+
+    public UIPanel(Floor floor) {
+        this.floor = floor;
+    }
+
+    public int requestElevator(int destinationFloor) {
+        return floor.requestElevator(destinationFloor);
+    }
+}
+
+Metrics Collection and Analysis
+--------------------------
+[1] Data of Interest:
+[2] Number of Requests: How many times an elevator is requested.
+[3] Waiting Time: Average time a user waits for an elevator.
+[4] Travel Time: Average time taken to reach the destination.
+[5] Utilization: How often each elevator is in use.
+[6] Capacity Utilization: How full the elevators are on average.
+[7] Peak Usage Times: Times of day when the elevator usage is highest.
+
+Data Structures:
+--------------------------
+[1] Request Data: Store individual request details (time, floor, destination).
+[2] Elevator Usage Data: Track usage stats for each elevator.
+[3] Aggregated Metrics: Calculate and store average metrics over time.
+
+Sample Data Structures and Queries:
+-----------------------------------
+Here’s an example in Java of how the data structures and queries might look:
+
+Request.java
+--------------------------
+import java.time.LocalDateTime;
+
+public class Request {
+    private int startFloor;
+    private int destinationFloor;
+    private LocalDateTime requestTime;
+    private LocalDateTime pickupTime;
+    private LocalDateTime dropoffTime;
+
+    public Request(int startFloor, int destinationFloor) {
+        this.startFloor = startFloor;
+        this.destinationFloor = destinationFloor;
+        this.requestTime = LocalDateTime.now();
+    }
+
+    public void setPickupTime() {
+        this.pickupTime = LocalDateTime.now();
+    }
+
+    public void setDropoffTime() {
+        this.dropoffTime = LocalDateTime.now();
+    }
+
+    public long getWaitingTime() {
+        return java.time.Duration.between(requestTime, pickupTime).toSeconds();
+    }
+
+    public long getTravelTime() {
+        return java.time.Duration.between(pickupTime, dropoffTime).toSeconds();
+    }
+
+    public int getStartFloor() {
+        return startFloor;
+    }
+
+    public int getDestinationFloor() {
+        return destinationFloor;
+    }
+}
+ElevatorMetrics.java
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ElevatorMetrics {
+    private int elevatorId;
+    private List<Request> requests;
+
+    public ElevatorMetrics(int elevatorId) {
+        this.elevatorId = elevatorId;
+        this.requests = new ArrayList<>();
+    }
+
+    public void addRequest(Request request) {
+        requests.add(request);
+    }
+
+    public double getAverageWaitingTime() {
+        return requests.stream().mapToLong(Request::getWaitingTime).average().orElse(0);
+    }
+
+    public double getAverageTravelTime() {
+        return requests.stream().mapToLong(Request::getTravelTime).average().orElse(0);
+    }
+
+    public int getTotalRequests() {
+        return requests.size();
+    }
+
+    public int getElevatorId() {
+        return elevatorId;
+    }
+}
+Typical Queries:
+Average Waiting Time for Elevator 1:
+
+
+ElevatorMetrics metrics = new ElevatorMetrics(1);
+double avgWaitingTime = metrics.getAverageWaitingTime();
+System.out.println("Average Waiting Time for Elevator 1: " + avgWaitingTime + " seconds");
+
+Total Requests for Elevator 2:
+
+ElevatorMetrics metrics = new ElevatorMetrics(2);
+int totalRequests = metrics.getTotalRequests();
+System.out.println("Total Requests for Elevator 2: " + totalRequests);
+
+Average Travel Time for All Elevators:
+double totalTravelTime = 0;
+int totalRequests = 0;
+List<ElevatorMetrics> allMetrics = new ArrayList<>(); // Assume this is populated with metrics for all elevators
+
+for (ElevatorMetrics metrics : allMetrics) {
+    totalTravelTime += metrics.getAverageTravelTime() * metrics.getTotalRequests();
+    totalRequests += metrics.getTotalRequests();
+}
+
+double avgTravelTime = totalTravelTime / totalRequests;
+System.out.println("Average Travel Time for All Elevators: " + avgTravelTime + " seconds");
+
+This design and the sample data structures provide a basis for collecting and analyzing metrics on the elevator system.
+The data collected can help optimize elevator performance and improve user experience.

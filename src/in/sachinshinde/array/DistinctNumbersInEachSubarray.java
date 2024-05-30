@@ -36,6 +36,9 @@ import java.util.Set;
 		- nums[3:6] = [1,2,3,4] so ans[3] = 4
 
  */
+
+//	https://leetcode.ca/all/1852.html
+
 public class DistinctNumbersInEachSubarray {
 	public int[] distinctNumbers(int[] nums, int k) {
 		int n = nums.length;

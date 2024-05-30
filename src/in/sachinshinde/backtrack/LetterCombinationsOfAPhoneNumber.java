@@ -18,8 +18,9 @@ import java.util.List;
  */
 public class LetterCombinationsOfAPhoneNumber {
 	public List<String> letterCombinations(String digits) {
-        if (digits.length() == 0) 
-        	return new ArrayList<>();
+        if (digits.length() == 0) {
+            return new ArrayList<>();
+        }
         
         String[] keys = new String[] {"", "", "abc", "def", 
         							  "ghi", "jkl", "mno", 
@@ -35,11 +36,12 @@ public class LetterCombinationsOfAPhoneNumber {
         	combinations.add(currCombination); 
         	return; 
         }
+
         int currLen = currCombination.length();
-        int currDigit = digits.charAt(currLen) - '0';
-        for (char letter : keys[currDigit].toCharArray()) {
-            backtrack(combinations, digits, 
-            		currCombination + Character.toString(letter), keys);
+        int currDigit = digits.charAt(currLen) - '0';   // need to know the position of chars in keys arrays
+
+        for (char letter : keys[currDigit].toCharArray()) { // for each character from the keys array
+            backtrack(combinations, digits, currCombination + letter, keys); // only 3'd param is updated
         }
     }
     

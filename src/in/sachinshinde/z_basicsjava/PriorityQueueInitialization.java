@@ -1,13 +1,6 @@
 package in.sachinshinde.z_basicsjava;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.TreeMap;
+import java.util.*;
 
 public class PriorityQueueInitialization {
 
@@ -65,6 +58,19 @@ public class PriorityQueueInitialization {
 	Queue<Integer> heap = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
 	
 //	------------------------------------------------------------------------------------------------------------------
-    }
+
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)-> b - a);
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>((a,b)-> a - b);
+
+		PriorityQueue<Integer> maxHeap2 = new PriorityQueue<>(Collections.reverseOrder());
+		PriorityQueue<Integer> minHeap2 = new PriorityQueue<>(Comparator.naturalOrder());
+
+//	------------------------------------------------------------------------------------------------------------------
+
+		PriorityQueue<Integer> pqInt = new PriorityQueue<>((a, b) -> Math.abs(a - 10) > Math.abs(b - 10) ? -1: 1);
+
+//	------------------------------------------------------------------------------------------------------------------
+
+	}
     
 }

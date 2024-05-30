@@ -24,13 +24,13 @@ public class DetectCycleInLinkedListReturnStartOfCycle {
             fast = fast.next.next;
             slow = slow.next;
 
-            if (fast == slow){
-                fast = head; 
+            if (fast == slow) { // this condition determines there exists a cycle
+                fast = head;    //  repoint fast to head, to determine the point from which the cycle starts
                 while (fast != slow){
                     slow = slow.next;
                     fast = fast.next;
                 }
-                return slow;
+                return slow;    // return either slow or fast that determines the cycle start node
             }
         }
         return null;

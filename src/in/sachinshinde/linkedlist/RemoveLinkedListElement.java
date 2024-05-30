@@ -12,8 +12,9 @@ package in.sachinshinde.linkedlist;
 public class RemoveLinkedListElement {
 
 	public ListNode removeElements(ListNode head, int val) {
-       if(head == null) 
+       if(head == null) {
            return null;
+       }
         
         ListNode next = removeElements(head.next, val);
         

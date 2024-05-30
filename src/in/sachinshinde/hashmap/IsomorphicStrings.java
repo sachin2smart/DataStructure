@@ -45,7 +45,7 @@ public class IsomorphicStrings {
         
         Map<Character, Character> hm = new HashMap<>();
         
-        for(int i=0; i<sChars.length; i++) {
+        for(int i = 0; i < sChars.length; i++) {
             if(!hm.containsKey(sChars[i])) {
                 if(hm.containsValue(tChars[i])) {
                     return false;
@@ -83,10 +83,10 @@ public class IsomorphicStrings {
     }
     
     public static void main(String[] args) {
-	IsomorphicStrings strings = new IsomorphicStrings();
-	System.out.println(strings.isIsomorphic("egg", "add"));	// true
-	System.out.println(strings.isIsomorphic("foo", "bar"));	// false
-	System.out.println(strings.isIsomorphic("paper", "title"));	// true
-	System.out.println(strings.isIsomorphic("badc", "baba"));	// false
+        IsomorphicStrings strings = new IsomorphicStrings();
+        System.out.println(strings.isIsomorphic("egg", "add"));	// true
+        System.out.println(strings.isIsomorphic("foo", "bar"));	// false
+        System.out.println(strings.isIsomorphic("paper", "title"));	// true
+        System.out.println(strings.isIsomorphic("badc", "baba"));	// false
     }
 }

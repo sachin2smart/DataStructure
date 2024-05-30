@@ -1,11 +1,11 @@
 package in.sachinshinde.bst;
 
 public class Node {
-	int key;
-	Node left, right;
+	public int key;
+	public Node left, right;
 	
-	Node(int data){
+	public Node(int data){
 		this.key = data;
-		left = right = null;
+		this.left = this.right = null;
 	}
 };

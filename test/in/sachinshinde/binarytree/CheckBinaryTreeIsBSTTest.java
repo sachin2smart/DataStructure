@@ -3,8 +3,7 @@ package in.sachinshinde.binarytree;
 import org.junit.Assert;
 import org.junit.Test;
 
-import in.sachinshinde.binarytree.CheckBinaryTreeIsBST;
-import in.sachinshinde.binarytree.Node;
+import in.sachinshinde.binarytree.checks_on_tree.CheckBinaryTreeIsBST;
 
 public class CheckBinaryTreeIsBSTTest {
 
