@@ -71,6 +71,14 @@ public class PriorityQueueInitialization {
 
 //	------------------------------------------------------------------------------------------------------------------
 
+		// Priority queue to store fractions with comparator to sort by fraction value
+		//	Comparison by : a[0] / a[1]  < b[0] / b[1]
+		int[] arr = new int[]{};
+		PriorityQueue<int[]> pqIntArr = new PriorityQueue<>((a, b) -> Integer.compare(
+					arr[a[0]] * arr[b[1]], arr[a[1]] * arr[b[0]]));
+
+//	------------------------------------------------------------------------------------------------------------------
+
 	}
     
 }
