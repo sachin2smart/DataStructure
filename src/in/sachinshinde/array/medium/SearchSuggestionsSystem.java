@@ -3,6 +3,7 @@ package in.sachinshinde.array.medium;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.PriorityQueue;
 
 //  https://leetcode.com/problems/search-suggestions-system
 
@@ -77,5 +78,29 @@ public class SearchSuggestionsSystem {
         SearchSuggestionsSystem system = new SearchSuggestionsSystem();
         System.out.println(system.suggestedProducts(new String[] {"mobile","mouse","moneypot","monitor","mousepad"}, "mouse"));
         System.out.println(system.suggestedProducts(new String[] {"havana"}, "havana"));
+
+        System.out.println(system.suggestedProducts2(new String[] {"mobile","mouse","moneypot","monitor","mousepad"}, "mouse"));
+        System.out.println(system.suggestedProducts2(new String[] {"havana"}, "havana"));
+    }
+
+    public List<List<String>> suggestedProducts2(String[] products, String searchWord) {
+        List<List<String>> suggestedProducts = new ArrayList<>();
+        for(int i = 1; i <= searchWord.length(); i++){
+            PriorityQueue<String> pq = new PriorityQueue<>(3, (s1, s2) -> s1.compareTo(s2));
+            String currSearchWord = searchWord.substring(0, i);
+            for(String currProductName : products){
+                if(currProductName.startsWith(currSearchWord)){
+                    pq.offer(currProductName);
+                }
+            }
+            List<String> currSuggestedProducts = new ArrayList<>();
+            for(int j = 0; j < 3; j++){
+                if(pq.peek() != null){
+                    currSuggestedProducts.add(pq.poll());
+                }
+            }
+            suggestedProducts.add(currSuggestedProducts);
+        }
+        return suggestedProducts;
     }
 }
