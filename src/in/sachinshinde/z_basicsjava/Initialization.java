@@ -79,7 +79,7 @@ public class Initialization {
 	    return mat.toArray(new int[1][1]);
 	}
 
-	// Initialize array with some default value for all places
+	// 14. Initialize array with some default value for all places
 	private void arrTest() {
 		int arr[] = new int[10];
 		Arrays.fill(arr, -1);
@@ -108,6 +108,28 @@ public class Initialization {
 		arr2.add(2);
 		l2[1] = arr2;
 		System.out.println(l2[1]);	//	[1, 2]
+	}
+
+	// 14. Use of --> operator
+	//	It is just a conjunction of the operators -- and  >.
+	/*
+			That is,
+
+				i --> 0
+				becomes effectively
+
+				i > 0; //Compare
+				i--; //and decrement
+	 */
+
+	private void operatorCheck() {
+		for (int i = 99; i-- > 0; ) {
+			System.out.println(i);
+		}
+		//	same as:
+		for (int i = 99; i >= 0; i--) {
+			System.out.println(i);
+		}
 	}
 
 	public static void main(String[] args) {
