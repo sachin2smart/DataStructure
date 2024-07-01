@@ -7,10 +7,18 @@ import java.util.stream.Collectors;
 public class Performance {
 
     public static void main(String[] args) {
+        Performance performance = new Performance();
+        performance.checkArrayDequeAndStackPerformace();
+        performance.checkArraysCollectionSortPerformance();
+    }
+
+    private void checkArrayDequeAndStackPerformace() {
         // ArrayDeque has better performance than Stack
+
         Deque<Integer> dq = new ArrayDeque<>();     // better
         Stack<Integer> st = new Stack<>();
-        //------------
+
+        /*------------
         // Reason 1:-
         //------------
         //      * ArrayDeque : Not Thread Safe
@@ -26,6 +34,7 @@ public class Performance {
         //------------
         // One more reason to use Deque over Stack is Deque has the ability to use streams convert to list
         //  with keeping LIFO concept applied while Stack does not.
+         */
 
         Stack<Integer> stack = new Stack<>();
         Deque<Integer> deque = new ArrayDeque<>();
@@ -47,5 +56,58 @@ public class Performance {
 
         // ConcurrentLinkedDeque : Better for multi-threaded environment
         Deque concurrentLinkedDeque = new ConcurrentLinkedDeque();
+
+    }
+    private void checkArraysCollectionSortPerformance() {
+        //  https://medium.com/@reetesh043/collection-sort-vs-arrays-sort-in-java-1528f83223c3
+
+        /*
+                Arrays.sort() is specifically designed for native arrays, while
+                    Collections.sort() is more versatile and handles List implementations.
+
+                Arrays.sort() has specialized implementations for primitive types,
+                providing better performance compared to Collection.sort() for sorting arrays of primitive data types.
+
+                Arrays.sort() might be slightly more performant for primitive arrays
+                    due to its direct manipulation of memory.
+         */
+
+        //  *********************   Arrays.sort()    **********************************//
+        //  Example 1
+        int[] numbers = {5, 3, 8, 2, 1, 9, 4};
+        Arrays.sort(numbers);
+        System.out.println(Arrays.toString(numbers));   // Output: [1, 2, 3, 4, 5, 8, 9]
+
+        //  Example 2
+        String[] names = {"John", "Alice", "Bob", "David", "Eve"};
+        Arrays.sort(names);
+        System.out.println(Arrays.toString(names));  // Output: Sorted Array: [Alice, Bob, David, Eve, John]
+
+        //  Variants
+        Arrays.sort(numbers, 2, 5); // Sorts elements from index 2 to 4
+        Arrays.sort(names, String::compareTo); // Sorts strings lexicographically
+        Arrays.sort(names, (a, b) -> a.compareTo(b)); // Sorts strings lexicographically (same as above)
+        Arrays.parallelSort(numbers);   //  uses the Fork/Join framework for parallelism; speeding up the sorting process for large arrays
+        Arrays.parallelSort(numbers, 2, 5); // Sorts elements from index 2 to 4 in parallel
+
+        //  *********************   Collections.sort()    **********************************//
+        List<Integer> numbersList = new ArrayList<>(Arrays.asList(5, 3, 8, 2, 1, 9, 4));
+        Collections.sort(numbersList);      //  sorting collections that implement the List interface
+        System.out.println(numbersList);
+
+        List<String> namesList = new ArrayList<>(Arrays.asList("John", "Alice", "Bob", "David", "Eve"));
+        Collections.sort(namesList);    //  it uses modified merge sort; time complexity: O(nlogn)
+        System.out.println(namesList);
+
+        //  variants
+        // Custom comparator to sort strings by their lengths in ascending order
+        Comparator<String> lengthComparator = (s1, s2) -> Integer.compare(s1.length(), s2.length());
+        Collections.sort(namesList, lengthComparator);  // Sorting the list using the custom comparator
+
+        /*
+                Takeaways:
+                    [*] Use Arrays.sort() when performance is more important for primitive types
+                    [*] Use Collections.sort() when flexibility and type safety are more important.
+         */
     }
 }
