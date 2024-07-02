@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
             Maximize the total profit if only one job can be scheduled at a time.
  */
 
+//  Video explanation of the problem statement : https://www.youtube.com/watch?v=R6Skj4bT1HE
+
 /*
     Example 1:
     ---------
