@@ -10,6 +10,7 @@ public class Performance {
         Performance performance = new Performance();
         performance.checkArrayDequeAndStackPerformace();
         performance.checkArraysCollectionSortPerformance();
+        performance.checkListCollectionSortPerformance();
     }
 
     private void checkArrayDequeAndStackPerformace() {
@@ -110,4 +111,27 @@ public class Performance {
                     [*] Use Collections.sort() when flexibility and type safety are more important.
          */
     }
+
+
+    private void checkListCollectionSortPerformance() {
+        //  https://ankitsambyal.blogspot.com/2014/03/difference-between-listsort-and.html
+
+        /*
+                The neat thing about List.sort is that for most of the common list implementations (such as ArrayList),
+                    it would sort much more quickly than Collections.sort.
+         */
+
+        List<Integer> numbersList = new ArrayList<>(Arrays.asList(5, 3, 8, 2, 1, 9, 4));
+
+        numbersList.sort(Comparator.naturalOrder());
+        System.out.println(numbersList);    //  [1, 2, 3, 4, 5, 8, 9]
+        numbersList.sort(Comparator.reverseOrder());
+        System.out.println(numbersList);    //  [9, 8, 5, 4, 3, 2, 1]
+
+        Collections.sort(numbersList);
+        System.out.println(numbersList);    //  [1, 2, 3, 4, 5, 8, 9]
+        Collections.sort(numbersList, Comparator.reverseOrder());
+        System.out.println(numbersList);    //  [9, 8, 5, 4, 3, 2, 1]
+    }
+
 }
