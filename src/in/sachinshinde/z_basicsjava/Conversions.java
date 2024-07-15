@@ -120,7 +120,7 @@ public class Conversions {
 		int[] newArr2 = Arrays.copyOf(oldArr, 2);
 		System.out.println(Arrays.toString(newArr2));	//	[-1, -1]
 
-//		12. Define
+//		12. Define  modulo 10^9 + 7
 		final int MOD1 = (int) (1e9 + 7);
 		final int MOD2 = 1000000007;
 		final int MOD3 = 100_00_00_007;
