@@ -119,6 +119,15 @@ public class Conversions {
 		System.out.println(Arrays.toString(newArr));	//	[-1, -1, -1, -1]
 		int[] newArr2 = Arrays.copyOf(oldArr, 2);
 		System.out.println(Arrays.toString(newArr2));	//	[-1, -1]
+
+//		12. Define
+		final int MOD1 = (int) (1e9 + 7);
+		final int MOD2 = 1000000007;
+		final int MOD3 = 100_00_00_007;
+		System.out.println(MOD1);
+		System.out.println(MOD2);
+		System.out.println(MOD3);
+
 	}
 
 }
