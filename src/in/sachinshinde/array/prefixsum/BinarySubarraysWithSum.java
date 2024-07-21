@@ -58,6 +58,27 @@ public class BinarySubarraysWithSum {
         BinarySubarraysWithSum subarrays = new BinarySubarraysWithSum();
         System.out.println(subarrays.numSubarraysWithSum(new int[]{1, 0, 1, 0, 1}, 2));     //  4
         System.out.println(subarrays.numSubarraysWithSum(new int[]{0, 0, 0, 0, 0}, 0));     //  15
+
+        System.out.println(subarrays.numSubarraysWithSum2(new int[]{1, 0, 1, 0, 1}, 2));     //  4
+        System.out.println(subarrays.numSubarraysWithSum2(new int[]{1, 0, 1}, 2));          //  1
+        System.out.println(subarrays.numSubarraysWithSum(new int[]{0, 0, 0, 0, 0}, 0));     //  15
     }
 
+
+    //  Sliding Window (Two Pointer) Approach
+    public int numSubarraysWithSum2(int[] nums, int goal) {
+        return getSubArrayCount(nums, goal) - getSubArrayCount(nums, goal - 1);
+    }
+    private int getSubArrayCount(int[] nums, int goal) {
+        int head, tail = 0, sum = 0, result = 0;
+        for (head = 0; head < nums.length; head++) {
+            sum += nums[head];
+            while (sum > goal && tail <= head) {    // pruning
+                sum -= nums[tail];
+                tail++;
+            }
+            result += head - tail + 1;  // nums of subarrays with current subarray starting from index tail to head
+        }
+        return result;
+    }
 }
