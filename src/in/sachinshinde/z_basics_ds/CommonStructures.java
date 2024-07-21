@@ -1,9 +1,6 @@
 package in.sachinshinde.z_basics_ds;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class CommonStructures {
 
@@ -132,4 +129,39 @@ public class CommonStructures {
 		}
 	}
 
+	//	4.	Prefix Sum
+
+	public void prefixSum() {
+		int[] nums = new int[]{1, 2, 3, 4};
+		int n = nums.length;
+		int[] pSum;
+
+		//	representations 1 : [0, 1, 3, 6, 10]
+		pSum = new int[n + 1];
+		for (int i = 0; i < n; i++) {
+			pSum[i + 1] = pSum[i] + nums[i];
+		}
+		System.out.println(Arrays.toString(pSum));
+
+		//	representations 2 : [0, 1, 3, 6, 10]
+		pSum = new int[n + 1];
+		for (int i = 1; i < pSum.length; i++) {
+			pSum[i] = pSum[i - 1] + nums[i - 1];
+		}
+		System.out.println(Arrays.toString(pSum));
+
+		//	representations 3 : [1, 3, 6, 10]
+		pSum = new int[n];
+		pSum[0] = nums[0];
+		for (int i = 1; i < n; i++) {
+			pSum[i] = pSum[i - 1] + nums[i];
+		}
+		System.out.println(Arrays.toString(pSum));
+	}
+
+
+	public static void main(String[] args) {
+		CommonStructures cs = new CommonStructures();
+		cs.prefixSum();
+	}
 }
