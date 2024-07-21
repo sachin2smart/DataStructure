@@ -32,6 +32,10 @@ package in.sachinshinde.array.prefixsum;
 
  */
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.IntStream;
+
 public class SplitArrayLargestSum {
     //  Approach : Binary Search + Recursion
     public int splitArray(int[] nums, int k) {
@@ -125,5 +129,66 @@ public class SplitArrayLargestSum {
         System.out.println(sum.splitArray2(new int[]{7,2,5,10,8}, 2));       //  18
         System.out.println(sum.splitArray2(new int[]{1,2,3,4,5}, 2));        //  9
         System.out.println(sum.splitArray2(new int[]{1}, 1));                //  1
+
+        System.out.println(sum.splitArray3(new int[]{7,2,5,10,8}, 2));       //  18
+        System.out.println(sum.splitArray3(new int[]{1,2,3,4,5}, 2));        //  9
+        System.out.println(sum.splitArray3(new int[]{1}, 1));                //  1
+    }
+
+    //  Approach : Binary Search
+    //----------------------------
+    //  if you know the maxValue and sum of all elements - how you can reach to the solution ?
+    public int splitArray3(int[] nums, int k) {
+        int left =  Arrays.stream(nums).summaryStatistics().getMax();
+        //  Arrays.stream(nums).max().getAsInt();
+        //  getMaximum(nums);
+
+        int right = (int) Arrays.stream(nums).summaryStatistics().getSum();
+        //  IntStream.of(nums).sum();
+        //  getSumArray(nums);
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (isValid(nums, k, mid)) {
+                right = mid;
+            }
+            else {
+                left = mid + 1;
+            }
+        }
+        return right;
+    }
+
+    private boolean isValid(int[] nums, int k, int mid) {
+        int steps = 1, currSum = 0;
+        for (int num: nums) {
+            currSum += num;
+            if (currSum > mid) {
+                steps++;
+                currSum = num;
+                if (steps > k) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //  getting the maximum among the element present in the array
+    private int getMaximum(int[] nums) {
+        int max = nums[0];
+        for (int num : nums) {
+            max = Math.max(max, num);
+        }
+        return max;
+    }
+
+    // getting the sum of all the element present in the array
+    private int getSumArray(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        return sum;
     }
 }
