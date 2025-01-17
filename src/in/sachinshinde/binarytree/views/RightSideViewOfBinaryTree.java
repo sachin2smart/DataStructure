@@ -4,6 +4,7 @@ import in.sachinshinde.binarytree.Node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /*
 
@@ -30,6 +31,7 @@ Binary Tree:
 
 public class RightSideViewOfBinaryTree {
 
+    //  Recursive way in DFS manner
     private void rightView(Node root, List<Integer> result, int level) {
         if(root == null) {
             return;
@@ -71,5 +73,52 @@ public class RightSideViewOfBinaryTree {
 
         List<Integer> result = tree.rightViewUtil(root);
         System.out.println("Right Side View of Binary Tree : " + result); // [1, 3, 7, 10]
+
+        List<Integer> result_itr = tree.rightViewUtil_iterative(root);
+        System.out.println("Right Side View of Binary Tree : " + result_itr); // [1, 3, 7, 10]
+    }
+
+    /*
+         **  Simplify Level Tracking:  **
+         * -----------------------------*
+                - Use a simpler mechanism for level tracking, such as a Pair class to hold node and level information.
+     */
+    private static class Pair {
+        Node node;
+        int level;
+
+        Pair(Node node, int level) {
+            this.node = node;
+            this.level = level;
+        }
+    }
+
+    //  Iterative way in BFS manner
+    //  -   Iterative DFS: Avoids potential stack overflow with deep trees.
+    public List<Integer> rightViewUtil_iterative(Node root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) return result;
+
+        Stack<Pair> stack = new Stack<>();
+        stack.push(new Pair(root, 0));
+
+        while (!stack.isEmpty()) {
+            Pair current = stack.pop();
+            Node node = current.node;
+            int level = current.level;
+
+            if (level == result.size()) {
+                result.add(node.key);
+            }
+
+            if (node.left != null) {
+                stack.push(new Pair(node.left, level + 1));
+            }
+            if (node.right != null) {
+                stack.push(new Pair(node.right, level + 1));
+            }
+        }
+
+        return result;
     }
 }

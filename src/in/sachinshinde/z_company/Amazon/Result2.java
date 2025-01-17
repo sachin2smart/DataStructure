@@ -1,4 +1,4 @@
-package in.sachinshinde.z_company.Robinhood;
+package in.sachinshinde.z_company.Amazon;
 
 import java.util.Arrays;
 
@@ -114,9 +114,6 @@ public class Result2 {
             dp[0][0] = 0;
 
             for (int i = 1; i <= n; i++) {
-                if(i>1 && i<n-2 &&(errorString.charAt(i - 1) == '!' && errorString.charAt(i - 2) == '!') ) {
-                    continue;
-                }
                 if (errorString.charAt(i - 1) == '0' || errorString.charAt(i - 1) == '!') {
                     for (int j = 0; j <= i; j++) {
                         if (dp[i - 1][j] < Long.MAX_VALUE) {

@@ -1,2 +1,7 @@
-package in.sachinshinde.array.prefixsum;public class CanMakePalindromeFromSubstring {
+package in.sachinshinde.array.prefixsum;
+
+public class CanMakePalindromeFromSubstring {
+
+
+
 }

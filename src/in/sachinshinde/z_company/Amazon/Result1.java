@@ -1,4 +1,4 @@
-package in.sachinshinde.z_company.Robinhood;
+package in.sachinshinde.z_company.Amazon;
 
 import java.util.ArrayList;
 import java.util.Collections;
