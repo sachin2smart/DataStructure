@@ -1,9 +1,6 @@
 package in.sachinshinde.array.medium;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 //	https://leetcode.com/problems/merge-intervals/
 	
@@ -27,18 +24,18 @@ public class MergeOverlappingIntervals {
             return intervals;
         }
         
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
         
         LinkedList<int[]> mergedIntervals = new LinkedList<>();
         
         for(int[] curr : intervals) {
-        	//	if next start is greater than the merged's end, just add it to merged 
+        	//	if next start is greater than the last merged interval's end, just add it as a new interval
             if(mergedIntervals.isEmpty() || mergedIntervals.getLast()[1] < curr[0]) {
                 mergedIntervals.add(curr);
             }
             else {
-                //	if next start is less than merged's end, it means it falls under merged,
-                //	so check for end and update the max of next's end or merged's end
+                //	if curr's start is less than merged interval's end, it means it falls under merged,
+                //	so check for end and update the max of next's end or merged end
                 mergedIntervals.getLast()[1] = Math.max(mergedIntervals.getLast()[1], curr[1]);
             }
         }

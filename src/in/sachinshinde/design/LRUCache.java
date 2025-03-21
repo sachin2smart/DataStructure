@@ -1,4 +1,4 @@
-package in.sachinshinde.misc;
+package in.sachinshinde.design;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 /*
  *	
- 	Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.
+ 	Design a data structure that follows the constraints of the Least Recently Used (LRU) cache.
 
 	Implement the LRUCache class:
 	## LRUCache(int capacity) 
@@ -32,7 +32,7 @@ public class LRUCache {
 	Node head = new Node(0, 0);
 	Node tail = new Node(0, 0);
 	
-	Map<Integer, Node> map = new HashMap<>();
+	Map<Integer, Node> map = new HashMap<>();	//	key to node map
 	int capacity;
 	  
 	public LRUCache(int _capacity) {
@@ -69,11 +69,21 @@ public class LRUCache {
 	  node.next.prev = node.prev;
 	}
 	  
-	private void insert(Node node){
+	private void insert(Node node) {
 	  map.put(node.key, node);
 	  node.next = head.next;
 	  node.next.prev = node;
 	  head.next = node;
 	  node.prev = head;
+	}
+
+	private static class Node {
+		Node prev, next;
+		int key, value;
+
+		Node(int key, int value) {
+			this.key = key;
+			this.value = value;
+		}
 	}
 }

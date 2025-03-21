@@ -28,38 +28,46 @@ import java.util.Arrays;
  */
 
 public class RotateArray {
-	public static void main(String[] args) {
-		int a[] = {1,2,3,4,5,6,7};
-		int r = 3;
-		System.out.println(Arrays.toString(a));
-		a = rotateArray(a, r);
-		System.out.println(Arrays.toString(a));
-		
-		int[] b = {1,2,3,4,5};
-		r = 2;
-		System.out.println(Arrays.toString(b));
-		b = rotateArray(b, r);
-		System.out.println(Arrays.toString(b));
-	}
-	
-	static int[] rotateArray(int nums[], int k) {
-	    if(k> nums.length) {
-			k %= nums.length;
+
+	/* Steps:
+			1.	Reverse the entire array
+			2.	Reverse the array (0...k-1)
+			3.	Reverse the array (k...n-1)
+	 */
+	static void rotateArray(int[] nums, int k) {	//	input : 1,2,3,4,5,6,7
+		int n = nums.length;
+
+		if(k > n) {
+			k %= n;
 		}
-	    reverse(nums, 0, nums.length - 1);	// rotated array as [7,6,5,4,3,2,1].
-	    reverse(nums, 0, k - 1);				// rotated array as [5,6,7,4,3,2,1].
-	    reverse(nums, k, nums.length - 1);			// rotated array as [5,6,7,1,2,3,4].
-	    return nums;
+
+	    reverse(nums, 0, n - 1);		// rotated array as [7,6,5,4,3,2,1].
+	    reverse(nums, 0, k - 1);		// rotated array as [5,6,7,4,3,2,1].
+	    reverse(nums, k, n - 1);				// rotated array as [5,6,7,1,2,3,4].
 	}
 
 	static void reverse(int[] nums, int start, int end) {
 	    while (start < end) {
-	        int temp = nums[start];
+	        int currNum = nums[start];
 	        nums[start] = nums[end];
-	        nums[end] = temp;
+	        nums[end] = currNum;
 	        start++;
 	        end--;
 	    }
+	}
+
+	public static void main(String[] args) {
+		int[] a = {1,2,3,4,5,6,7};
+		int r = 3;
+		System.out.println(Arrays.toString(a));
+		rotateArray(a, r);
+		System.out.println(Arrays.toString(a));
+
+		int[] b = {1,2,3,4,5};
+		r = 2;
+		System.out.println(Arrays.toString(b));
+		rotateArray(b, r);
+		System.out.println(Arrays.toString(b));
 	}
 
 }

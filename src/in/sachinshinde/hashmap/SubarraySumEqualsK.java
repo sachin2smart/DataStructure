@@ -40,11 +40,13 @@ public class SubarraySumEqualsK {
         for(int num: nums) {
             sum += num;
             
-            if(sum == k)
-        	    res++;
+            if(sum == k) {
+                res++;
+            }
             
-            if(hm.containsKey(sum - k))		// if prefix sum found, add the corresponding count into the result
-        	    res += hm.get(sum -k);
+            if(hm.containsKey(sum - k)) {    // if prefix sum found, add the corresponding count into the result
+                res += hm.get(sum - k);
+            }
             
             hm.put(sum, hm.getOrDefault(sum, 0) + 1);
         }
@@ -52,17 +54,19 @@ public class SubarraySumEqualsK {
         return res;
     }
     
-    public int subarraySum_2(int[] nums, int k) { 
-	// Map : PrefixSum -> Count
-        Map<Integer, Integer> hm = new HashMap<>();
+    public int subarraySum_2(int[] nums, int k) {
         int sum = 0, res = 0;
-        hm.put(0, 1);
+
+        // Map : PrefixSum -> Count
+        Map<Integer, Integer> hm = new HashMap<>();
+        hm.put(0, 1);   //  why?
         
         for(int num: nums) {
             sum += num;
             
-            if(hm.get(sum-k) != null)	//	hm value is of Integer type, if the key does not have a value - it will return a NULL 
-        	    res += hm.get(sum-k);
+            if(hm.get(sum-k) != null) {    //	hm value is of Integer type, if the key does not have a value - it will return a NULL
+                res += hm.get(sum - k);
+            }
              
             hm.put(sum, hm.getOrDefault(sum, 0) + 1);
         }
@@ -73,6 +77,32 @@ public class SubarraySumEqualsK {
     public static void main(String[] args) {
         SubarraySumEqualsK sum = new SubarraySumEqualsK();
         System.out.println(sum.subarraySum(new int[] {1,-1,1,1,1,1}, 3));	// 4
+        System.out.println(sum.subarraySum(new int[] {0,0,0,0,0,0}, 0));	// 21
         System.out.println(sum.subarraySum_2(new int[] {1,-1,1,1,1,1}, 3));	// 4
+        System.out.println(sum.subarraySum(new int[] {0,0,0,0,0,0}, 0));	// 21
+
+        System.out.println(sum.subarraySum3(new int[] {1,-1,1,1,1,1}, 3));	// 4
+        System.out.println(sum.subarraySum3(new int[] {0,0,0,0,0,0}, 0));	// 21
+    }
+
+    //  without hashmap
+    public int subarraySum3(int[] nums, int k) {
+        int count = 0;
+
+        int[] sum = new int[nums.length + 1];
+        sum[0] = 0;
+        for (int i = 1; i <= nums.length; i++) {
+            sum[i] = sum[i - 1] + nums[i - 1];
+        }
+
+        for (int start = 0; start < sum.length; start++) {
+            for (int end = start + 1; end < sum.length; end++) {
+                if (sum[end] - sum[start] == k) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 }

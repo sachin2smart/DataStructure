@@ -14,6 +14,8 @@ package in.sachinshinde.sort;
  *	If there are several possible values for h, the maximum one is taken as the h-index. 	
  */
 
+import java.util.Arrays;
+
 public class HIndex_CountingSort {
 	
 	public int hIndex(int[] citations) {
@@ -41,6 +43,19 @@ public class HIndex_CountingSort {
 		System.out.println(sort.hIndex(new int[] {8,9,7,5,2,2,3}));		//	4 
 		System.out.println(sort.hIndex(new int[] {800,900,700,500,200,200,300}));	//	7
 	}
+
+    //  Time Complexity : soring (n log n), iteration: O(n); Overall: O(n log n)
+    public int hIndex2(int[] citations) {
+        Arrays.sort(citations);
+        int n = citations.length;
+        for (int i = 0; i < n; i++) {
+            int currCtIndex = n - i;
+            if (citations[i] >= currCtIndex) {
+                return currCtIndex;
+            }
+        }
+        return 0;
+    }
 }
 
 /*
@@ -48,7 +63,7 @@ public class HIndex_CountingSort {
 		Given the user and there posts, maximize the likes of N posts where N appears at least N times.
 		For eg. 
 		1. 	Consider likes = [8,6,5,5,2,1] Output: 4 (Because there are 4 post with 4 likes. )
-			Explaination: 8 contains 4 likes, 6 contains 4 likes,5 contains 4 likes,5 contains 4 likes and 
+			Explanation: 8 contains 4 likes, 6 contains 4 likes,5 contains 4 likes,5 contains 4 likes and
 				more importantly number of posts are 4
 		2. 	likes = [1,2,2] Output 2 (Because there are 2 post with 2 likes)
 		3. 	likes = [1,3,4,2] Output 2(Because there are 2 post with 2 likes)

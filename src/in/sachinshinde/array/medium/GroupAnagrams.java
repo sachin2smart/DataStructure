@@ -47,6 +47,8 @@ public class GroupAnagrams {
 			//	freq represents the key for the hm, but it is not required for the result
 			//	same key can be present for multiple words, that gives the anagram words
 			char[] freq = new char[26];
+
+			//	iterate over each character of the current string and generate the freq map
 			for(char ch: str.toCharArray()) {
 				freq[ch - 'a']++;
 			}
@@ -60,9 +62,11 @@ public class GroupAnagrams {
 		return new ArrayList<>(hm.values());	// take only value from the hm
 	}
 
+	//	Using the sort on the char array of each word and then group them using hashmap
     public List<List<String>> groupAnagrams(String[] strs) {
-        if(strs.length==0 || strs==null)
-        	return new ArrayList<>();
+        if(strs == null || strs.length == 0) {
+			return new ArrayList<>();
+		}
         
         Map<String, List<String>> mappedAnagrams = new HashMap<>();
         
@@ -71,8 +75,9 @@ public class GroupAnagrams {
         	Arrays.sort(letters);
         	String anagramWord = String.valueOf(letters);
         	
-        	if(!mappedAnagrams.containsKey(anagramWord))
-        		mappedAnagrams.put(anagramWord, new ArrayList<>());
+        	if(!mappedAnagrams.containsKey(anagramWord)) {
+				mappedAnagrams.put(anagramWord, new ArrayList<>());
+			}
         	
         	mappedAnagrams.get(anagramWord).add(str);
         }
@@ -127,7 +132,7 @@ public class GroupAnagrams {
 		return sb.toString();
 	}
 
-	//
+
 	public List<List<String>> groupAnagrams3(String[] strs) {
 		HashMap<String,List<String>> map = new HashMap<>();
 		for(String str:strs) {

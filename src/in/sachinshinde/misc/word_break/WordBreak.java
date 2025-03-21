@@ -1,8 +1,6 @@
 package in.sachinshinde.misc.word_break;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 //	https://leetcode.com/problems/word-break/
 
@@ -81,6 +79,8 @@ public class WordBreak {
 		System.out.println(wordBreak.wordBreak(s, wordList));
 		System.out.println(wordBreak.wordBreak2(s, wordList));
 		System.out.println(wordBreak.wordBreak3(s, wordList));
+		System.out.println(wordBreak.wordBreak4(s, wordList));
+		System.out.println(wordBreak.wordBreak5(s, wordList));
 		
 		s = "iloveaaaaleetcode";
 		wordList = Arrays.asList("love","a","i","code","leet");
@@ -88,6 +88,8 @@ public class WordBreak {
 		System.out.println(wordBreak.wordBreak(s, wordList));
 		System.out.println(wordBreak.wordBreak2(s, wordList));
 		System.out.println(wordBreak.wordBreak3(s, wordList));
+		System.out.println(wordBreak.wordBreak4(s, wordList));
+		System.out.println(wordBreak.wordBreak5(s, wordList));
 		
 		s = "ialsolovegfg";
 		wordList = Arrays.asList("love","a","i","code","leet");
@@ -95,6 +97,8 @@ public class WordBreak {
 		System.out.println(wordBreak.wordBreak(s, wordList));
 		System.out.println(wordBreak.wordBreak2(s, wordList));
 		System.out.println(wordBreak.wordBreak3(s, wordList));
+		System.out.println(wordBreak.wordBreak4(s, wordList));
+		System.out.println(wordBreak.wordBreak5(s, wordList));
 	}
 	
 	// memoization
@@ -126,7 +130,7 @@ public class WordBreak {
     //	DP with 1D array
     public boolean wordBreak3(String s, List<String> wordDict) {
     	int n = s.length();
-    	boolean dp[] = new boolean[n+1];
+    	boolean[] dp = new boolean[n+1];
     	dp[0] = true;
     	for(int i=1; i<=n; i++) {
             for(int j=0; j<i; j++) {
@@ -138,4 +142,37 @@ public class WordBreak {
         }
         return dp[n];
     }
+
+	//	***********	simple and elegant	**********
+	public boolean wordBreak4(String s, List<String> dict) {
+		int n = s.length();
+		boolean[] dp = new boolean[n + 1];
+		dp[0] = true;
+		for(int i = 1; i <= n; i++) {
+			for(int j = 0; j < i; j++) {
+				if(dp[j] && dict.contains(s.substring(j, i))) {
+					dp[i] = true;
+					break;
+				}
+			}
+		}
+		return dp[n];
+	}
+
+	//	using set, j ==> i-1..0, memoization
+	public boolean wordBreak5(String s, List<String> wordDict) {
+		int n = s.length();
+		boolean[] dp = new boolean[n + 1];
+		dp[0] = true;
+		Set<String> set = new HashSet<>(wordDict);
+		for (int i = 1; i <= n; i++) {
+			for (int j = i - 1; j >= 0; j--) {
+				dp[i] = dp[j] && set.contains(s.substring(j, i));
+				if(dp[i]) {
+					break;
+				}
+			}
+		}
+		return dp[n];
+	}
 }

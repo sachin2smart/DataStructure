@@ -19,32 +19,35 @@ package in.sachinshinde.misc.state_machine;
 public class BuySell {
 	//	Naive Approach : TC = O(n)
 	public int maxProfit(int[] priceOfDay) {
-        int leastPriceSofar = Integer.MAX_VALUE;
+        int leastPriceSoFar = Integer.MAX_VALUE;
         int maxProfitGainSoFar = 0;
-        int profitIfSoldToday = 0;
-        
-        for(int i = 0; i < priceOfDay.length; i++){
-            if(priceOfDay[i] < leastPriceSofar)
-            	leastPriceSofar = priceOfDay[i];
-            
-            profitIfSoldToday = priceOfDay[i] - leastPriceSofar;
-            
-            if(maxProfitGainSoFar < profitIfSoldToday)
-            	maxProfitGainSoFar = profitIfSoldToday;
-            
-        }
+
+        int profitIfSoldToday;
+
+		for (int currPrice : priceOfDay) {
+			if (currPrice < leastPriceSoFar) {
+				leastPriceSoFar = currPrice;
+			}
+
+			profitIfSoldToday = currPrice - leastPriceSoFar;
+
+			if (maxProfitGainSoFar < profitIfSoldToday) {
+				maxProfitGainSoFar = profitIfSoldToday;
+			}
+
+		}
         return maxProfitGainSoFar;
     }
 	
 	//	DP Approach : TC = O(n)
 	public int maxProfit2(int[] prices) {
-		int miniumPrice = Integer.MAX_VALUE;
-		int maximumProfit = 0;
-		for(int i = 0; i < prices.length; i++){
-			miniumPrice = Math.min(miniumPrice, prices[i]);
-			maximumProfit = Math.max(maximumProfit,(prices[i] - miniumPrice));
-	    }
-	    return maximumProfit;
+		int minPrice = Integer.MAX_VALUE;
+		int maxProfit = 0;
+		for (int price : prices) {
+			minPrice = Math.min(minPrice, price);
+			maxProfit = Math.max(maxProfit, price - minPrice);
+		}
+	    return maxProfit;
     }
 	
 	public static void main(String[] args) {

@@ -8,19 +8,43 @@ package in.sachinshinde.linkedlist;
  * 	CONSTRAINT:: If the two linked lists have no intersection at all, return null.
  */
 
+import java.util.List;
+
 public class IntersectionOfTwoLinkedList {
 
 	private ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-		if(headA == null || headB == null) return null;
+		if(headA == null || headB == null) {
+			return null;
+		}
 	    ListNode a = headA;
 	    ListNode b = headB;
-	    while( a != b){
+	    while( a != b) {
 	        a = a == null? headB : a.next;
 	        b = b == null? headA : b.next;    
 	    }
 	    return a;
 	}
-	
+
+	public static void main(String[] args) {
+		IntersectionOfTwoLinkedList intersectionOfTwoLinkedList = new IntersectionOfTwoLinkedList();
+		ListNode headA = new ListNode(4);
+		headA.next = new ListNode(1);
+
+		ListNode headB = new ListNode(5);
+		headB.next = new ListNode(6);
+		headB.next.next = new ListNode(1);
+
+		ListNode headC = new ListNode(8);
+		headC.next = new ListNode(4);
+		headC.next.next = new ListNode(5);
+
+		headA.next.next = headC;
+		headB.next.next.next = headC;
+
+		ListNode resultNode = intersectionOfTwoLinkedList.getIntersectionNode(headA, headB);
+		System.out.println(resultNode.data);	//	8
+
+	}
 }
 
 

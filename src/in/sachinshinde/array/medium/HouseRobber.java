@@ -95,9 +95,9 @@ public class HouseRobber {
     	int prev2 = 0;
     	
     	for(int num: nums) {
-    		int temp = prev1;
-    		prev1 = Math.max(prev2 + num, prev1);
-    		prev2 = temp;
+    		int curr = prev1;
+    		prev1 = Math.max(prev1, prev2 + num);
+    		prev2 = curr;
     	}
     	
     	return prev1;

@@ -52,7 +52,7 @@ public class NumberOfIslands {
 		dfs(grid, i, j+1);   //	sink island into the water on the "right" side if land exists
 		dfs(grid, i, j-1);	//	sink island into the water on the "left" side if land exists
 
-		return 1;
+		return 1;	//	once the current island got synced, return that - there exists one island from the point it started
 	}
 	
 	public static void main(String[] args) {

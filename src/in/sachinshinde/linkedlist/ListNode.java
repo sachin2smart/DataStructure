@@ -9,4 +9,7 @@ public class ListNode {
 		this.data = d;
 		this.next = null;
 	}
+
+	public ListNode() {
+	}
 }

@@ -32,22 +32,25 @@ import java.util.Arrays;
  */
 public class NextPermutation {
     public void nextPermutation(int[] nums) {
-	int n = nums.length;
-	int i = n - 2;
+        int n = nums.length;
+        int i = n - 2;
 	
-	// i == find previous decreasing number
-        while (i >= 0 && nums[i + 1] <= nums[i])
+	    // i == find previous decreasing number
+        while (i >= 0 && nums[i + 1] <= nums[i]) {
             i--;
+        }
         
         if (i >= 0) {
             int j = n - 1;
             
             //	j == find first greater element from right of i
-            while (nums[j] <= nums[i])
+            while (nums[j] <= nums[i]) {
                 j--;
+            }
             
             swap(nums, i, j);	//	swap one time
         }
+
         reverse(nums, i + 1);	//	reverse one time from next of i
         
         System.out.println(Arrays.toString(nums));

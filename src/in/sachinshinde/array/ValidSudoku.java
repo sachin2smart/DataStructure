@@ -27,53 +27,59 @@ public class ValidSudoku {
 	    System.out.println();
 	}
     }
+
+
     public boolean isValidSudoku3(char[][] board) {
-	Set<Character>[] rows = new HashSet[9];
-	Set<Character>[] cols = new HashSet[9];
-	Set<Character>[] boxes = new HashSet[9];
+		Set<Character>[] rows = new HashSet[9];
+		Set<Character>[] cols = new HashSet[9];
+		Set<Character>[] boxes = new HashSet[9];
 
-	for (int r = 0; r < 9; r++) {
-	    rows[r] = new HashSet<Character>();
-	    cols[r] = new HashSet<Character>();
-	    boxes[r] = new HashSet<Character>();
-	}
-
-	for (int r = 0; r < board.length; r++) {
-	    for (int c = 0; c < board[0].length; c++) {
-		char currNum = board[r][c];
-		
-		if (currNum == '.')
-		    continue;
-		
-		if (rows[r].contains(currNum) || 
-			cols[c].contains(currNum) || 
-			boxes[(r / 3) * 3 + c / 3].contains(currNum)) {
-		    return false;
-		} 
-		else {
-		    rows[r].add(currNum);
-		    cols[c].add(currNum);
-		    boxes[(r / 3) * 3 + c / 3].add(currNum);
-		    /*
-		     	boxes indices 
-		     	[	using (r/3)*3 + c/3	]
-		     	-----------------
-		     	0 0 0 1 1 1 2 2 2 
-                        0 0 0 1 1 1 2 2 2 
-                        0 0 0 1 1 1 2 2 2 
-                        3 3 3 4 4 4 5 5 5 
-                        3 3 3 4 4 4 5 5 5 
-                        3 3 3 4 4 4 5 5 5 
-                        6 6 6 7 7 7 8 8 8 
-                        6 6 6 7 7 7 8 8 8 
-                        6 6 6 7 7 7 8 8 8
-                        ----------------- 
-		     */
+		for (int r = 0; r < 9; r++) {
+			rows[r] = new HashSet<>();
+			cols[r] = new HashSet<>();
+			boxes[r] = new HashSet<>();
 		}
-	    }
-	}
-	return true;
+
+		for (int r = 0; r < board.length; r++) {
+			for (int c = 0; c < board[0].length; c++) {
+				char currNum = board[r][c];
+
+				if (currNum == '.')
+					continue;
+
+				int boxIndex = (r / 3) * 3 + c / 3;
+
+				if (rows[r].contains(currNum) ||
+					cols[c].contains(currNum) ||
+					boxes[boxIndex].contains(currNum)) {
+					return false;
+				}
+				else {
+					rows[r].add(currNum);
+					cols[c].add(currNum);
+					boxes[boxIndex].add(currNum);
+				}
+	    	}
+		}
+		return true;
     }
+
+					/*
+						boxes indices
+						[	using (r/3)*3 + c/3	]
+						-----------------
+								0 0 0 1 1 1 2 2 2
+								0 0 0 1 1 1 2 2 2
+								0 0 0 1 1 1 2 2 2
+								3 3 3 4 4 4 5 5 5
+								3 3 3 4 4 4 5 5 5
+								3 3 3 4 4 4 5 5 5
+								6 6 6 7 7 7 8 8 8
+								6 6 6 7 7 7 8 8 8
+								6 6 6 7 7 7 8 8 8
+								-----------------
+					 */
+
     
     public boolean isValidSudoku(char[][] board) {
 	Set<String> seen = new HashSet<>();

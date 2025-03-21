@@ -18,17 +18,17 @@ import java.util.Set;
 public class LongestSubstringWithNoRepeatedChars {
 
 	public static int getLengthOfLongestSubstring(String s) {
-		int i = 0, j = 0, longLength = 0;
+		int left = 0, right = 0, longLength = 0;
 	    Set<Character> set = new HashSet<>();
 	    
-	    while (j < s.length()) {
-	        if (!set.contains(s.charAt(j))) {
-	            set.add(s.charAt(j++));
+	    while (right < s.length()) {
+	        if (!set.contains(s.charAt(right))) {
+	            set.add(s.charAt(right++));
 	            longLength = Math.max(longLength, set.size());
 	        }
-	        else
-	        	set.remove(s.charAt(i++));
-	        
+	        else {
+				set.remove(s.charAt(left++));
+			}
 	    }
 	    return longLength;
 	}

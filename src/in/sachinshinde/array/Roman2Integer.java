@@ -78,12 +78,11 @@ public class Roman2Integer {
                 sum -= prev;
             else
                 sum += prev;
-            
-            //udpare prev because it is like sliding window
-            prev = next;
+
+            prev = next;	//	update prev, move left pointer to next number (Sliding Window)
         }
 
-        sum += prev;//corner case when only one digit, we need to let sum = prev, so we add prev, not next
+        sum += prev;	//	add the value of the last roman character, which is stored in "prev" pointer
         return sum;
     }
 	
@@ -128,7 +127,7 @@ public class Roman2Integer {
                 case 'D': num = 500; break;
                 case 'M': num = 1000; break;
             }
-            if(4 * num < ans) 
+            if(4 * num < ans) 	//	why 4*num ?
             	ans -= num;
             else 
             	ans += num;

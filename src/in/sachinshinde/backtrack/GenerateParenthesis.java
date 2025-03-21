@@ -47,4 +47,32 @@ public class GenerateParenthesis {
 	public static void main(String[] args) {
 		System.out.println(generateParenthesis(3));
 	}
+
+	public List<String> generateParenthesis2(int n) {
+		List<String> list = new ArrayList<>();
+
+		generateRec(list, "", n, n);
+
+		return list;
+	}
+
+	private void generateRec (List<String> list, String curr, int left, int right) {
+		// Base Case: ( and ) are ran out
+		if (left == 0 && right == 0) {
+			list.add(curr);
+		}
+
+		// Recurse
+		// Only when there are more ( than ) in the curr, we can choose to add )
+		if (left < right) {
+			String newCurr = curr + ")";
+			generateRec(list, newCurr, left, right - 1);
+		}
+
+		// If left is not 0, adding ( is always an option
+		if (left != 0) {
+			String newCurr = curr + "(";
+			generateRec(list, newCurr, left - 1, right);
+		}
+	}
 }

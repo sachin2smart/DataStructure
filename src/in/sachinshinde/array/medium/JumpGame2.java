@@ -36,6 +36,7 @@ package in.sachinshinde.array.medium;
 
 public class JumpGame2 {
 
+    //  Video Link: https://youtu.be/dJ7sWiOoK7g
     public int jump3(int[] nums) {
         int n = nums.length;
         int jumps = 0;
@@ -69,11 +70,11 @@ public class JumpGame2 {
         }
 
         // Greedy strategy: extend coverage as long as possible with lazp jump
-        for(int currPos = 0 ; currPos < n ; currPos++) {
+        for(int currPos = 0; currPos < n; currPos++) {
             // extend coverage
             currCoveragePos = Math.max(currCoveragePos, currPos + nums[currPos]);
             if(currPos == lastJumpPos) {
-                lastJumpPos = currCoveragePos;
+                lastJumpPos = currCoveragePos;  //  actual jump
                 jumpTimes++;
                 // check if we reached destination already
                 if(currCoveragePos >= destinationPos) {
@@ -98,6 +99,7 @@ public class JumpGame2 {
     public int jump2(int[] nums) {
         int n = nums.length;
 
+        //  is the currIndex + currValue < previous index value : choose the max between them
         for(int i = 1; i < n; i++) {
             nums[i] = Math.max(nums[i] + i, nums[i-1]); // if the modification to the input array is allowed
         }
@@ -107,7 +109,7 @@ public class JumpGame2 {
 
         while(i < n - 1) {
             res++;
-            i = nums[i];
+            i = nums[i];    //  jump to the index from the currValue
         }
 
         return res;
