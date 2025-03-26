@@ -35,6 +35,7 @@ package in.sachinshinde.array.twopointer;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -42,39 +43,46 @@ public class FindKClosestElements {
 
     //	Two Pointer Approach : 4ms
     public List<Integer> findClosestElements(int[] arr, int k, int x) {
-	int i=0, j=arr.length-1;
+	    int i = 0, j = arr.length - 1;
         
-	while(j-i >= k)
-            if(Math.abs(arr[i] - x) > Math.abs(arr[j] - x)) 
-        	i++;
-            else
-        	j--;
+	    while(j - i >= k) {
+            if (Math.abs(arr[i] - x) > Math.abs(arr[j] - x)) {
+                i++;
+            }
+            else {
+                j--;
+            }
+        }
         
         List<Integer> res = new ArrayList<>();
         
-        for(int p=i; p<=j; p++)
+        for(int p = i; p <= j; p++) {
             res.add(arr[p]);
+        }
         
         return res;
     }
     
     //	Sliding Window Approach (Binary Search) : 3ms
     public List<Integer> findClosestElements2(int[] arr, int k, int x) {
-	int i = 0, j = arr.length - k;
-	while (i < j) {
-	    int mid = (i + j) / 2;
-	    if(x - arr[mid] > arr[mid + k] - x) 
-		i = mid + 1;
-	    else
-		j = mid;
-	    
-	}
-	
-	List<Integer> res = new ArrayList<>();
-	for(int p = i; p < i+k; p++)
-	    res.add(arr[p]);
-	
-	return res;
+        int i = 0, j = arr.length - k;
+        while (i < j) {
+            int mid = (i + j) / 2;
+            if(x - arr[mid] > arr[mid + k] - x) {
+                i = mid + 1;
+            }
+            else {
+                j = mid;
+            }
+        }
+
+        List<Integer> res = new ArrayList<>();
+
+        for(int p = i; p < i+k; p++) {
+            res.add(arr[p]);
+        }
+
+        return res;
     }
     
     // Heap Approach ()using priority Queue : 27ms
@@ -83,22 +91,18 @@ public class FindKClosestElements {
     public List<Integer> findClosestElements3(int[] arr, int k, int x) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
 	
-        for(int i: arr) {
+        for(int ele: arr) {
             if(k > 0) {	
-                pq.offer(i);
+                pq.offer(ele);
                 k--;
             }
-            else if(Math.abs(i - x) < Math.abs(pq.peek() - x)) {
+            else if(!pq.isEmpty() && Math.abs(ele - x) < Math.abs(pq.peek() - x)) {
                 pq.remove();
-                pq.offer(i);
+                pq.offer(ele);
             }
         }
 
-        List<Integer> res = new ArrayList<>();
-        while(!pq.isEmpty())
-            res.add(pq.poll());
-
-        return res;
+        return new ArrayList<>(pq);
     }
     
     public static void main(String[] args) {
