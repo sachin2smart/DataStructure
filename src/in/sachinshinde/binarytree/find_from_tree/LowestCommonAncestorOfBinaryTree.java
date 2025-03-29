@@ -15,18 +15,20 @@ public class LowestCommonAncestorOfBinaryTree {
 	
 	public Node lowestCommonAncestor(Node root, Node p, Node q) {
 		//	if the node found
-        if (root == null || root == p || root == q) 
-            return root;
+        if (root == null || root == p || root == q) {
+			return root;
+		}
         
         Node left = lowestCommonAncestor(root.left, p, q);
         Node right = lowestCommonAncestor(root.right, p, q);
         
         //	Return the sibling, if it's null
-        if(left == null)	
-        	return right;
-        else 
-        	if(right == null)	
-        		return left;
+        if(left == null) {
+			return right;
+		}
+        else if (right == null) {
+			return left;
+		}
         
         return root;
         

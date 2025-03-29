@@ -52,19 +52,19 @@ public class KthLargestElementInAnArray {
 
     //	Method 2: MinHeap [Using PriorityQueue : Keep only k elements in pq]
     public int findKthLargest_22(int[] nums, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((n1, n2)-> n1-n2);
+        PriorityQueue<Integer> pq = new PriorityQueue<>((n1, n2)-> n1 - n2);
 
-        for(int i = 0; i < k; i++){
+        for(int i = 0; i < k; i++) {
             pq.add(nums[i]);
         }
 
-        for(int i = k; i < nums.length; i++){
-            if(nums[i] > pq.peek()){
+        for(int i = k; i < nums.length; i++) {
+            if(!pq.isEmpty() && nums[i] > pq.peek()) {
                 pq.poll();
                 pq.add(nums[i]);
             }
         }
-        return pq.peek();
+        return pq.isEmpty() ? -1 : pq.peek();
 
     }
     
