@@ -42,6 +42,8 @@ package in.sachinshinde.array.binarysearch;
             The solution may be too advanced for an interview but you may find reading this paper fun.
  */
 
+import in.sachinshinde.heap_priority_queue.KthLargestElementInAnArray;
+
 public class KthSmallestElementInASortedMatrix {
 
     public int kthSmallest(int[][] matrix, int k) {
@@ -78,4 +80,48 @@ public class KthSmallestElementInASortedMatrix {
         return count >= k;
     }
 
+    public static void main(String[] args) {
+        KthSmallestElementInASortedMatrix kthSmallestElementInASortedMatrix = new KthSmallestElementInASortedMatrix();
+        int[][] mat = new int[][] {
+                {1, 5,  9},
+                {10,11,13},
+                {12,13,15}
+        };
+        System.out.println(kthSmallestElementInASortedMatrix.kthSmallest(mat, 8));  //  13
+        System.out.println(kthSmallestElementInASortedMatrix.kthSmallest2(mat, 8));  //  13
+
+        mat = new int[][] {{-5}};
+
+        System.out.println(kthSmallestElementInASortedMatrix.kthSmallest(mat, 1));  // -5
+        System.out.println(kthSmallestElementInASortedMatrix.kthSmallest2(mat, 1));  //  -5
+    }
+
+
+    public int kthSmallest2(int[][] matrix, int k) {
+        int low = matrix[0][0]; //  holds a value, not index
+        int high = matrix[matrix.length - 1][matrix[0].length - 1] + 1; ////  holds a value, not index
+
+        while(low < high) {
+            int mid = low + (high - low) / 2;
+
+            //  from each row count the number of elements which are less than mid-value calculated
+            int numOfEleLessThanMid = 0,  columnIndex = matrix[0].length - 1;
+            for (int[] currRow : matrix) {
+                while (columnIndex >= 0 && currRow[columnIndex] > mid) {
+                    columnIndex--;
+                }
+                numOfEleLessThanMid += (columnIndex + 1);
+            }
+
+            //  binary search flips
+            if(numOfEleLessThanMid < k) {
+                low = mid + 1;
+            }
+            else {
+                high = mid;
+            }
+        }
+
+        return low; //  the answer will be in "low" value
+    }
 }
