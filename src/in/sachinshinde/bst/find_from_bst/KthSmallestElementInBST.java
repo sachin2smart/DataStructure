@@ -67,4 +67,25 @@ public class KthSmallestElementInBST {
 	
 	    return helper(root.right);
     }
+
+	public int kthSmallest_2(Node root, int k) {
+		int numNodesInLeftTree = countNodes(root.left);
+
+		if (numNodesInLeftTree == k - 1) {	//	early return
+			return root.key;
+		}
+
+		if (numNodesInLeftTree >= k) {
+			return kthSmallest(root.left, k);
+		}
+
+		return kthSmallest(root.right, k - 1 - numNodesInLeftTree); // if (leftCount < k) - Search in right subtree
+	}
+
+	private int countNodes(Node root) {
+		if (root == null) {
+			return 0;
+		}
+		return 1 + countNodes(root.left) + countNodes(root.right);
+	}
 }

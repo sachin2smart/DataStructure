@@ -49,9 +49,9 @@ public class MergeOverlappingIntervals {
             return intervals;
 
         // Sort by ascending starting point using an anonymous Comparator
-        intervals.sort((i1, i2) -> Integer.compare(i1.start, i2.start));
+        intervals.sort(Comparator.comparingInt(i -> i.start));
 
-        List<Interval> result = new LinkedList<Interval>();
+        List<Interval> result = new LinkedList<>();
         int start = intervals.get(0).start;
         int end = intervals.get(0).end;
 
@@ -99,5 +99,27 @@ public class MergeOverlappingIntervals {
         intervalsList.add(new Interval(15,18));
         System.out.println(intervals.merge(intervalsList));
         // [[1, 6], [8, 10], [15, 18]]
+
+        System.out.println(Arrays.deepToString(intervals.merge_2(new int[][]{
+                {1, 3}, {2, 6}, {8, 10}, {15, 18}
+        })));
+        // [[1, 6], [8, 10], [15, 18]]
+    }
+
+    public int[][] merge_2(int[][] intervals) {
+        List<int[]> res = new ArrayList<>();
+
+        Arrays.sort(intervals, Comparator.comparingInt(interval -> interval[0]));
+
+        for (int[] interval : intervals) {
+            if (res.isEmpty() || res.get(res.size() - 1)[1] < interval[0]) {
+                res.add(interval);
+            }
+            else {
+                res.get(res.size() - 1)[1] = Math.max(res.get(res.size() - 1)[1], interval[1]);
+            }
+        }
+
+        return res.toArray(new int[0][]);
     }
 }
