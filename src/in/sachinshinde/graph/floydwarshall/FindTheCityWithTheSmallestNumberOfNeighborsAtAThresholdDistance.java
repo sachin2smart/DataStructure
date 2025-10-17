@@ -105,6 +105,62 @@ public class FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance {
         return dist;
     }
 
+    public int findTheCity2(int n, int[][] edges, int distanceThreshold) {
+        // Step 1: Create distance matrix
+        int[][] dist = new int[n][n];
+
+        // Step 2: Initialize distances
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
+                    dist[i][j] = 0;
+                }
+                else {
+                    dist[i][j] = Integer.MAX_VALUE / 2; // prevent overflow
+                }
+            }
+        }
+
+        // Step 3: Fill direct edge distances
+        for (int[] e: edges) {
+            int u = e[0];
+            int v = e[1];
+            int wt = e[2];
+            dist[u][v] = wt;
+            dist[v][u] = wt;
+        }
+
+        // Step 4: Floyd–Warshall algorithm
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+                }
+            }
+        }
+
+        // Step 5: Find the city with the smallest reachable count
+        int cityNo = -1;
+        int minCount = n;
+
+        for (int city = 0; city < n; city++) {
+            int count = 0;
+            for (int adjCity = 0; adjCity < n; adjCity++) {
+                if (dist[city][adjCity] <= distanceThreshold) {
+                    count++;
+                }
+            }
+
+            // In case of tie, choose the city with larger index
+            if (count <= minCount) {
+                minCount = count;
+                cityNo = city;
+            }
+        }
+
+        return cityNo;
+    }
+
     public static void main(String[] args) {
         FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance city =
                 new FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance();
@@ -112,5 +168,7 @@ public class FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance {
         System.out.println(city.findTheCity(4,new int[][]{{0,1,3},{1,2,1},{1,3,4},{2,3,1}},4)); // 3
         System.out.println(city.findTheCity(5,new int[][]{{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}},2)); // 0
 
+        System.out.println(city.findTheCity2(4,new int[][]{{0,1,3},{1,2,1},{1,3,4},{2,3,1}},4)); // 3
+        System.out.println(city.findTheCity2(5,new int[][]{{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}},2)); // 0
     }
 }
