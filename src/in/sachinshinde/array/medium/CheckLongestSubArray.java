@@ -83,68 +83,69 @@ import java.util.Set;
 
 public class CheckLongestSubArray {
 
-    public boolean isLongestSubArray(int[] a, int[] b, int[] c) {
+  public static void main(String[] args) {
+    CheckLongestSubArray subArray = new CheckLongestSubArray();
+    System.out.println(
+        subArray.isLongestSubArray(
+            new int[] {1, 1, 5, 1, 2}, new int[] {1, 2}, new int[] {2, 1})); // true
 
-        //  add elements of c to a Set; so we can check whether b contains any elements that aren't in c
-        Set<Integer> elements = new HashSet<>();
-        for (int k : c) {
-            elements.add(k);
-        }
+    System.out.println(
+        subArray.isLongestSubArray(
+            new int[] {1, 2, 3, 6, 1, 1, 1}, new int[] {1, 2, 3}, new int[] {2, 1})); // false
 
-        // if anything in b is not in c then no more processing needed, we return false
-        for (int k : b) {
-            if (!elements.contains(k)) {
-                return false;
-            }
-        }
+    System.out.println(
+        subArray.isLongestSubArray(
+            new int[] {1, 2, 2, 3, 2, 1, 3}, new int[] {3, 2, 1, 3}, new int[] {2, 1, 3})); // false
+  }
 
-        //  find the max length contiguous subarray that contains elements in c
-        int left = 0;
-        int right = 0;
-        int maxLength = 0;
-        while (right < a.length) {
-            if (!elements.contains(a[right])) {
-                left = right + 1;
-            }
-            else {
-                maxLength = Math.max(maxLength, right - left + 1);
-                if (maxLength > b.length) {
-                    return false;
-                }
-            }
-            right++;
-        }
+  public boolean isLongestSubArray(int[] a, int[] b, int[] c) {
 
-        //  check whether b is in a
-        int i = 0;
-        int j = 0;
-        int count = 0;
-        while (j < a.length) {
-            if (a[j] == b[i]) {
-                count++;
-                i++;
-            }
-            else {
-                count = 0;
-                i = 0;
-            }
-            j++;
-            if (count == b.length) {
-                return true;
-            }
-        }
+    //  add elements of c to a Set; so we can check whether b contains any elements that aren't in c
+    Set<Integer> elements = new HashSet<>();
+    for (int k : c) {
+      elements.add(k);
+    }
+
+    // if anything in b is not in c then no more processing needed, we return false
+    for (int k : b) {
+      if (!elements.contains(k)) {
         return false;
+      }
     }
 
-    public static void main(String[] args) {
-        CheckLongestSubArray subArray = new CheckLongestSubArray();
-        System.out.println(subArray.isLongestSubArray(new int[] {1, 1, 5, 1, 2},
-                new int[] {1, 2}, new int[] {2, 1}));   // true
-
-        System.out.println(subArray.isLongestSubArray(new int[] {1, 2, 3, 6, 1, 1, 1},
-                new int[] {1, 2, 3}, new int[] {2, 1}));   // false
-
-        System.out.println(subArray.isLongestSubArray(new int[] {1, 2, 2, 3, 2, 1, 3},
-                new int[] {3, 2, 1, 3}, new int[] {2, 1, 3}));   // false
+    //  find the max length contiguous subarray that contains elements in c
+    int left = 0;
+    int right = 0;
+    int maxLength = 0;
+    while (right < a.length) {
+      if (!elements.contains(a[right])) {
+        left = right + 1;
+      } else {
+        maxLength = Math.max(maxLength, right - left + 1);
+        if (maxLength > b.length) {
+          return false;
+        }
+      }
+      right++;
     }
+
+    //  check whether b is in a
+    int i = 0;
+    int j = 0;
+    int count = 0;
+    while (j < a.length) {
+      if (a[j] == b[i]) {
+        count++;
+        i++;
+      } else {
+        count = 0;
+        i = 0;
+      }
+      j++;
+      if (count == b.length) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

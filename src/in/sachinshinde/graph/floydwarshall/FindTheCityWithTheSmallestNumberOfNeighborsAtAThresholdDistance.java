@@ -1,174 +1,184 @@
 package in.sachinshinde.graph.floydwarshall;
 
-//  https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/
+//
+// https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/
 
 /*
-        There are n cities numbered from 0 to n-1.
-        Given the array edges where
-            edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between cities fromi and toi,
-            and given the integer distanceThreshold.
+       There are n cities numbered from 0 to n-1.
+       Given the array edges where
+           edges[i] = [fromi, toi, weighti] represents a bidirectional and weighted edge between cities fromi and toi,
+           and given the integer distanceThreshold.
 
-        Return the city with the smallest number of cities that are reachable through some path and
-            whose distance is at most distanceThreshold,
-            If there are multiple such cities, return the city with the greatest number.
+       Return the city with the smallest number of cities that are reachable through some path and
+           whose distance is at most distanceThreshold,
+           If there are multiple such cities, return the city with the greatest number.
 
-        Notice that the distance of a path connecting cities i and j is equal to
-            the sum of the edges' weights along that path.
+       Notice that the distance of a path connecting cities i and j is equal to
+           the sum of the edges' weights along that path.
 
-        Example 1:
-        ------------
-        Input: n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4
-        Output: 3
-        Explanation: The figure above describes the graph.
-        The neighboring cities at a distanceThreshold = 4 for each city are:
-        City 0 -> [City 1, City 2]
-        City 1 -> [City 0, City 2, City 3]
-        City 2 -> [City 0, City 1, City 3]
-        City 3 -> [City 1, City 2]
-        Cities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number.
+       Example 1:
+       ------------
+       Input: n = 4, edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]], distanceThreshold = 4
+       Output: 3
+       Explanation: The figure above describes the graph.
+       The neighboring cities at a distanceThreshold = 4 for each city are:
+       City 0 -> [City 1, City 2]
+       City 1 -> [City 0, City 2, City 3]
+       City 2 -> [City 0, City 1, City 3]
+       City 3 -> [City 1, City 2]
+       Cities 0 and 3 have 2 neighboring cities at a distanceThreshold = 4, but we have to return city 3 since it has the greatest number.
 
-        Example 2:
-        ------------
-
-
-        Input: n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2
-        Output: 0
-        Explanation: The figure above describes the graph.
-        The neighboring cities at a distanceThreshold = 2 for each city are:
-        City 0 -> [City 1]
-        City 1 -> [City 0, City 4]
-        City 2 -> [City 3, City 4]
-        City 3 -> [City 2, City 4]
-        City 4 -> [City 1, City 2, City 3]
-        The city 0 has 1 neighboring city at a distanceThreshold = 2.
+       Example 2:
+       ------------
 
 
-        Constraints:
-        ------------
-            2 <= n <= 100
-            1 <= edges.length <= n * (n - 1) / 2
-            edges[i].length == 3
-            0 <= fromi < toi < n
-            1 <= weighti, distanceThreshold <= 10^4
-            All pairs (fromi, toi) are distinct.
- */
+       Input: n = 5, edges = [[0,1,2],[0,4,8],[1,2,3],[1,4,2],[2,3,1],[3,4,1]], distanceThreshold = 2
+       Output: 0
+       Explanation: The figure above describes the graph.
+       The neighboring cities at a distanceThreshold = 2 for each city are:
+       City 0 -> [City 1]
+       City 1 -> [City 0, City 4]
+       City 2 -> [City 3, City 4]
+       City 3 -> [City 2, City 4]
+       City 4 -> [City 1, City 2, City 3]
+       The city 0 has 1 neighboring city at a distanceThreshold = 2.
+
+
+       Constraints:
+       ------------
+           2 <= n <= 100
+           1 <= edges.length <= n * (n - 1) / 2
+           edges[i].length == 3
+           0 <= fromi < toi < n
+           1 <= weighti, distanceThreshold <= 10^4
+           All pairs (fromi, toi) are distinct.
+*/
 
 import java.util.Arrays;
 
 public class FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance {
 
-    public int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        int ans = -1;
-        int minCitiesCount = n;
-        int[][] dist = floydWarshall(n, edges, distanceThreshold);
+  public static void main(String[] args) {
+    FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance city =
+        new FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance();
 
-        for (int i = 0; i < n; ++i) {
-            int citiesCount = 0;
-            for (int j = 0; j < n; ++j) {
-                if (dist[i][j] <= distanceThreshold) {
-                    ++citiesCount;
-                }
-            }
-            if (citiesCount <= minCitiesCount) {
-                ans = i;
-                minCitiesCount = citiesCount;
-            }
+    System.out.println(
+        city.findTheCity(4, new int[][] {{0, 1, 3}, {1, 2, 1}, {1, 3, 4}, {2, 3, 1}}, 4)); // 3
+    System.out.println(
+        city.findTheCity(
+            5,
+            new int[][] {{0, 1, 2}, {0, 4, 8}, {1, 2, 3}, {1, 4, 2}, {2, 3, 1}, {3, 4, 1}},
+            2)); // 0
+
+    System.out.println(
+        city.findTheCity2(4, new int[][] {{0, 1, 3}, {1, 2, 1}, {1, 3, 4}, {2, 3, 1}}, 4)); // 3
+    System.out.println(
+        city.findTheCity2(
+            5,
+            new int[][] {{0, 1, 2}, {0, 4, 8}, {1, 2, 3}, {1, 4, 2}, {2, 3, 1}, {3, 4, 1}},
+            2)); // 0
+  }
+
+  public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+    int ans = -1;
+    int minCitiesCount = n;
+    int[][] dist = floydWarshall(n, edges, distanceThreshold);
+
+    for (int i = 0; i < n; ++i) {
+      int citiesCount = 0;
+      for (int j = 0; j < n; ++j) {
+        if (dist[i][j] <= distanceThreshold) {
+          ++citiesCount;
         }
-
-        return ans;
+      }
+      if (citiesCount <= minCitiesCount) {
+        ans = i;
+        minCitiesCount = citiesCount;
+      }
     }
 
-    private int[][] floydWarshall(int n, int[][] edges, int distanceThreshold) {
-        int[][] dist = new int[n][n];
-        Arrays.stream(dist).forEach(d -> Arrays.fill(d, distanceThreshold + 1));
+    return ans;
+  }
 
-        for (int i = 0; i < n; ++i) {
-            dist[i][i] = 0;
-        }
+  private int[][] floydWarshall(int n, int[][] edges, int distanceThreshold) {
+    int[][] dist = new int[n][n];
+    Arrays.stream(dist).forEach(d -> Arrays.fill(d, distanceThreshold + 1));
 
-        for (int[] edge : edges) {
-            final int u = edge[0];
-            final int v = edge[1];
-            final int w = edge[2];
-            dist[u][v] = w;
-            dist[v][u] = w;
-        }
-
-        for (int k = 0; k < n; ++k) {
-            for (int i = 0; i < n; ++i) {
-                for (int j = 0; j < n; ++j) {
-                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
-                }
-            }
-        }
-
-        return dist;
+    for (int i = 0; i < n; ++i) {
+      dist[i][i] = 0;
     }
 
-    public int findTheCity2(int n, int[][] edges, int distanceThreshold) {
-        // Step 1: Create distance matrix
-        int[][] dist = new int[n][n];
-
-        // Step 2: Initialize distances
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i == j) {
-                    dist[i][j] = 0;
-                }
-                else {
-                    dist[i][j] = Integer.MAX_VALUE / 2; // prevent overflow
-                }
-            }
-        }
-
-        // Step 3: Fill direct edge distances
-        for (int[] e: edges) {
-            int u = e[0];
-            int v = e[1];
-            int wt = e[2];
-            dist[u][v] = wt;
-            dist[v][u] = wt;
-        }
-
-        // Step 4: Floyd–Warshall algorithm
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
-                }
-            }
-        }
-
-        // Step 5: Find the city with the smallest reachable count
-        int cityNo = -1;
-        int minCount = n;
-
-        for (int city = 0; city < n; city++) {
-            int count = 0;
-            for (int adjCity = 0; adjCity < n; adjCity++) {
-                if (dist[city][adjCity] <= distanceThreshold) {
-                    count++;
-                }
-            }
-
-            // In case of tie, choose the city with larger index
-            if (count <= minCount) {
-                minCount = count;
-                cityNo = city;
-            }
-        }
-
-        return cityNo;
+    for (int[] edge : edges) {
+      final int u = edge[0];
+      final int v = edge[1];
+      final int w = edge[2];
+      dist[u][v] = w;
+      dist[v][u] = w;
     }
 
-    public static void main(String[] args) {
-        FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance city =
-                new FindTheCityWithTheSmallestNumberOfNeighborsAtAThresholdDistance();
-
-        System.out.println(city.findTheCity(4,new int[][]{{0,1,3},{1,2,1},{1,3,4},{2,3,1}},4)); // 3
-        System.out.println(city.findTheCity(5,new int[][]{{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}},2)); // 0
-
-        System.out.println(city.findTheCity2(4,new int[][]{{0,1,3},{1,2,1},{1,3,4},{2,3,1}},4)); // 3
-        System.out.println(city.findTheCity2(5,new int[][]{{0,1,2},{0,4,8},{1,2,3},{1,4,2},{2,3,1},{3,4,1}},2)); // 0
+    for (int k = 0; k < n; ++k) {
+      for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+          dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        }
+      }
     }
+
+    return dist;
+  }
+
+  public int findTheCity2(int n, int[][] edges, int distanceThreshold) {
+    // Step 1: Create distance matrix
+    int[][] dist = new int[n][n];
+
+    // Step 2: Initialize distances
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        if (i == j) {
+          dist[i][j] = 0;
+        } else {
+          dist[i][j] = Integer.MAX_VALUE / 2; // prevent overflow
+        }
+      }
+    }
+
+    // Step 3: Fill direct edge distances
+    for (int[] e : edges) {
+      int u = e[0];
+      int v = e[1];
+      int wt = e[2];
+      dist[u][v] = wt;
+      dist[v][u] = wt;
+    }
+
+    // Step 4: Floyd–Warshall algorithm
+    for (int k = 0; k < n; k++) {
+      for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+          dist[i][j] = Math.min(dist[i][j], dist[i][k] + dist[k][j]);
+        }
+      }
+    }
+
+    // Step 5: Find the city with the smallest reachable count
+    int cityNo = -1;
+    int minCount = n;
+
+    for (int city = 0; city < n; city++) {
+      int count = 0;
+      for (int adjCity = 0; adjCity < n; adjCity++) {
+        if (dist[city][adjCity] <= distanceThreshold) {
+          count++;
+        }
+      }
+
+      // In case of tie, choose the city with larger index
+      if (count <= minCount) {
+        minCount = count;
+        cityNo = city;
+      }
+    }
+
+    return cityNo;
+  }
 }

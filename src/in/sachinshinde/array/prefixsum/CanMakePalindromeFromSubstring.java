@@ -1,7 +1,3 @@
 package in.sachinshinde.array.prefixsum;
 
-public class CanMakePalindromeFromSubstring {
-
-
-
-}
+public class CanMakePalindromeFromSubstring {}

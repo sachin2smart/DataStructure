@@ -1,7 +1,6 @@
 package in.sachinshinde.binarytree.views;
 
 import in.sachinshinde.binarytree.Node;
-
 import java.util.*;
 
 /*
@@ -29,65 +28,65 @@ Binary Tree:
 
 public class TopViewOfBinaryTree {
 
-    static class Pair {
-        int hd; // horizontal distance
-        Node node;
+  public static void main(String[] args) {
+    TopViewOfBinaryTree tree = new TopViewOfBinaryTree();
 
-        public Pair(int hd, Node node) {
-            this.hd = hd;
-            this.node = node;
-        }
+    Node root = new Node(1);
+    root.left = new Node(2);
+    root.right = new Node(3);
+    root.left.left = new Node(4);
+    root.left.right = new Node(5);
+    root.left.right.left = new Node(8);
+    root.right.left = new Node(6);
+    root.right.right = new Node(7);
+    root.right.right.left = new Node(9);
+    root.right.right.right = new Node(10);
+
+    List<Integer> result = tree.topView(root);
+    System.out.println("Top view of a Binary Tree : " + result);
+  }
+
+  private List<Integer> topView(Node root) {
+    if (root == null) {
+      return Collections.emptyList();
     }
 
-    private List<Integer> topView(Node root) {
-        if(root == null) {
-            return Collections.emptyList();
-        }
+    Map<Integer, Integer> hdToValueMap = new TreeMap<>();
+    Queue<Pair> queue = new LinkedList<>();
 
-        Map<Integer, Integer> hdToValueMap = new TreeMap<>();
-        Queue<Pair> queue = new LinkedList<>();
+    // to view the tree from Top with order from Right to Left declare map as :
+    // Map<Integer, Integer> hdToValueMap = new TreeMap<>(Comparator.reverseOrder());
+    //  the result will be: [10, 7, 3, 1, 2, 4]
 
-        // to view the tree from Top with order from Right to Left declare map as :
-        // Map<Integer, Integer> hdToValueMap = new TreeMap<>(Comparator.reverseOrder());
-        //  the result will be: [10, 7, 3, 1, 2, 4]
+    queue.add(new Pair(0, root));
 
-        queue.add(new Pair(0, root));
+    while (!queue.isEmpty()) {
+      Pair currPair = queue.poll();
+      int currHd = currPair.hd;
+      Node currNode = currPair.node;
 
-        while(!queue.isEmpty()) {
-            Pair currPair = queue.poll();
-            int currHd = currPair.hd;
-            Node currNode = currPair.node;
+      hdToValueMap.put(currHd, currNode.key);
+      //            hdToValueMap.computeIfAbsent(currHd, k -> currNode.key);
 
-            hdToValueMap.put(currHd, currNode.key);
-//            hdToValueMap.computeIfAbsent(currHd, k -> currNode.key);
+      if (currNode.left != null) {
+        queue.add(new Pair(currHd - 1, currNode.left));
+      }
 
-            if(currNode.left != null) {
-                queue.add(new Pair(currHd - 1, currNode.left));
-            }
-
-            if(currNode.right != null) {
-                queue.add(new Pair(currHd + 1, currNode.right));
-            }
-        }
-
-        return new ArrayList<>(hdToValueMap.values());
+      if (currNode.right != null) {
+        queue.add(new Pair(currHd + 1, currNode.right));
+      }
     }
 
-    public static void main(String[] args) {
-        TopViewOfBinaryTree tree = new TopViewOfBinaryTree();
+    return new ArrayList<>(hdToValueMap.values());
+  }
 
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.left.right.left = new Node(8);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
-        root.right.right.left = new Node(9);
-        root.right.right.right = new Node(10);
+  static class Pair {
+    int hd; // horizontal distance
+    Node node;
 
-        List<Integer> result = tree.topView(root);
-        System.out.println("Top view of a Binary Tree : " + result);
+    public Pair(int hd, Node node) {
+      this.hd = hd;
+      this.node = node;
     }
+  }
 }

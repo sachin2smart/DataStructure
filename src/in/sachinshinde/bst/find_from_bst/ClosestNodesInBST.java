@@ -1,7 +1,6 @@
 package in.sachinshinde.bst.find_from_bst;
 
 import in.sachinshinde.bst.Node;
-
 import java.util.*;
 
 //	https://leetcode.ca/2016-08-28-272-Closest-Binary-Search-Tree-Value-II/
@@ -34,62 +33,63 @@ import java.util.*;
  */
 
 public class ClosestNodesInBST {
-	
-	private static Deque<Integer> result = new ArrayDeque<Integer>();
 
-    public static List<Integer> closestKValues(Node root, double target, int k) {
-        inOrderTraversal(root, target, k);
-        return new LinkedList<Integer>(result);
+  private static Deque<Integer> result = new ArrayDeque<Integer>();
+
+  public static List<Integer> closestKValues(Node root, double target, int k) {
+    inOrderTraversal(root, target, k);
+    return new LinkedList<Integer>(result);
+  }
+
+  private static void inOrderTraversal(Node root, double target, int k) {
+    if (root == null) {
+      return;
     }
-    
-    private static void inOrderTraversal(Node root, double target, int k) {
-        if (root == null) {
-            return;
-        }
-        inOrderTraversal(root.left, target, k);
-        if (result.size() < k) {
-            result.add(root.key);
-        } else if(result.size() == k) { 
-            if (Math.abs(result.getFirst() - target) > (Math.abs(root.key - target))) {
-                result.removeFirst();
-                result.addLast(root.key);
-            } else {
-                return; // diff is larger, so skip, as trim
-            }
-        }
-        inOrderTraversal(root.right, target, k);
+    inOrderTraversal(root.left, target, k);
+    if (result.size() < k) {
+      result.add(root.key);
+    } else if (result.size() == k) {
+      if (Math.abs(result.getFirst() - target) > (Math.abs(root.key - target))) {
+        result.removeFirst();
+        result.addLast(root.key);
+      } else {
+        return; // diff is larger, so skip, as trim
+      }
     }
-    
-	public static void main(String[] args) {
-	    Node root = new Node(4);
-	    root.left = new Node(2);
-	    root.right = new Node(5);
+    inOrderTraversal(root.right, target, k);
+  }
 
-	    root.left.left = new Node(1);
-	    root.left.right = new Node(3);
+  public static void main(String[] args) {
+    Node root = new Node(4);
+    root.left = new Node(2);
+    root.right = new Node(5);
 
-	    System.out.println(closestKValues(root, 3.114286, 2));
-	}
+    root.left.left = new Node(1);
+    root.left.right = new Node(3);
 
-    public List<Integer> closestKValues2(Node root, double target, int k) {
-        Queue<Integer> pq = new PriorityQueue<>((a, b) -> Math.abs(a - target) > Math.abs(b - target) ? -1: 1);
-        dfs(root, pq, k);
+    System.out.println(closestKValues(root, 3.114286, 2));
+  }
 
-        return new ArrayList<>(pq);
+  public List<Integer> closestKValues2(Node root, double target, int k) {
+    Queue<Integer> pq =
+        new PriorityQueue<>((a, b) -> Math.abs(a - target) > Math.abs(b - target) ? -1 : 1);
+    dfs(root, pq, k);
+
+    return new ArrayList<>(pq);
+  }
+
+  public void dfs(Node node, Queue<Integer> pq, int k) {
+    if (node == null) {
+      return;
     }
 
-    public void dfs(Node node, Queue<Integer> pq, int k) {
-        if (node == null) {
-            return;
-        }
+    pq.add(node.key);
 
-        pq.add(node.key);
-
-        if (pq.size() > k) {
-            pq.remove();
-        }
-
-        dfs(node.left, pq, k);
-        dfs(node.right, pq, k);
+    if (pq.size() > k) {
+      pq.remove();
     }
+
+    dfs(node.left, pq, k);
+    dfs(node.right, pq, k);
+  }
 }

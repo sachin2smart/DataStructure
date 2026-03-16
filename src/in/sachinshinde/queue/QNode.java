@@ -1,8 +1,8 @@
 package in.sachinshinde.queue;
 
 /*
-	
-	
+
+
     front                    rear
      ____ ____ ____ ____ ____ ____
     |    |    |    |    |    |    |____
@@ -10,22 +10,19 @@ package in.sachinshinde.queue;
                                        |
                                      __|__
                                        _
-                                       . 
+                                       .
     remove                     add
-    
-    
+
+
 */
 
 public class QNode {
-	
-	int key;
-	QNode next;
-	
-	public QNode(int key) {
-		this.key = key;
-		this.next = null;
-	}
-	
+
+  int key;
+  QNode next;
+
+  public QNode(int key) {
+    this.key = key;
+    this.next = null;
+  }
 }
-
-

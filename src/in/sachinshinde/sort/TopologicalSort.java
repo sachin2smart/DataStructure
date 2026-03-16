@@ -7,13 +7,13 @@ package in.sachinshinde.sort;
 	2. Adjacency List - DFS
 	3. Adjacency Matrix - BFS
 	4. Adjacency Matrix - DFS
-	
+
 	BFS  (Queue, No Recursion)
 	DFS	 (Stack, Recursion)
 */
 
 public class TopologicalSort {
-	
-	// DFS version with Adjacency List is already being exercised in ../graph/TopoSortByDFS.java
-	
+
+  // DFS version with Adjacency List is already being exercised in ../graph/TopoSortByDFS.java
+
 }

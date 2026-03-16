@@ -5,70 +5,63 @@ import java.util.Stack;
 //	https://leetcode.com/problems/basic-calculator-ii/
 
 /*
- 	Given a string s which represents an expression, evaluate this expression and return its value. 
-	The integer division should truncate toward zero.
-	You may assume that the given expression is always valid. 
-	All intermediate results will be in the range of [-231, 231 - 1].
+	Given a string s which represents an expression, evaluate this expression and return its value.
+The integer division should truncate toward zero.
+You may assume that the given expression is always valid.
+All intermediate results will be in the range of [-231, 231 - 1].
 
-	Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions, 
-			such as eval().
- */
+Note: You are not allowed to use any built-in function which evaluates strings as mathematical expressions,
+		such as eval().
+*/
 
 public class BasicCalculator2 {
-	
-	/*
-	 Steps:
-	 	1)	Keep first operator as +
-	 	2)	calculate the num value - it is num (num can be > 10)
-	 	3)	for every current char as operator value,
-	 	 		i. 		if the last op is + or - then push current number to stack with that sign 
-	 	 		ii. 	if the last op is * or / then pop the result and then perform the operation with num value.
-	 	 				reset num and op value here
-	 	4)	take a sum of all values from the stack
-	 */
-	
-	public int calculate(String s) {
-		int num = 0;
-		char op = '+';
-		int n = s.length();
-		
-		Stack<Integer> st = new Stack<>();
 
-		for(int i=0; i<n; i++) {
-			char ch = s.charAt(i);
-			
-			if(Character.isDigit(ch))
-				num = num * 10 + ch - '0';
-			
-			if(!Character.isDigit(ch) && ch != ' ' || i==n-1) {
-				if(op == '+')
-					st.push(num);
-				else if(op == '-')
-					st.push(-num);
-				else if(op == '*')
-					st.push(st.pop() * num);
-				else if(op == '/')
-					st.push(st.pop() / num);
-                
-                num = 0;
-			    op = ch;
-			}
-				
-		}
-		
-		int res = 0;
-		while(!st.isEmpty())
-			res += st.pop();
+  /*
+  Steps:
+  	1)	Keep first operator as +
+  	2)	calculate the num value - it is num (num can be > 10)
+  	3)	for every current char as operator value,
+  	 		i. 		if the last op is + or - then push current number to stack with that sign
+  	 		ii. 	if the last op is * or / then pop the result and then perform the operation with num value.
+  	 				reset num and op value here
+  	4)	take a sum of all values from the stack
+  */
 
-		return res;
-	}
-	
-	public static void main(String[] args) {
-		BasicCalculator2 basicCalculator2 = new BasicCalculator2();
-		String s;
-		s = new String("3+2*2");	//	7
-		System.out.println(basicCalculator2.calculate(s));
-	}
+  public static void main(String[] args) {
+    BasicCalculator2 basicCalculator2 = new BasicCalculator2();
+    String s;
+    s = new String("3+2*2"); // 	7
+    System.out.println(basicCalculator2.calculate(s));
+  }
+
+  public int calculate(String s) {
+    int num = 0;
+    char op = '+';
+    int n = s.length();
+
+    Stack<Integer> st = new Stack<>();
+
+    for (int i = 0; i < n; i++) {
+      char ch = s.charAt(i);
+
+      if (Character.isDigit(ch)) num = num * 10 + ch - '0';
+
+      if (!Character.isDigit(ch) && ch != ' ' || i == n - 1) {
+        if (op == '+') st.push(num);
+        else if (op == '-') st.push(-num);
+        else if (op == '*') st.push(st.pop() * num);
+        else if (op == '/') st.push(st.pop() / num);
+
+        num = 0;
+        op = ch;
+      }
+    }
+
+    int res = 0;
+    while (!st.isEmpty()) res += st.pop();
+
+    return res;
+  }
 }
 
 /*
@@ -82,15 +75,15 @@ public class BasicCalculator2 {
 */
 
 /*
- 	Example 1:
-		Input: s = "3+2*2"
-		Output: 7
+	Example 1:
+	Input: s = "3+2*2"
+	Output: 7
 
-	Example 2:
-		Input: s = " 3/2 "
-		Output: 1
+Example 2:
+	Input: s = " 3/2 "
+	Output: 1
 
-	Example 3:
-		Input: s = " 3+5 / 2 "
-		Output: 5
- */
+Example 3:
+	Input: s = " 3+5 / 2 "
+	Output: 5
+*/

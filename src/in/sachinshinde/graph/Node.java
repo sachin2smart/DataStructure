@@ -1,27 +1,26 @@
 package in.sachinshinde.graph;
 
 public class Node {
-	private int u;
-	private int v;
-	private int weight;
-	
-	public Node(int u, int v, int weight) {
-		super();
-		this.u = u;
-		this.v = v;
-		this.weight = weight;
-	}
+  private int u;
+  private int v;
+  private int weight;
 
-	public int getU() {
-		return u;
-	}
+  public Node(int u, int v, int weight) {
+    super();
+    this.u = u;
+    this.v = v;
+    this.weight = weight;
+  }
 
-	public int getV() {
-		return v;
-	}
+  public int getU() {
+    return u;
+  }
 
-	public int getWeight() {
-		return weight;
-	}
-	
+  public int getV() {
+    return v;
+  }
+
+  public int getWeight() {
+    return weight;
+  }
 }

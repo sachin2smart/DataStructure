@@ -7,29 +7,24 @@ import java.util.Map;
 
 public class GreatestCommonDivisorTraversal {
 
-    public boolean canTraverseAllPairs(int[] nums) {
-	List<List<Integer>> adjList = new ArrayList<>();
-	Map<Integer, List<Integer>> factorsMap = new HashMap();
-	
-	int n = nums.length;
-	
-	for(int i=0; i<n; i++) {
-	    adjList = new ArrayList<>();
-	}
-	
-	for(int i=0; i<n; i++) {
-	    mapAllPrimeFactors(i, nums, factorsMap);
-	}
-	
-	return true;
-    }
-    
-    private void mapAllPrimeFactors(int i, int[] nums, Map<Integer, List<Integer>> factorsMap) {
-	
-	
+  public static void main(String[] args) {}
+
+  public boolean canTraverseAllPairs(int[] nums) {
+    List<List<Integer>> adjList = new ArrayList<>();
+    Map<Integer, List<Integer>> factorsMap = new HashMap();
+
+    int n = nums.length;
+
+    for (int i = 0; i < n; i++) {
+      adjList = new ArrayList<>();
     }
 
-    public static void main(String[] args) {
-	
+    for (int i = 0; i < n; i++) {
+      mapAllPrimeFactors(i, nums, factorsMap);
     }
+
+    return true;
+  }
+
+  private void mapAllPrimeFactors(int i, int[] nums, Map<Integer, List<Integer>> factorsMap) {}
 }

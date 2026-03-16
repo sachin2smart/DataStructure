@@ -6,31 +6,29 @@ import java.util.Set;
 //	https://leetcode.com/problems/contains-duplicate/
 
 /*
- 	Given an integer array nums, 
- 	return true if any value appears at least twice in the array, and 
- 	return false if every element is distinct.
+	Given an integer array nums,
+	return true if any value appears at least twice in the array, and
+	return false if every element is distinct.
 
-	Example 1:
-		Input: nums = [1,2,3,1]
-		Output: true
-	
-	Example 2:
-		Input: nums = [1,2,3,4]
-		Output: false
-	
-	Example 3:
-		Input: nums = [1,1,1,3,3,4,3,2,4,2]
-		Output: true
- */
+Example 1:
+	Input: nums = [1,2,3,1]
+	Output: true
+
+Example 2:
+	Input: nums = [1,2,3,4]
+	Output: false
+
+Example 3:
+	Input: nums = [1,1,1,3,3,4,3,2,4,2]
+	Output: true
+*/
 
 public class ContainsDuplicate {
-	public boolean containsDuplicate(int[] nums) {
-        Set<Integer> hs = new HashSet<Integer>();
-        for(int num: nums)
-            if(hs.contains(num))
-                return true;
-            else
-                hs.add(num);
-        return false;
-    }
+  public boolean containsDuplicate(int[] nums) {
+    Set<Integer> hs = new HashSet<Integer>();
+    for (int num : nums)
+      if (hs.contains(num)) return true;
+      else hs.add(num);
+    return false;
+  }
 }

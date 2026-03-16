@@ -2,18 +2,17 @@ package in.sachinshinde.stack;
 
 public class StackNode {
 
-	int key;
-	StackNode next;
-	
-	public StackNode(int data) {
-		this.key = data;
-		this.next = null;
-	}
+  int key;
+  StackNode next;
+
+  public StackNode(int data) {
+    this.key = data;
+    this.next = null;
+  }
 }
 
+/*
 
-/* 
-  
   Structure:
              ___
             |   |    top
@@ -25,7 +24,7 @@ public class StackNode {
             |   |____
             |___|    |
                    __|__
-                     _                   
-                     .                             
+                     _
+                     .
 
 */
