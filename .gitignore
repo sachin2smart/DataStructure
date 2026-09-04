@@ -1,2 +1,6 @@
 ./.idea
 ./classes
+.idea
+.idea/*
+classes/
+classes/*
